@@ -6,5 +6,4 @@ import dask.bag as db
 if __name__ == '__main__':
     bag = db.read_text("RC_2006-10.zst").map(json.loads)
     
-    # df = bag.to_dataframe().head()
-    bag.count().compute()
+    df = bag.to_dataframe().head()
