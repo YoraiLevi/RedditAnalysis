@@ -3,7 +3,7 @@
 import ujson as json
 import dask.bag as db
 
-
-bag = db.read_text("RC_2020-10.zst").map(json.loads)
-# df = bag.to_dataframe()
-bag.count().compute()
+if __name__ == '__main__':
+    bag = db.read_text("RC_2020-10.zst").map(json.loads)
+    # df = bag.to_dataframe()
+    bag.count().compute()
