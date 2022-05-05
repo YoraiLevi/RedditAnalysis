@@ -61,8 +61,11 @@ filenames = [
 ]
 
 
-def load(filename):
-    return Zreader(filename).readlines()
+@delayed
+def load(filename,buffer_size=10*6):
+    buffer = [None]*buffer_size
+    for i,line in enumerate(Zreader(filename).readlines()):
+        buffer[i]
 
 
 def main():
