@@ -70,10 +70,9 @@ def chunk(iterable,chunk_size=10*6):
         try:
             for i in range(1,chunk_size):
                 buffer[i] = next(iterator)
+            yield buffer
         except StopIteration:
-                yield buffer[:i]
-        yield buffer
-    raise StopIteration
+            yield buffer
 
 @delayed
 def load(filename,buffer_size=10*6):
