@@ -3,7 +3,7 @@ from numpy import iterable
 import ujson as json
 import dask.bag as db
 from zreader import Zreader
-from dask.distributed import progress, Client, LocalCluster
+from dask.distributed import progress, Client, LocalCluster,as_completed
 from dask import delayed
 import dask
 
@@ -88,7 +88,7 @@ def main():
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
     bag = db.from_delayed([load(filename) for filename in filenames])
     futures = dask.persist(bag)
-    futures.flatten().map(json.loads)
+    as_completed(futures).flatten().map(json.loads)
     frequencyList = (
         bag.map(lambda x: x["body"])
         .str.lower()
