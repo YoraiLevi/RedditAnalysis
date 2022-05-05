@@ -61,7 +61,6 @@ filenames = [
 ]
 
 
-@delayed
 def load(filename):
     return Zreader(filename).readlines()
 
