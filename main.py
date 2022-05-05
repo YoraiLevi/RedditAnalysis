@@ -1,6 +1,6 @@
 import ujson as json
 import dask.bag as db
-import zreader
+from zreader import Zreader
 from dask.distributed import Client, progress
 
 if __name__ == '__main__':
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         ("subreddit_id", str),
     ]
     filenames = ["RC_2021-*.zst"]
-    bag = db.from_sequence(filenames).map(json.loads)
+    bag = db.from_sequence(filenames).map(lambda filename: Zreader(filename).readlines()).map(json.loads)
     frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
     out = frequencyList.to_dataframe().to_csv('2021-*.csv')
     print(out)
