@@ -70,4 +70,4 @@ if __name__ == '__main__':
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
 
- bag = db.from_sequence(filenames).map_partitions(lambda filename: Zreader(filename).readlines)
+#  bag = db.from_sequence(filenames).map_partitions(lambda filename: Zreader(filename).readlines)
