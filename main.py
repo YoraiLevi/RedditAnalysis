@@ -1,3 +1,4 @@
+from sched import scheduler
 import ujson as json
 import dask.bag as db
 from zreader import Zreader
@@ -25,21 +26,21 @@ metaComment = [
     ("subreddit_id", str),
 ]
 filenames = [
-    # "D:/Downloads/reddit/comments/RC_2006-01.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-02.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-03.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-04.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-05.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-06.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-07.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-08.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-09.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-10.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-11.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-12.zst",
-    # "D:/Downloads/reddit/comments/RC_2007-01.zst",
-    # "D:/Downloads/reddit/comments/RC_2007-02.zst",
-    # "D:/Downloads/reddit/comments/RC_2007-03.zst",
+    "D:/Downloads/reddit/comments/RC_2006-01.zst",
+    "D:/Downloads/reddit/comments/RC_2006-02.zst",
+    "D:/Downloads/reddit/comments/RC_2006-03.zst",
+    "D:/Downloads/reddit/comments/RC_2006-04.zst",
+    "D:/Downloads/reddit/comments/RC_2006-05.zst",
+    "D:/Downloads/reddit/comments/RC_2006-06.zst",
+    "D:/Downloads/reddit/comments/RC_2006-07.zst",
+    "D:/Downloads/reddit/comments/RC_2006-08.zst",
+    "D:/Downloads/reddit/comments/RC_2006-09.zst",
+    "D:/Downloads/reddit/comments/RC_2006-10.zst",
+    "D:/Downloads/reddit/comments/RC_2006-11.zst",
+    "D:/Downloads/reddit/comments/RC_2006-12.zst",
+    "D:/Downloads/reddit/comments/RC_2007-01.zst",
+    "D:/Downloads/reddit/comments/RC_2007-02.zst",
+    "D:/Downloads/reddit/comments/RC_2007-03.zst",
     # "D:/Downloads/reddit/comments/RC_2015-05.zst",
     # "D:/Downloads/reddit/comments/RC_2017-06.zst",
     # "D:/Downloads/reddit/comments/RC_2018-02.zst",
@@ -52,7 +53,7 @@ filenames = [
     # "D:/Downloads/reddit/comments/RC_2020-11.zst",
     # "D:/Downloads/reddit/comments/RC_2020-12.zst",
     # "D:/Downloads/reddit/comments/RC_2021-01.zst",
-    "D:/Downloads/reddit/comments/RC_2021-02.zst",
+    # "D:/Downloads/reddit/comments/RC_2021-02.zst",
     # "D:/Downloads/reddit/comments/RC_2021-03.zst",
     # "D:/Downloads/reddit/comments/RC_2021-04.zst",
     # "D:/Downloads/reddit/comments/RC_2021-05.zst",
@@ -60,24 +61,23 @@ filenames = [
 ]
 
 
+load = lambda filename: Zreader(filename).readlines()
 def main():
     cluster = LocalCluster()
     client = Client(cluster)
-    load = lambda filename: Zreader(filename).readlines()
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
-    bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
-    futureBag = client.scatter(bag)
+    # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
+    bag.map(json.loads)
     frequencyList = (
-        futureBag.map(json.loads)
-        .map(lambda x: x["body"])
+        bag.map(lambda x: x["body"])
         .str.lower()
         .str.rstrip()
         .str.lstrip()
         .str.split()
         .flatten()
         .frequencies(sort=True)
-    )
+)
 
     out = frequencyList.to_dataframe().to_csv("2021-*.csv")
     print(out)
