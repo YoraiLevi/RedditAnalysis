@@ -3,7 +3,7 @@ import dask.bag as db
 from dask.distributed import Client, progress
 
 if __name__ == '__main__':
-    client = Client(threads_per_worker=8, n_workers=1)
+    client = Client(threads_per_worker=2, n_workers=2)
     metaComment = [
         ("gilded", int),
         ("retrieved_on", int),
