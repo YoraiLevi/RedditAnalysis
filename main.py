@@ -23,5 +23,8 @@ metaComment = [
     ("subreddit_id", str),
 ]
 bag = db.read_text("RC_2006-10.zst").map(json.loads)
-df = bag.to_dataframe(meta=metaComment).body
-bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
+frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
+
+# df = bag.to_dataframe(meta=metaComment).body
+# bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
+# a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
