@@ -26,7 +26,7 @@ metaComment = [
 ]
 bag = db.read_text("RC_2006-*.zst").map(json.loads)
 frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
-frequencyList
+frequencyList.to_dataframe().to_csv('*.csv').compute()
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
