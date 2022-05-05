@@ -48,11 +48,11 @@ filenames = [
     # "D:/Downloads/reddit/comments/RC_2020-07.zst",
     # "D:/Downloads/reddit/comments/RC_2020-08.zst",
     # "D:/Downloads/reddit/comments/RC_2020-09.zst",
-    "D:/Downloads/reddit/comments/RC_2020-10.zst",
+    # "D:/Downloads/reddit/comments/RC_2020-10.zst",
     # "D:/Downloads/reddit/comments/RC_2020-11.zst",
     # "D:/Downloads/reddit/comments/RC_2020-12.zst",
     # "D:/Downloads/reddit/comments/RC_2021-01.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-02.zst",
+    "D:/Downloads/reddit/comments/RC_2021-02.zst",
     # "D:/Downloads/reddit/comments/RC_2021-03.zst",
     # "D:/Downloads/reddit/comments/RC_2021-04.zst",
     # "D:/Downloads/reddit/comments/RC_2021-05.zst",
@@ -66,7 +66,7 @@ def main():
     load = lambda filename: Zreader(filename).readlines()
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
-    db.from_delayed([delayed(load)(filename) for filename in filenames]).map(json.loads)
+    db.from_delayed([delayed(load)(filename) for filename in filenames]).scatter().map(json.loads)
     frequencyList = (
         bag.map(lambda x: x["body"])
         .str.lower()
