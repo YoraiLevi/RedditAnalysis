@@ -66,9 +66,11 @@ def main():
     load = lambda filename: Zreader(filename).readlines()
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
-    db.from_delayed([delayed(load)(filename) for filename in filenames]).scatter().map(json.loads)
+    bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
+    futureBag = client.scatter(bag)
     frequencyList = (
-        bag.map(lambda x: x["body"])
+        futureBag.map(json.loads)
+        .map(lambda x: x["body"])
         .str.lower()
         .str.rstrip()
         .str.lstrip()
@@ -76,6 +78,7 @@ def main():
         .flatten()
         .frequencies(sort=True)
     )
+
     out = frequencyList.to_dataframe().to_csv("2021-*.csv")
     print(out)
 
