@@ -87,7 +87,7 @@ def main():
     # bag = db.from_sequence(filenames).map().map(json.loads)
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
     bag = db.from_delayed([load(filename) for filename in filenames])
-    futures = client.persist(bag)
+    futures = client.scatter(bag)
     as_completed(futures).flatten().map(json.loads)
     frequencyList = (
         bag.map(lambda x: x["body"])
