@@ -86,21 +86,26 @@ def main():
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
-    bag = db.from_delayed([load(filename) for filename in filenames])
-    futures = client.scatter(bag)
-    as_completed(futures).flatten().map(json.loads)
-    frequencyList = (
-        bag.map(lambda x: x["body"])
-        .str.lower()
-        .str.rstrip()
-        .str.lstrip()
-        .str.split()
-        .flatten()
-        .frequencies(sort=True)
-    )
+    # bag = db.from_delayed([load(filename) for filename in filenames])
+for chunk in load(filenames[0]):
+    client.map(json.loads,chunk)
 
-    out = frequencyList.to_dataframe().to_csv("2021-*.csv")
-    print(out)
+    data = client.scatter(load(filenames[0]))  
+    res = client.submit(json.loads, data)
+    # futures = client.scatter(bag)
+    # as_completed(futures).flatten().map(json.loads)
+    # frequencyList = (
+    #     bag.map(lambda x: x["body"])
+    #     .str.lower()
+    #     .str.rstrip()
+    #     .str.lstrip()
+    #     .str.split()
+    #     .flatten()
+    #     .frequencies(sort=True)
+    # )
+
+    # out = frequencyList.to_dataframe().to_csv("2021-*.csv")
+    # print(out)
 
 
 # df = bag.to_dataframe(meta=metaComment).body
