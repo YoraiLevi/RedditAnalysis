@@ -61,7 +61,11 @@ filenames = [
 ]
 
 
-load = lambda filename: Zreader(filename).readlines()
+@delayed
+def load(filename):
+    return Zreader(filename).readlines()
+
+
 def main():
     cluster = LocalCluster()
     client = Client(cluster)
@@ -77,7 +81,7 @@ def main():
         .str.split()
         .flatten()
         .frequencies(sort=True)
-)
+    )
 
     out = frequencyList.to_dataframe().to_csv("2021-*.csv")
     print(out)
