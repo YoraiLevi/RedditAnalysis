@@ -75,6 +75,7 @@ def chunk(iterable,chunk_size=10*6):
             return
 @delayed
 def load(filename,buffer_size=10*6):
+    print('load called')
     iterable = Zreader(filename).readlines()
     return chunk(iterable=iterable)
 
