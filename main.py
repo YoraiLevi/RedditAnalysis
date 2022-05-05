@@ -62,19 +62,22 @@ filenames = [
 ]
 
 
+def chunk(iterable,chunk_size=10*6):
+    while(line:=next(iterable)):
+        buffer = [None]*chunk_size
+        buffer[0] = line
+        try:
+            for i in range(1,chunk_size):
+                buffer[i] = next(iterable)
+        except StopIteration:
+                yield buffer[:i]
+        yield buffer
+    raise StopIteration
+
 @delayed
 def load(filename,buffer_size=10*6):
     iterable = Zreader(filename).readlines()
-    while(line:=next(iterable)):
-        buffer = [None]*buffer_size
-        buffer[0] = line
-        for i in range(1,buffer_size):
-            try:
-                buffer[i] = next(iterable)
-            except StopIteration:
-                yield buffer
-        yield buffer
-    raise StopIteration
+    return chunk(iterable=iterable)
 
 def main():
     cluster = LocalCluster()
