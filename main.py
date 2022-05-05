@@ -4,7 +4,7 @@ from zreader import Zreader
 from dask.distributed import Client, progress
 from dask import delayed
 if __name__ == '__main__':
-    client = Client(threads_per_worker=2, n_workers=2)
+    client = Client(threads_per_worker=1, n_workers=4)
     metaComment = [
         ("gilded", int),
         ("retrieved_on", int),
