@@ -72,7 +72,7 @@ def main():
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
-    bag = db.read_text(filenames).repartition(npartitions=4).map(json.loads)
+    bag = db.read_text(filenames).map(json.loads)
     frequencyList = (
         bag.map(lambda x: x["body"])
         .str.lower()
