@@ -24,9 +24,10 @@ if __name__ == '__main__':
         ("stickied", bool),
         ("subreddit_id", str),
     ]
-    bag = db.read_text("RC_2006-*.zst").map(json.loads)
+    name = "RC_2006-*.zst"
+    bag = db.read_text(name).map(json.loads)
     frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
-    frequencyList.to_dataframe().to_csv('*.csv').compute()
+    frequencyList.to_dataframe().to_csv('*.csv')
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
