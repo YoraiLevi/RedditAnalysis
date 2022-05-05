@@ -39,8 +39,8 @@ filenames = [
     "D:/Downloads/reddit/comments/RC_2006-11.zst",
     "D:/Downloads/reddit/comments/RC_2006-12.zst",
     "D:/Downloads/reddit/comments/RC_2007-01.zst",
-    "D:/Downloads/reddit/comments/RC_2007-02.zst",
-    "D:/Downloads/reddit/comments/RC_2007-03.zst",
+    # "D:/Downloads/reddit/comments/RC_2007-02.zst",
+    # "D:/Downloads/reddit/comments/RC_2007-03.zst",
     # "D:/Downloads/reddit/comments/RC_2015-05.zst",
     # "D:/Downloads/reddit/comments/RC_2017-06.zst",
     # "D:/Downloads/reddit/comments/RC_2018-02.zst",
@@ -72,7 +72,7 @@ def main():
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
-    bag.map(json.loads)
+    db.read_text(filenames).map(json.loads)
     frequencyList = (
         bag.map(lambda x: x["body"])
         .str.lower()
