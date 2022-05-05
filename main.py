@@ -25,7 +25,7 @@ if __name__ == '__main__':
         ("stickied", bool),
         ("subreddit_id", str),
     ]
-    filenames = ["RC_2021-*.zst"]
+    filenames = ["RC_2020-10.zst","RC_2020-09.zst","RC_2020-11.zst"]
     bag = db.from_sequence(filenames).map(lambda filename: Zreader(filename).readlines()).map(json.loads)
     frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
     out = frequencyList.to_dataframe().to_csv('2021-*.csv')
