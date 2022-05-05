@@ -1,4 +1,5 @@
 from sched import scheduler
+from numpy import iterable
 import ujson as json
 import dask.bag as db
 from zreader import Zreader
@@ -64,9 +65,10 @@ filenames = [
 @delayed
 def load(filename,buffer_size=10*6):
     buffer = [None]*buffer_size
-    for i,line in enumerate(Zreader(filename).readlines()):
-        buffer[i]
-
+    iterable = Zreader(filename).readlines()
+    for i,line in enumerate(buffer):
+        buffer[i%buffer_size] 
+        yield buffer
 
 def main():
     cluster = LocalCluster()
