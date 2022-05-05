@@ -64,7 +64,7 @@ filenames = [
 
 def chunk(iterable,chunk_size=10*6):
     iterator = iter(iterable)
-    while(value:=next(iterator)):
+    while(True):
         buffer = [None]*chunk_size
         buffer[0] = value
         try:
