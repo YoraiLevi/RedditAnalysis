@@ -74,11 +74,11 @@ def chunk(iterable,chunk_size=10*6):
         except StopIteration:
             yield buffer[:i]
             return
-@delayed
+# @delayed
 def load(filename,buffer_size=10*6):
-    print('load called')
+    # print('load called')
     iterable = Zreader(filename).readlines()
-    return chunk(iterable=iterable)
+    return iterable#chunk(iterable=iterable)
 
 def main():
     cluster = LocalCluster()
@@ -88,6 +88,7 @@ def main():
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_delayed([load(filename) for filename in filenames])
 for chunk in load(filenames[0]):
+    print(1)
     client.map(json.loads,chunk)
 
     data = client.scatter(load(filenames[0]))  
