@@ -63,12 +63,13 @@ filenames = [
 
 
 def chunk(iterable,chunk_size=10*6):
-    while(line:=next(iterable)):
+    iterator = iter(iterable)
+    while(line:=next(iterator)):
         buffer = [None]*chunk_size
         buffer[0] = line
         try:
             for i in range(1,chunk_size):
-                buffer[i] = next(iterable)
+                buffer[i] = next(iterator)
         except StopIteration:
                 yield buffer[:i]
         yield buffer
