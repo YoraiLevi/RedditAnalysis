@@ -13,4 +13,4 @@ class Zreader:
         """Generator method that creates an iterator for each line of JSON"""
         # stream_reader = self.dctx.stream_reader(fh)
         for line in self.text:
-            pass
+            yield line
