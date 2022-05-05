@@ -24,7 +24,7 @@ metaComment = [
     ("stickied", bool),
     ("subreddit_id", str),
 ]
-bag = db.read_text("RC_2006-10.zst").map(json.loads)
+bag = db.read_text("RC_2006-*.zst").map(json.loads)
 frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
 frequencyList
 # df = bag.to_dataframe(meta=metaComment).body
