@@ -64,11 +64,17 @@ filenames = [
 
 @delayed
 def load(filename,buffer_size=10*6):
-    buffer = [None]*buffer_size
     iterable = Zreader(filename).readlines()
-    for i,line in enumerate(buffer):
-        buffer[i%buffer_size] 
+    while(line:=next(iterable)):
+        buffer = [None]*buffer_size
+        buffer[0] = line
+        for i in range(1,buffer_size):
+            try:
+                buffer[i] = next(iterable)
+            except StopIteration:
+                yield buffer
         yield buffer
+    raise StopIteration
 
 def main():
     cluster = LocalCluster()
