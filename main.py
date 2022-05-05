@@ -2,7 +2,7 @@ import ujson as json
 import dask.bag as db
 from zreader import Zreader
 from dask.distributed import Client, progress
-
+from dask import delayed
 if __name__ == '__main__':
     client = Client(threads_per_worker=2, n_workers=2)
     metaComment = [
@@ -59,10 +59,15 @@ if __name__ == '__main__':
     # "D:/Downloads/reddit/comments/RC_2021-05.zst",
     # "D:/Downloads/reddit/comments/RC_2021-06.zst"
     ]
-    bag = db.from_sequence(filenames).map(lambda filename: Zreader(filename).readlines()).map(json.loads)
+    load = lambda filename: Zreader(filename).readlines()
+    # db.from_delayed([delayed(load)(filename) for filename in filenames]) 
+    # bag = db.from_sequence(filenames).map().map(json.loads)
+    db.from_delayed([delayed(load)(filename) for filename in filenames]).map(json.loads)
     frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
     out = frequencyList.to_dataframe().to_csv('2021-*.csv')
     print(out)
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
+
+ bag = db.from_sequence(filenames).map_partitions(lambda filename: Zreader(filename).readlines)
