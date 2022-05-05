@@ -3,7 +3,11 @@ import dask.bag as db
 from zreader import Zreader
 from dask.distributed import Client, progress
 from dask import delayed
-if __name__ == '__main__':
+
+
+
+
+def main():
     client = Client(threads_per_worker=1, n_workers=4)
     metaComment = [
         ("gilded", int),
@@ -26,48 +30,60 @@ if __name__ == '__main__':
         ("subreddit_id", str),
     ]
     filenames = [
-    # "D:/Downloads/reddit/comments/RC_2006-01.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-02.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-03.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-04.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-05.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-06.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-07.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-08.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-09.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-10.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-11.zst",
-    # "D:/Downloads/reddit/comments/RC_2006-12.zst",
-    # "D:/Downloads/reddit/comments/RC_2007-01.zst",
-    # "D:/Downloads/reddit/comments/RC_2007-02.zst",
-    # "D:/Downloads/reddit/comments/RC_2007-03.zst",
-    # "D:/Downloads/reddit/comments/RC_2015-05.zst",
-    # "D:/Downloads/reddit/comments/RC_2017-06.zst",
-    # "D:/Downloads/reddit/comments/RC_2018-02.zst",
-    # "D:/Downloads/reddit/comments/RC_2019-05.zst",
-    # "D:/Downloads/reddit/comments/RC_2019-11.zst",
-    # "D:/Downloads/reddit/comments/RC_2020-07.zst",
-    # "D:/Downloads/reddit/comments/RC_2020-08.zst",
-    # "D:/Downloads/reddit/comments/RC_2020-09.zst",
-    "D:/Downloads/reddit/comments/RC_2020-10.zst",
-    # "D:/Downloads/reddit/comments/RC_2020-11.zst",
-    # "D:/Downloads/reddit/comments/RC_2020-12.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-01.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-02.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-03.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-04.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-05.zst",
-    # "D:/Downloads/reddit/comments/RC_2021-06.zst"
+        # "D:/Downloads/reddit/comments/RC_2006-01.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-02.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-03.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-04.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-05.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-06.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-07.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-08.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-09.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-10.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-11.zst",
+        # "D:/Downloads/reddit/comments/RC_2006-12.zst",
+        # "D:/Downloads/reddit/comments/RC_2007-01.zst",
+        # "D:/Downloads/reddit/comments/RC_2007-02.zst",
+        # "D:/Downloads/reddit/comments/RC_2007-03.zst",
+        # "D:/Downloads/reddit/comments/RC_2015-05.zst",
+        # "D:/Downloads/reddit/comments/RC_2017-06.zst",
+        # "D:/Downloads/reddit/comments/RC_2018-02.zst",
+        # "D:/Downloads/reddit/comments/RC_2019-05.zst",
+        # "D:/Downloads/reddit/comments/RC_2019-11.zst",
+        # "D:/Downloads/reddit/comments/RC_2020-07.zst",
+        # "D:/Downloads/reddit/comments/RC_2020-08.zst",
+        # "D:/Downloads/reddit/comments/RC_2020-09.zst",
+        "D:/Downloads/reddit/comments/RC_2020-10.zst",
+        # "D:/Downloads/reddit/comments/RC_2020-11.zst",
+        # "D:/Downloads/reddit/comments/RC_2020-12.zst",
+        # "D:/Downloads/reddit/comments/RC_2021-01.zst",
+        # "D:/Downloads/reddit/comments/RC_2021-02.zst",
+        # "D:/Downloads/reddit/comments/RC_2021-03.zst",
+        # "D:/Downloads/reddit/comments/RC_2021-04.zst",
+        # "D:/Downloads/reddit/comments/RC_2021-05.zst",
+        # "D:/Downloads/reddit/comments/RC_2021-06.zst"
     ]
     load = lambda filename: Zreader(filename).readlines()
-    # db.from_delayed([delayed(load)(filename) for filename in filenames]) 
+    # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
     db.from_delayed([delayed(load)(filename) for filename in filenames]).map(json.loads)
-    frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
-    out = frequencyList.to_dataframe().to_csv('2021-*.csv')
+    frequencyList = (
+        bag.map(lambda x: x["body"])
+        .str.lower()
+        .str.rstrip()
+        .str.lstrip()
+        .str.split()
+        .flatten()
+        .frequencies(sort=True)
+    )
+    out = frequencyList.to_dataframe().to_csv("2021-*.csv")
     print(out)
+
+
 # df = bag.to_dataframe(meta=metaComment).body
-# bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
+# bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute()
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
 
 #  bag = db.from_sequence(filenames).map_partitions(lambda filename: Zreader(filename).readlines)
+if __name__ == "__main__":
+    main()
