@@ -5,6 +5,7 @@ import dask.bag as db
 from zreader import Zreader
 from dask.distributed import progress, Client, LocalCluster
 from dask import delayed
+import dask
 
 metaComment = [
     ("gilded", int),
@@ -85,7 +86,9 @@ def main():
     # db.from_delayed([delayed(load)(filename) for filename in filenames])
     # bag = db.from_sequence(filenames).map().map(json.loads)
     # bag = db.from_delayed([delayed(load)(filename) for filename in filenames])
-    bag = db.from_delayed([load(filename) for filename in filenames]).flatten().map(json.loads)
+    bag = db.from_delayed([load(filename) for filename in filenames])
+    futures = dask.persist(bag)
+    futures.flatten().map(json.loads)
     frequencyList = (
         bag.map(lambda x: x["body"])
         .str.lower()
