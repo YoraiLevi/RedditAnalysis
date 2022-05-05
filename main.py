@@ -66,15 +66,13 @@ def chunk(iterable,chunk_size=10*6):
     iterator = iter(iterable)
     while(True):
         buffer = [None]*chunk_size
-        buffer[0] = value
         try:
-            for i in range(1,chunk_size):
+            for i in range(chunk_size):
                 buffer[i] = next(iterator)
             yield buffer
         except StopIteration:
-            yield buffer
-    print(value)
-list(chunk(range(10)))
+            yield buffer[:i]
+            return
 @delayed
 def load(filename,buffer_size=10*6):
     iterable = Zreader(filename).readlines()
