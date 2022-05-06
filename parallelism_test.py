@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     client = Client(threads_per_worker=2, n_workers=2)
 
-    bag = db.from_delayed([load()]).
+    bag = db.from_delayed([load()]).map(lambda x: 2*x).count()
     print(out)
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
