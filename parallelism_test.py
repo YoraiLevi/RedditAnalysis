@@ -7,7 +7,8 @@ def load():
     return delayed(range(N))
 if __name__ == '__main__':
     client = Client(LocalCluster())
-    bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
+    bag = client.futures_of(db.from_delayed([load(),load()]))
+    bag.count()
     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
     out = bag.count().compute()
     print(out)
