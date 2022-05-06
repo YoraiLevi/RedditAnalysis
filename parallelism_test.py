@@ -1,18 +1,16 @@
-from turtle import delay
 import ujson as json
 import dask.bag as db
 from dask import delayed
-from dask.distributed import Client, progress
+from dask.distributed import Client, LocalCluster
 from itertools import count
 
-N = 10**8
+N = 10**3
 def load():
     return delayed(range(N))
 if __name__ == '__main__':
-
-    client = Client(threads_per_worker=2, n_workers=2)
-
-    bag = db.from_delayed([load()]).map(lambda x: 2*x).count()
+    client = Client(LocalCluster())
+    bag = db.from_delayed([load()]).map(lambda x: 2*x)
+    out = bag.count()
     print(out)
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
