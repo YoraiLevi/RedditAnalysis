@@ -4,13 +4,13 @@ from dask import delayed
 from dask.distributed import Client, LocalCluster
 from itertools import count
 
-N = 10**3
+N = 10**8
 def load():
     return delayed(range(N))
 if __name__ == '__main__':
     client = Client(LocalCluster())
     bag = db.from_delayed([load()]).map(lambda x: 2*x)
-    out = bag.count()
+    out = bag.count().compute()
     print(out)
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
