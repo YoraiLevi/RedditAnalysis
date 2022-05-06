@@ -2,7 +2,7 @@ import dask.bag as db
 from dask import delayed
 from dask.distributed import Client, LocalCluster
 
-N = 10**7
+N = 10**8
 def load():
     return delayed(range(N))
 if __name__ == '__main__':
