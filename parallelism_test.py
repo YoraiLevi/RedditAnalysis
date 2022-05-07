@@ -35,7 +35,7 @@ def nothing(x):
     pass
 
 
-def main():
+async def main():
     client = Client()
     # client = Client()
     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
@@ -57,13 +57,13 @@ def main():
     def read(filename):
         reader = Zreader(filename)
         for lines in reader.readlines():
-            source.emit(lines)
+            source.emit(lines,asynchronous=True)
         
     # with ThreadPoolExecutor(max_workers=1) as executor:
         # future = executor.submit(read,filename)
-        
+    time.sleep(1)    
     # print(future.result())
 
+import asyncio
 if __name__ == "__main__":
-    main()
-    time.sleep(1)
+    asyncio.run(main())
