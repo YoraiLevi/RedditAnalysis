@@ -4,7 +4,7 @@ from dask.distributed import Client, LocalCluster
 from streamz import Stream
 from zreader import Zreader
 import ujson as json
-
+from concurrent.futures import ThreadPoolExecutor
 import time
 
 # N = 10**8
@@ -54,9 +54,14 @@ def main():
     # print(end-start)
 
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
-    reader = Zreader(filename)
-    for lines in reader.readlines():
-        source.emit(lines,asynchronous=True)
+    def read(filename):
+        reader = Zreader(filename)
+        for lines in reader.readlines():
+            source.emit(lines,asynchronous=True)
+        
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(read,filename)
+    # print(future.result())
 
 if __name__ == "__main__":
     main()
