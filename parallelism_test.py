@@ -18,8 +18,8 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10**12).scatter().map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(nothing)
-    filename = "D:/Downloads/reddit/comments/RC_2021-05.zst"
+    source.buffer(10**12).map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(nothing)
+    filename = "D:/Downloads/reddit/comments/RC_2021-01.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
         source.emit(line)
