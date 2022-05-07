@@ -35,7 +35,7 @@ def nothing(x):
     pass
 
 
-async def main():
+def main():
     client = Client()
     # client = Client()
     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
@@ -55,12 +55,11 @@ async def main():
 
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     reader = Zreader(filename)
-    async for lines in chunk(reader.readlines()):
-        source.emit(lines)
-
-    sleep(1)  # simulate actual work
+    async def read():
+        async for lines in chunk(reader.readlines()):
+            source.emit(lines)
+    read()
 
 if __name__ == "__main__":
     main()
-    while(True):
-        pass
+    time.sleep(1)
