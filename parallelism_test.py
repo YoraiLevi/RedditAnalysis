@@ -40,7 +40,7 @@ def nothing(x):
 
 
 async def main():
-    client = Client()
+    client = await Client(processes=False, asynchronous=True)
     # client = Client()
     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
     #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
@@ -49,7 +49,7 @@ async def main():
     source = Stream(asynchronous=True)
     result = source.scatter().map(lambda x:x).gather().sink(nothing)
     for i in range(1,10*6):
-        source.emit(i,asynchronous=True)
+        await source.emit(i)
     # filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     # reader = Zreader(filename)
     # for lines in reader.readlines():
