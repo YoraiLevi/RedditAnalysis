@@ -47,11 +47,13 @@ async def main():
     #     out = bag.count().compute()
     #     print(out)
     source = Stream(asynchronous=True)
-    result = source.scatter().map(json.loads).gather().sink(nothing)
-    filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
-    reader = Zreader(filename)
-    for lines in reader.readlines():
-        source.emit(lines, asynchronous=True)
+    result = source.scatter().map(lambda x:x).gather().sink(nothing)
+    for i in range(1,10*6):
+        source.emit(i,asynchronous=True)
+    # filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
+    # reader = Zreader(filename)
+    # for lines in reader.readlines():
+        # source.emit(lines, asynchronous=True)
 
     # start = time.time()
     # print(start)
