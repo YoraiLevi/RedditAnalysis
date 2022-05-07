@@ -1,4 +1,5 @@
 # import dask.bag as db
+from multiprocessing import process
 from dask import delayed
 from dask.distributed import Client, LocalCluster
 from streamz import Stream
@@ -9,7 +10,7 @@ import ujson as json
 # def load():
 #     return delayed(range(N))
 if __name__ == '__main__':
-    client = Client(LocalCluster())
+    client = Client(process=False)
 #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
 #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
 #     out = bag.count().compute()
@@ -17,8 +18,8 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.scatter().buffer(10**8).map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(nothing)
-    filename = "D:/Downloads/reddit/comments/RC_2021-03.zst"
+    source.buffer(10**10).scatter().map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(nothing)
+    filename = "D:/Downloads/reddit/comments/RC_2021-04.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
         source.emit(line)
