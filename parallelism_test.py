@@ -46,7 +46,7 @@ async def main():
     #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
     #     out = bag.count().compute()
     #     print(out)
-    source = Stream()
+    source = Stream(asynchronous=True)
     result = source.scatter().map(json.loads).gather().sink(nothing)
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     reader = Zreader(filename)
