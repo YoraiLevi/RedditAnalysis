@@ -18,10 +18,13 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10*12).gather().sink(nothing)
-    filename = "D:/Downloads/reddit/comments/RC_2020-08.zst"
-    reader = Zreader(filename)
-    for line in reader.readlines():
-        source.emit(line)
+    source.buffer(10**12).scatter().gather().sink(nothing)
+    for i in range(10**12):
+        source.emit(i)
+
+    # filename = "D:/Downloads/reddit/comments/RC_2020-08.zst"
+    # reader = Zreader(filename)
+    # for line in reader.readlines():
+        # source.emit(line)
 
     sleep(10)  # simulate actual work
