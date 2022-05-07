@@ -71,8 +71,42 @@ async def main():
     # print(future.result())
 
 
+from tornado import gen
+import time
+
+def increment(x):
+    """ A blocking increment function
+
+    Simulates a computational function that was not designed to work
+    asynchronously
+    """
+    time.sleep(0.1)
+    return x + 1
+
+@gen.coroutine
+def write(x):
+    """ A non-blocking write function
+
+    Simulates writing to a database asynchronously
+    """
+    yield gen.sleep(0.2)
+    print(x)
+
+from dask.distributed import Client
+from tornado.ioloop import IOLoop
+
+async def f():
+    client = await Client(processes=False, asynchronous=True)
+    source = Stream(asynchronous=True)
+    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
+
+    async for x in async_range(10):
+        print(source.emit(x))
+
+
 # import asyncio
 from tornado.ioloop import IOLoop
 if __name__ == "__main__":
-    IOLoop().run_sync(main)
+    IOLoop().run_sync(f)
+    # IOLoop().run_sync(main)
     # asyncio.run(main())
