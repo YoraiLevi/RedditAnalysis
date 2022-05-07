@@ -9,7 +9,7 @@ import ujson as json
 # def load():
 #     return delayed(range(N))
 if __name__ == '__main__':
-    client = Client(threads_per_worker=2, n_workers=1)
+    client = Client(threads_per_worker=1, n_workers=1)
     # client = Client()
 #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
 #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
@@ -18,10 +18,10 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10**12).map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(nothing)
-    filename = "D:/Downloads/reddit/comments/RC_2021-01.zst"
+    source.buffer(1).gather().sink(nothing)
+    filename = "D:/Downloads/reddit/comments/RC_2020-09.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
         source.emit(line)
 
-    sleep(30)  # simulate actual work
+    sleep(10)  # simulate actual work
