@@ -1,6 +1,6 @@
 # import dask.bag as db
-# from dask import delayed
-# from dask.distributed import Client, LocalCluster
+from dask import delayed
+from dask.distributed import Client, LocalCluster
 
 # N = 10**8
 # def load():
@@ -29,3 +29,5 @@ if __name__ == '__main__':
 
     for i in range(10):
         source.emit(i)
+
+    sleep(10)  # simulate actual work
