@@ -69,6 +69,8 @@ async def main():
     # print(future.result())
 
 
-import asyncio
+# import asyncio
+from tornado.ioloop import IOLoop
 if __name__ == "__main__":
-    asyncio.run(main())
+    IOLoop().run_sync(main())
+    # asyncio.run(main())
