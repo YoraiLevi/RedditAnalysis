@@ -10,6 +10,9 @@ import time
 # N = 10**8
 # def load():
 #     return delayed(range(N))
+def inc(x):
+    return x + 1
+
 if __name__ == '__main__':
     client = Client()
     # client = Client()
@@ -20,7 +23,7 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10**3).scatter().map(lambda x: x).buffer(10**3).gather().sink(nothing)
+    source.scatter().map(inc).buffer(8).gather().sink(print)
 
     start = time.time()
     print(start)
