@@ -9,7 +9,7 @@ import ujson as json
 # def load():
 #     return delayed(range(N))
 if __name__ == '__main__':
-    client = Client(threads_per_worker=1, n_workers=1)
+    client = Client(threads_per_worker=2, n_workers=1)
     # client = Client()
 #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
 #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
