@@ -20,7 +20,7 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.scatter().buffer(10**3).gather().sink(nothing)
+    source.scatter().map(lambda x: x).buffer(10**3).gather().sink(nothing)
 
     start = time.time()
     print(start)
