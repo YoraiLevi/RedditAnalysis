@@ -16,7 +16,7 @@ if __name__ == '__main__':
 #     print(out)
 
     source = Stream()
-    source.scatter().buffer(10**8).map(json.loads).gather().sink()
+    source.scatter().buffer(10**8).map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(print)
     filename = "D:/Downloads/reddit/comments/RC_2021-02.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
