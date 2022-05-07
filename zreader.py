@@ -5,7 +5,7 @@ class Zreader:
     def __init__(self, file):
         """Init method"""
         self.fh = open(file, "rb")
-        self.dctx = zstd.ZstdDecompressor()
+        self.dctx = zstd.ZstdDecompressor(max_window_size=2147483648)
         self.reader = self.dctx.stream_reader(self.fh)
         self.text = io.TextIOWrapper(self.reader, encoding="utf-8")
 
