@@ -5,6 +5,8 @@ from streamz import Stream
 from zreader import Zreader
 import ujson as json
 
+import time
+
 # N = 10**8
 # def load():
 #     return delayed(range(N))
@@ -18,10 +20,13 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10**12).scatter().gather().sink(nothing)
-    for i in range(10**12):
-        source.emit(i)
+    source.buffer(10**3).scatter().gather().sink(nothing)
 
+    start = time.time()
+    for i in range(10**6):
+        source.emit(i)
+    end = time.time()
+    print(end-start)
     # filename = "D:/Downloads/reddit/comments/RC_2020-08.zst"
     # reader = Zreader(filename)
     # for line in reader.readlines():
