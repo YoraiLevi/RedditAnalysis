@@ -48,10 +48,10 @@ async def main():
     #     print(out)
     source = Stream()
     result = source.scatter().map(json.loads).gather().sink(nothing)
-    async def read(filename):
-        reader = Zreader(filename)
-        for lines in reader.readlines():
-            source.emit(lines, asynchronous=True)
+    filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
+    reader = Zreader(filename)
+    for lines in reader.readlines():
+        source.emit(lines, asynchronous=True)
 
     # start = time.time()
     # print(start)
@@ -61,8 +61,6 @@ async def main():
     # end = time.time()
     # print(end-start)
 
-    filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
-    await read(filename=filename)
     # with ThreadPoolExecutor(max_workers=1) as executor:
     # future = executor.submit(read,filename)
     # await asyncio.sleep(1)
