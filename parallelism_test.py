@@ -43,7 +43,7 @@ def main():
     #     out = bag.count().compute()
     #     print(out)
     source = Stream()
-    source.scatter().map(process_chunk).gather().sink(nothing)
+    source.scatter().map(json.loads).gather().sink(nothing)
 
     # start = time.time()
     # print(start)
@@ -55,7 +55,7 @@ def main():
 
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     reader = Zreader(filename)
-    for lines in chunk(reader.readlines()):
+    for lines in reader.readlines():
         source.emit(lines,asynchronous=True)
 
 if __name__ == "__main__":
