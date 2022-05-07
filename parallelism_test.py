@@ -14,9 +14,10 @@ if __name__ == '__main__':
 #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
 #     out = bag.count().compute()
 #     print(out)
-
+    def nothing(x):
+        pass
     source = Stream()
-    source.scatter().buffer(10**8).map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(print)
+    source.scatter().buffer(10**8).map(json.loads).accumulate(lambda acc, x: acc + 1, start=0).gather().sink(nothing)
     filename = "D:/Downloads/reddit/comments/RC_2021-02.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
