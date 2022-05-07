@@ -4,8 +4,9 @@ from dask.distributed import Client, LocalCluster
 from streamz import Stream
 from zreader import Zreader
 import ujson as json
-from concurrent.futures import ThreadPoolExecutor,as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+from tornado import gen
 
 # N = 10**8
 # def load():
@@ -15,7 +16,7 @@ def inc(x):
     return x
 
 
-def chunk(iterable, chunk_size=10 ** 4):
+def chunk(iterable, chunk_size=10**4):
     iterator = iter(iterable)
     while True:
         buffer = [None] * chunk_size
@@ -31,8 +32,11 @@ def chunk(iterable, chunk_size=10 ** 4):
 def process_chunk(lines):
     return [json.loads(line) for line in lines]
 
+
 def nothing(x):
     pass
+
+
 
 
 async def main():
@@ -43,7 +47,11 @@ async def main():
     #     out = bag.count().compute()
     #     print(out)
     source = Stream()
-    source.scatter().map(json.loads).gather().sink(nothing)
+    result = source.scatter().map(json.loads).gather().sink(nothing)
+    async def read(filename):
+        reader = Zreader(filename)
+        for lines in reader.readlines():
+            source.emit(lines, asynchronous=True)
 
     # start = time.time()
     # print(start)
@@ -54,16 +62,16 @@ async def main():
     # print(end-start)
 
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
-    def read(filename):
-        reader = Zreader(filename)
-        for lines in reader.readlines():
-            source.emit(lines,asynchronous=True)
-        
+    await read(filename=filename)
     # with ThreadPoolExecutor(max_workers=1) as executor:
-        # future = executor.submit(read,filename)
-    time.sleep(1)    
+    # future = executor.submit(read,filename)
+    # await asyncio.sleep(1)
     # print(future.result())
 
+
 import asyncio
+
 if __name__ == "__main__":
+    print("a")
     asyncio.run(main())
+    print("b")
