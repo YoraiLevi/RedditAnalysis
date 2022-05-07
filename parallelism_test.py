@@ -15,10 +15,10 @@ if __name__ == '__main__':
 #     print(out)
 
     source = Stream()
-    source.scatter().buffer(100).gather().sink(print)
+    source.scatter().buffer(10**6).gather().sink(print)
     filename = "D:/Downloads/reddit/comments/RC_2021-02.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
         source.emit(line)
 
-    sleep(100)  # simulate actual work
+    sleep(30)  # simulate actual work
