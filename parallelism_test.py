@@ -9,5 +9,5 @@ if __name__ == '__main__':
     client = Client(LocalCluster())
     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
-    out = bag.count().compute()
+    out = bag.count().visualize()
     print(out)
