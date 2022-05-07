@@ -12,8 +12,18 @@ import time
 #     return delayed(range(N))
 def inc(x):
     time.sleep(1)
-    return x + 1
-
+    return x
+def chunk(iterable,chunk_size=10*6):
+    iterator = iter(iterable)
+    while(True):
+        buffer = [None]*chunk_size
+        try:
+            for i in range(chunk_size):
+                buffer[i] = next(iterator)
+            yield buffer
+        except StopIteration:
+            yield buffer[:i]
+            return
 if __name__ == '__main__':
     client = Client()
     # client = Client()
@@ -28,7 +38,7 @@ if __name__ == '__main__':
 
     start = time.time()
     print(start)
-    for i in range(10**6):
+    for i in chunk(range(10**8)):
         source.emit(i)
 
     end = time.time()
