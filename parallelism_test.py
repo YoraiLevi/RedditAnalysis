@@ -4,7 +4,7 @@ from dask.distributed import Client, LocalCluster
 from streamz import Stream
 from zreader import Zreader
 import ujson as json
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor,as_completed
 import time
 
 # N = 10**8
@@ -61,6 +61,7 @@ def main():
         
     with ThreadPoolExecutor(max_workers=1) as executor:
         future = executor.submit(read,filename)
+        
     # print(future.result())
 
 if __name__ == "__main__":
