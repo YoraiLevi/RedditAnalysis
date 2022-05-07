@@ -11,7 +11,7 @@ import time
 # def load():
 #     return delayed(range(N))
 if __name__ == '__main__':
-    client = Client(threads_per_worker=2, n_workers=1)
+    client = Client()
     # client = Client()
 #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
 #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
@@ -20,16 +20,20 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10**3).scatter().gather().sink(nothing)
+    source.buffer(10**3).scatter().buffer(10**3).gather().sink(nothing)
 
     start = time.time()
-    for i in range(10**6):
+    print(start)
+    for i in range(10**8):
         source.emit(i)
+
     end = time.time()
     print(end-start)
+
+
     # filename = "D:/Downloads/reddit/comments/RC_2020-08.zst"
     # reader = Zreader(filename)
     # for line in reader.readlines():
         # source.emit(line)
 
-    sleep(10)  # simulate actual work
+    sleep(1)  # simulate actual work
