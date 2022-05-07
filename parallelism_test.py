@@ -20,11 +20,11 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(10**3).scatter().buffer(10**3).gather().sink(nothing)
+    source.scatter().buffer(10**3).gather().sink(nothing)
 
     start = time.time()
     print(start)
-    for i in range(10**8):
+    for i in range(10**6):
         source.emit(i)
 
     end = time.time()
