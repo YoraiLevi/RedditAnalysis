@@ -13,10 +13,12 @@ import time
 def inc(x):
     time.sleep(1)
     return x
-def chunk(iterable,chunk_size=10*6):
+
+
+def chunk(iterable, chunk_size=10 ** 5):
     iterator = iter(iterable)
-    while(True):
-        buffer = [None]*chunk_size
+    while True:
+        buffer = [None] * chunk_size
         try:
             for i in range(chunk_size):
                 buffer[i] = next(iterator)
@@ -24,17 +26,24 @@ def chunk(iterable,chunk_size=10*6):
         except StopIteration:
             yield buffer[:i]
             return
-if __name__ == '__main__':
+
+
+def process_chunk(lines):
+    return [json.loads(line) for line in lines]
+
+def nothing(x):
+    pass
+
+
+if __name__ == "__main__":
     client = Client()
     # client = Client()
-#     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
-#     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
-#     out = bag.count().compute()
-#     print(out)
-    # def nothing(x):
-    #     pass
-    # source = Stream()
-    # source.buffer(10**6).scatter().map(inc).buffer(10**6).gather().sink(nothing)
+    #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
+    #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
+    #     out = bag.count().compute()
+    #     print(out)
+    source = Stream()
+    source.scatter().map(process_chunk).gather().sink(nothing)
 
     # start = time.time()
     # print(start)
@@ -44,8 +53,7 @@ if __name__ == '__main__':
     # end = time.time()
     # print(end-start)
 
-
-    filename = "D:/Downloads/reddit/comments/RC_2020-08.zst"
+    filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     reader = Zreader(filename)
     for lines in chunk(reader.readlines()):
         source.emit(lines)
