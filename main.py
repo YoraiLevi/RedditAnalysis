@@ -26,9 +26,9 @@ if __name__ == '__main__':
     ]
     name = "RC_2021-*.zst"
     bag = db.read_text(name).map(json.loads)
-    frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True).visualize()
-    # out = frequencyList.to_dataframe().to_csv('2021-*.csv')
-    # print(out)
+    frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
+    out = frequencyList.to_dataframe().to_csv('2021-*.csv')
+    print(out)
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
