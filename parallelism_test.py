@@ -3,6 +3,7 @@ from dask import delayed
 from dask.distributed import Client, LocalCluster
 from streamz import Stream
 from zreader import Zreader
+import ujson as json
 
 # N = 10**8
 # def load():
@@ -15,7 +16,7 @@ if __name__ == '__main__':
 #     print(out)
 
     source = Stream()
-    source.scatter().buffer(10**6).gather().sink(print)
+    source.scatter().buffer(10**6).map(json.loads).gather().sink(print)
     filename = "D:/Downloads/reddit/comments/RC_2021-02.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
