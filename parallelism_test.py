@@ -18,8 +18,8 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.buffer(1).gather().sink(nothing)
-    filename = "D:/Downloads/reddit/comments/RC_2020-09.zst"
+    source.buffer(10*12).gather().sink(nothing)
+    filename = "D:/Downloads/reddit/comments/RC_2020-08.zst"
     reader = Zreader(filename)
     for line in reader.readlines():
         source.emit(line)
