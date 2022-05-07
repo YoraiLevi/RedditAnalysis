@@ -15,7 +15,7 @@ def inc(x):
     return x
 
 
-def chunk(iterable, chunk_size=10 ** 5):
+def chunk(iterable, chunk_size=10 ** 4):
     iterator = iter(iterable)
     while True:
         buffer = [None] * chunk_size
@@ -35,7 +35,7 @@ def nothing(x):
     pass
 
 
-if __name__ == "__main__":
+async def main():
     client = Client()
     # client = Client()
     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
@@ -55,7 +55,12 @@ if __name__ == "__main__":
 
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     reader = Zreader(filename)
-    for lines in chunk(reader.readlines()):
+    async for lines in chunk(reader.readlines()):
         source.emit(lines)
 
     sleep(1)  # simulate actual work
+
+if __name__ == "__main__":
+    main()
+    while(True):
+        pass
