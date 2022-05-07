@@ -55,11 +55,8 @@ def main():
 
     filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     reader = Zreader(filename)
-    async def read():
-        async for lines in chunk(reader.readlines()):
-            source.emit(lines)
-    read()
+    for lines in chunk(reader.readlines()):
+        source.emit(lines,asynchronous=True)
 
 if __name__ == "__main__":
     main()
-    time.sleep(1)
