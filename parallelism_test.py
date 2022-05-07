@@ -24,7 +24,7 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.scatter().map(inc).buffer(8).gather().sink(nothing)
+    source.buffer(10**6).scatter().map(inc).buffer(10**6).gather().sink(nothing)
 
     start = time.time()
     print(start)
