@@ -38,7 +38,9 @@ def nothing(x):
 
 
 
-
+async def async_range(count):
+    for i in range(count):
+        yield(i)
 async def main():
     client = await Client(processes=False, asynchronous=True)
     # client = Client()
@@ -48,8 +50,8 @@ async def main():
     #     print(out)
     source = Stream(asynchronous=True)
     result = source.scatter().map(lambda x:x).gather().sink(nothing)
-    for i in range(1,10*6):
-        await source.emit(i)
+    async for i in async_range(10*6):
+        source.emit(i,asynchronous=True)
     # filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     # reader = Zreader(filename)
     # for lines in reader.readlines():
@@ -72,5 +74,5 @@ async def main():
 # import asyncio
 from tornado.ioloop import IOLoop
 if __name__ == "__main__":
-    IOLoop().run_sync(main())
+    IOLoop().run_sync(main)
     # asyncio.run(main())
