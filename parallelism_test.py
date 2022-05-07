@@ -11,6 +11,7 @@ import time
 # def load():
 #     return delayed(range(N))
 def inc(x):
+    time.sleep(1)
     return x + 1
 
 if __name__ == '__main__':
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     def nothing(x):
         pass
     source = Stream()
-    source.scatter().map(inc).buffer(8).gather().sink(print)
+    source.scatter().map(inc).buffer(8).gather().sink(nothing)
 
     start = time.time()
     print(start)
