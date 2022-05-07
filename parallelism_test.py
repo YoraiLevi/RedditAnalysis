@@ -62,7 +62,7 @@ def main():
     with ThreadPoolExecutor(max_workers=1) as executor:
         future = executor.submit(read,filename)
         
-    # print(future.result())
+    print(future.result())
 
 if __name__ == "__main__":
     main()
