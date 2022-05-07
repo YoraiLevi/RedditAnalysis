@@ -57,12 +57,12 @@ def main():
     def read(filename):
         reader = Zreader(filename)
         for lines in reader.readlines():
-            source.emit(lines,asynchronous=True)
+            source.emit(lines)
         
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        future = executor.submit(read,filename)
+    # with ThreadPoolExecutor(max_workers=1) as executor:
+        # future = executor.submit(read,filename)
         
-    print(future.result())
+    # print(future.result())
 
 if __name__ == "__main__":
     main()
