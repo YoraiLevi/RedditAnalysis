@@ -26,10 +26,10 @@ if __name__ == '__main__':
             ("subreddit_id", str),
         ]
         name = "RC_2021-05.zst"
-        bag = db.read_text(name).map(json.loads)
-        frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
-        out = frequencyList.to_dataframe().to_csv('2021-*.csv')
-        print(out)
+        # bag = db.read_text(name).map(json.loads)
+        # frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
+        # out = frequencyList.to_dataframe().to_csv('2021-*.csv')
+        # print(out)
     import asyncio
     asyncio.run(main())
     # asyncio.get_event_loop().run_until_complete(main())
