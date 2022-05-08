@@ -10,11 +10,14 @@ if __name__ == '__main__':
         future = client.submit(lambda x: x + 1, 10)
         result = await future
         await client.close()
+        print(result)
         return result
 
 # Either use Tornado
-    from tornado.ioloop import IOLoop
-    IOLoop().run_sync(f)
+    # from tornado.ioloop import IOLoop
+    # IOLoop().run_sync(f)
+    import asyncio
+    asyncio.get_event_loop().run_until_complete(f())
 
     async def main():
         # print('Hello ...')
