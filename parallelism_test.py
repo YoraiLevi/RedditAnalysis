@@ -233,9 +233,10 @@ def f():
     # while(True):
         # await gen.sleep(0.1)
 
-    # print(11)
+    print(11)
     # await h()
     # time.sleep(10)
+    
     
     # executor.submit(h)
 
@@ -243,10 +244,17 @@ loop : IOLoop = None
 executor : ThreadPoolExecutor = None
 client: Client = None
 if __name__ == "__main__":
-    executor = ThreadPoolExecutor(max_workers=8)
-    # loop = IOLoop()
-    # loop.run_sync(f)
-    executor.submit(f)
-    executor.shutdown(wait=True)
+    client = Client()
+    source = Stream()
+    source.scatter().map(increment).gather().sink(nothing)
+    with ThreadPoolExecutor(max_workers=4) as e:
+        def load():
+            print('loading..')
+            for x in range(10**6):
+                e.submit(partial(source.emit,x))
+            print('done.')
+            time.sleep(10)
+
+        e.submit(load)
 
     # time.sleep(1)
