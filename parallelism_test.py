@@ -39,21 +39,21 @@ def nothing(x):
 
 
 
-async def async_range(count):
-    for i in range(count):
-        yield(i)
-async def main():
-    client = await Client(processes=False, asynchronous=True)
-    # client = Client()
-    #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
-    #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
-    #     out = bag.count().compute()
-    #     print(out)
-    source = Stream(asynchronous=True)
-    result = source.scatter().map(lambda x:x).gather().sink(nothing)
-    async for i in async_range(10*6):
-        source.emit(i,asynchronous=True)
-    # filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
+# async def async_range(count):
+#     for i in range(count):
+#         yield(i)
+# async def main():
+#     client = await Client(processes=False, asynchronous=True)
+#     # client = Client()
+#     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
+#     #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
+#     #     out = bag.count().compute()
+#     #     print(out)
+#     source = Stream(asynchronous=True)
+#     result = source.scatter().map(lambda x:x).gather().sink(nothing)
+#     async for i in async_range(10*6):
+#         source.emit(i,asynchronous=True)
+#     # filename = "D:/Downloads/reddit/comments/RC_2020-07.zst"
     # reader = Zreader(filename)
     # for lines in reader.readlines():
         # source.emit(lines, asynchronous=True)
@@ -166,10 +166,13 @@ from tornado.ioloop import IOLoop
 async def f():
     client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
-    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
-    def h():
+    source.scatter().map(nothing).rate_limit('500ms').gather().sink(print)
+    async def h():
         for x in range(10):
-            await source.emit(x)
+            loop.run_in_executor(None,source.emit(x))
+    loop.run_in_executor(None,h)
 
+loop : IOLoop = None
 if __name__ == "__main__":
-    IOLoop().run_sync(f)
+    loop = IOLoop()
+    loop.run_sync(f)
