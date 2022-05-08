@@ -3,6 +3,7 @@ from ast import Try
 from asyncio import streams
 from functools import partial
 from gc import callbacks
+from http import client
 from threading import Thread
 from dask import delayed
 from dask.distributed import Client, LocalCluster
@@ -214,7 +215,7 @@ def write(x):
 from dask.distributed import Client
 from tornado.ioloop import IOLoop
 import asyncio
-async def f():
+def f():
     client = Client()
     # source = Stream(asynchronous=True,loop=loop)
     source = Stream()
@@ -227,8 +228,9 @@ async def f():
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     executor.submit(h)
-    while(True):
-        await gen.sleep(0.1)
+    time.sleep(1)
+    # while(True):
+        # await gen.sleep(0.1)
 
     # print(11)
     # await h()
@@ -238,9 +240,11 @@ async def f():
 
 loop : IOLoop = None
 executor : ThreadPoolExecutor = None
+client: Client = None
 if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
-    loop = IOLoop()
-    loop.run_sync(f)
+    # loop = IOLoop()
+    # loop.run_sync(f)
+    f()
 
     # time.sleep(1)
