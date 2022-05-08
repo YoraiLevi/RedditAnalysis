@@ -118,23 +118,32 @@ async def main():
 
 import asyncio
 
-result = 0
-
-def sub1():
-    global result
-    print('[*] sub1() start')
-    for i in range(1, 10000000):
-        result += i
-    print('[*] sub1() end')
-
-def sub2():
-    global result
-    print('[*] sub2() start')
-    for i in range(10000000, 20000000):
-        result += i
-    print('[*] sub2() end')
-
 async def main():
+    result = 0
+    def sub1():
+        global result
+        print('[*] sub1() start')
+        for i in range(1, 10000000):
+            # result += i
+            loop.create_task(source.emit(i,asynchronous=True))
+        print('[*] sub1() end')
+
+    def sub2():
+        global result
+        print('[*] sub2() start')
+        for i in range(10000000, 20000000):
+            result += i
+        print('[*] sub2() end')
+    client = await Client(processes=False, asynchronous=True)
+    # client = Client()
+    #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
+    #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
+    #     out = bag.count().compute()
+    #     print(out)
+    source = Stream(asynchronous=True)
+    result = source.scatter().map(lambda x:x).gather().sink(nothing)
+        
+        
     res = await asyncio.gather(
         loop.run_in_executor(None, sub1),
         loop.run_in_executor(None, sub2)
