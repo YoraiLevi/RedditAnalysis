@@ -177,7 +177,6 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 async def f():
-    client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
     source.scatter().map(nothing).gather().sink(print)
     async def h():
@@ -191,6 +190,7 @@ async def f():
 loop : IOLoop = None
 executor : ThreadPoolExecutor = None
 if __name__ == "__main__":
+    # client = await Client(processes=False, asynchronous=True)
     executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
