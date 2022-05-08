@@ -243,18 +243,20 @@ def f():
 loop : IOLoop = None
 executor : ThreadPoolExecutor = None
 client: Client = None
+from concurrent.futures import wait
+
 if __name__ == "__main__":
     client = Client()
     source = Stream()
     source.scatter().map(increment).gather().sink(nothing)
+    futures=[None]
     with ThreadPoolExecutor(max_workers=4) as e:
         def load():
             print('loading..')
             for x in range(10**6):
-                e.submit(partial(source.emit,x))
+                futures[0] = e.submit(partial(source.emit,x))
             print('done.')
             time.sleep(10)
 
-        e.submit(load)
-
+        wait([e.submit(load)])
     # time.sleep(1)
