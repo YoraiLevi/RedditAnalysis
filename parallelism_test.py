@@ -216,15 +216,16 @@ async def f():
     client = Client()
     # source = Stream(asynchronous=True,loop=loop)
     source = Stream()
-    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
-    # async def h():
-    for x in range(10**6):
-        executor.submit(partial(source.emit,x))
+    source.scatter().map(increment).gather().sink(write)
+    def h():
+        for x in range(10**6):
+            executor.submit(partial(source.emit,x))
         # print(x)
         # loop.add_future(source.emit(x,asynchronous=True),callback=print)
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
-    print(11)
+    executor.submit(h)
+    # print(11)
     # await h()
     # time.sleep(10)
     
