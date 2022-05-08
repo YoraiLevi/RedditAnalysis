@@ -198,7 +198,7 @@ def increment(x):
     Simulates a computational function that was not designed to work
     asynchronously
     """
-    time.sleep(0.1)
+    # time.sleep(0.1)
     return x + 1
 
 @gen.coroutine
@@ -207,7 +207,7 @@ def write(x):
 
     Simulates writing to a database asynchronously
     """
-    yield gen.sleep(0.2)
+    # yield gen.sleep(0.2)
     print(x)
 
 from dask.distributed import Client
@@ -218,7 +218,7 @@ async def f():
     source = Stream()
     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
     # async def h():
-    for x in range(10):
+    for x in range(10**6):
         executor.submit(partial(source.emit,x))
         # print(x)
         # loop.add_future(source.emit(x,asynchronous=True),callback=print)
@@ -236,4 +236,4 @@ if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
-    time.sleep(10)
+    time.sleep(1)
