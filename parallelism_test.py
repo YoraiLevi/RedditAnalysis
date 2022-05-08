@@ -142,11 +142,11 @@ async def main():
 
 
 loop = asyncio.get_event_loop()
-# loop.run_until_complete(main(loop))
 
 
 import asyncio
 if __name__ == "__main__":
     # loop.run_sync(f)
     # IOLoop().run_sync(main)
-    asyncio.run(main())
+    # asyncio.run(main())
+    loop.run_until_complete(main())
