@@ -45,12 +45,12 @@ executor = ThreadPoolExecutor(max_workers=8)
 def main():
     client = Client()
     source = Stream()
-    result = source.scatter().map(lambda x:x).gather().sink(nothing)
+    result = source.scatter().map(lambda x:x).gather().sink(print)
     def read():
         for i in range(10*6):
             source.emit(i)
     executor.submit(read)
-    sleep(10)
+    time.sleep(10)
 
 
 if __name__ == '__main__':
