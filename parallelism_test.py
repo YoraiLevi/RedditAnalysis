@@ -116,46 +116,60 @@ async def main():
 # from tornado.ioloop import IOLoop
 # loop: IOLoop = IOLoop()
 
-import asyncio
+# import asyncio
 
-result = 0
-async def main(loop):
-    def sub1():
-        global result
-        print('[*] sub1() start')
-        for i in range(1, 10000000):
-            result += i
-            loop.create_task(source.emit(i,asynchronous=True))
-        print('[*] sub1() end')
+# result = 0
+# async def main(loop):
+#     def sub1():
+#         global result
+#         print('[*] sub1() start')
+#         for i in range(1, 10000000):
+#             result += i
+#             loop.create_task(source.emit(i,asynchronous=True))
+#         print('[*] sub1() end')
 
-    def sub2():
-        global result
-        print('[*] sub2() start')
-        for i in range(10000000, 20000000):
-            result += i
-        print('[*] sub2() end')
-    client = await Client(processes=False, asynchronous=True,loop=loop)
-    # client = Client()
-    #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
-    #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
-    #     out = bag.count().compute()
-    #     print(out)
+#     def sub2():
+#         global result
+#         print('[*] sub2() start')
+#         for i in range(10000000, 20000000):
+#             result += i
+#         print('[*] sub2() end')
+#     client = await Client(processes=False, asynchronous=True,loop=loop)
+#     # client = Client()
+#     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
+#     #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
+#     #     out = bag.count().compute()
+#     #     print(out)
+#     source = Stream(asynchronous=True)
+#     result = source.scatter().map(lambda x:x).gather().sink(nothing)
+        
+        
+#     res = await asyncio.gather(
+#         loop.run_in_executor(None, sub1),
+#         loop.run_in_executor(None, sub2)
+#     )
+
+
+
+
+# import asyncio
+# if __name__ == "__main__":
+#     # loop.run_sync(f)
+#     # IOLoop().run_sync(main)
+#     # asyncio.run(main())
+#     loop = asyncio.get_event_loop()
+#     loop.run_until_complete(main(loop))
+
+from dask.distributed import Client
+from tornado.ioloop import IOLoop
+
+async def f():
+    client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
-    result = source.scatter().map(lambda x:x).gather().sink(nothing)
-        
-        
-    res = await asyncio.gather(
-        loop.run_in_executor(None, sub1),
-        loop.run_in_executor(None, sub2)
-    )
+    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
+    def h():
+        for x in range(10):
+            await source.emit(x)
 
-
-
-
-import asyncio
 if __name__ == "__main__":
-    # loop.run_sync(f)
-    # IOLoop().run_sync(main)
-    # asyncio.run(main())
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main(loop))
+    IOLoop().run_sync(f)
