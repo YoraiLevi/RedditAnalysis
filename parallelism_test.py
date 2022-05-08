@@ -213,7 +213,7 @@ def write(x):
 from dask.distributed import Client
 from tornado.ioloop import IOLoop
 async def f():
-    client = await Client(processes=False, asynchronous=True)
+    client = Client()
     # source = Stream(asynchronous=True,loop=loop)
     source = Stream()
     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
@@ -226,7 +226,8 @@ async def f():
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     print(11)
     # await h()
-    time.sleep(10)
+    # time.sleep(10)
+    
     # executor.submit(h)
 
 loop : IOLoop = None
@@ -235,3 +236,4 @@ if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
+    time.sleep(10)
