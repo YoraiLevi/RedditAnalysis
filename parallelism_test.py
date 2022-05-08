@@ -39,12 +39,18 @@ def process_chunk(lines):
 def nothing(x):
     pass
 
+from concurrent.futures import ThreadPoolExecutor
+executor = ThreadPoolExecutor(max_workers=8)
+
 def main():
     client = Client()
     source = Stream()
     result = source.scatter().map(lambda x:x).gather().sink(nothing)
-    for i in range(10*6):
-        source.emit(i)
+    def read():
+        for i in range(10*6):
+            source.emit(i)
+    executor.submit(read)
+    sleep(10)
 
 
 if __name__ == '__main__':
