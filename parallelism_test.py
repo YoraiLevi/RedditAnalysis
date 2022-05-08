@@ -218,8 +218,8 @@ async def f():
     async def h():
         for x in range(10):
             # print(x)
-            loop.add_future(source.emit(x,asynchronous=True),callback=print)
-            # await source.emit(x)
+            # loop.add_future(source.emit(x,asynchronous=True),callback=print)
+            await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     print(11)
     await h()
