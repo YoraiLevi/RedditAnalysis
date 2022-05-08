@@ -166,16 +166,27 @@ from dask.distributed import Client
 from tornado.ioloop import IOLoop
 from concurrent.futures import ThreadPoolExecutor
 
+# async def read():
+#     reader = Zreader(filename)
+#     for x in range(10):
+#         executor.submit(partial(source.emit,x))
+#     for line in reader.readlines():
+#         source.emit(lines, asynchronous=True)
+
+
+
+
 async def f():
     client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
     source.scatter().map(nothing).gather().sink(print)
-    def h():
+    async def h():
         for x in range(10):
-            print(x)
+            # print(x)
             executor.submit(partial(source.emit,x))
     print(11)
-    executor.submit(h)
+    await h()
+    # executor.submit(h)
 
 loop : IOLoop = None
 executor : ThreadPoolExecutor = None
@@ -183,4 +194,3 @@ if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
-    time.sleep(10)
