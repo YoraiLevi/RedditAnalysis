@@ -118,14 +118,14 @@ async def main():
 
 import asyncio
 
+result = 0
 async def main(loop):
-    result = 0
     def sub1():
         global result
         print('[*] sub1() start')
         for i in range(1, 10000000):
-            # result += i
-            loop.create_task(source.emit(i,asynchronous=True))
+            result += i
+            loop.create_task(source.emit(i))
         print('[*] sub1() end')
 
     def sub2():
@@ -134,7 +134,7 @@ async def main(loop):
         for i in range(10000000, 20000000):
             result += i
         print('[*] sub2() end')
-    client = await Client(processes=False, asynchronous=True)
+    client = await Client(processes=False, asynchronous=True,loop=loop)
     # client = Client()
     #     bag = db.from_delayed([load(),load()]).map(lambda x: 2*x)
     #     # bag = db.from_delayed([load(),load()]).repartition(npartitions=4).map(lambda x: 2*x)
@@ -148,8 +148,7 @@ async def main(loop):
         loop.run_in_executor(None, sub1),
         loop.run_in_executor(None, sub2)
     )
-    while(True):
-        pass
+
 
 
 
@@ -158,5 +157,6 @@ if __name__ == "__main__":
     # loop.run_sync(f)
     # IOLoop().run_sync(main)
     # asyncio.run(main())
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     loop.run_until_complete(main(loop))
