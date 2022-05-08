@@ -217,9 +217,11 @@ async def f():
     async def h():
         for x in range(10):
             # print(x)
-            executor.submit(partial(source.emit,x))
+            await source.emit(x)
+            # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     print(11)
     await h()
+    time.sleep(1)
     # executor.submit(h)
 
 loop : IOLoop = None
