@@ -3,11 +3,24 @@ import dask.bag as db
 from dask.distributed import Client, progress
 
 if __name__ == '__main__':
+    from dask.distributed import Client
+
+    async def f():
+        client = await Client(asynchronous=True)
+        future = client.submit(lambda x: x + 1, 10)
+        result = await future
+        await client.close()
+        return result
+
+# Either use Tornado
+    from tornado.ioloop import IOLoop
+    IOLoop().run_sync(f)
+
     async def main():
         # print('Hello ...')
         # await asyncio.sleep(1)
         # print('... World!')
-        client = await Client(asynchronous=True) #await Client(threads_per_worker=2, n_workers=2,asynchronous=True)
+        # client = awaitClient(asynchronous=True) #await Client(threads_per_worker=2, n_workers=2,asynchronous=True)
         metaComment = [
             ("gilded", int),
             ("retrieved_on", int),
@@ -34,7 +47,7 @@ if __name__ == '__main__':
         out = frequencyList.to_dataframe().to_csv('2021-*.csv')
         # print(out)
     import asyncio
-    asyncio.run(main())
+    # asyncio.run(main())
     # asyncio.get_event_loop().run_until_complete(main())
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
