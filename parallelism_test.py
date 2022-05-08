@@ -96,13 +96,11 @@ from dask.distributed import Client
 from tornado.ioloop import IOLoop
 
 async def f():
-    client = await Client(processes=True, asynchronous=True)
+    client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
-    source.scatter().map(increment).gather().sink(write)
+    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
 
-    async for x in async_range(10):
-        await source.emit(x)
-    async for x in async_range(10):
+    for x in range(10):
         await source.emit(x)
 
 # import asyncio
