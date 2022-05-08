@@ -226,7 +226,7 @@ async def f():
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     executor.submit(h)
-    await gen.sleep(1)
+    await gen.sleep(10)
 
     # print(11)
     # await h()
@@ -240,4 +240,5 @@ if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
+
     # time.sleep(1)
