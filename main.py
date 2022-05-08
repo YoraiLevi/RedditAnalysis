@@ -4,7 +4,7 @@ from dask import delayed
 from dask.distributed import Client, progress
 from zreader import Zreader
 
-def chunk(iterable, chunk_size=10**4):
+def chunk(iterable, chunk_size=10**5):
     iterator = iter(iterable)
     while True:
         buffer = [None] * chunk_size
@@ -21,7 +21,7 @@ def process_chunk(iterable):
 def load(filename):
     return chunk(Zreader(filename).readlines())
 if __name__ == '__main__':
-    client = Client(threads_per_worker=2, n_workers=2)
+    client = Client()
     metaComment = [
         ("gilded", int),
         ("retrieved_on", int),
