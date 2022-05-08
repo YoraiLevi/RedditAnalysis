@@ -2,58 +2,46 @@ import ujson as json
 import dask.bag as db
 from dask.distributed import Client, progress
 
+
+def chunk(iterable, chunk_size=10**4):
+    iterator = iter(iterable)
+    while True:
+        buffer = [None] * chunk_size
+        try:
+            for i in range(chunk_size):
+                buffer[i] = next(iterator)
+            yield buffer
+        except StopIteration:
+            yield buffer[:i]
+            return
+
 if __name__ == '__main__':
-    from dask.distributed import Client
-
-    async def f():
-        client = await Client(asynchronous=True)
-        future = client.submit(lambda x: x + 1, 10)
-        result = await future
-        await client.close()
-        print(result)
-        return result
-
-# Either use Tornado
-    # from tornado.ioloop import IOLoop
-    # IOLoop().run_sync(f)
-    import asyncio
-
-    async def main():
-        # print('Hello ...')
-        # await asyncio.sleep(1)
-        # print('... World!')
-        client = await Client(asynchronous=True)
-        # client = awaitClient(asynchronous=True) #await Client(threads_per_worker=2, n_workers=2,asynchronous=True)
-        metaComment = [
-            ("gilded", int),
-            ("retrieved_on", int),
-            ("distinguished", str),
-            ("author_flair_text", str),
-            ("author", str),
-            ("edited", bool),
-            ("parent_id", str),
-            ("id", str),
-            ("subreddit", str),
-            ("author_flair_css_class", str),
-            ("created_utc", int),
-            ("score", int),
-            ("ups", int),
-            ("controversiality", int),
-            ("body", str),
-            ("link_id", str),
-            ("stickied", bool),
-            ("subreddit_id", str),
-        ]
-        name = "RC_2021-05.zst"
-
-        bag = db.read_text(name).map(json.loads)
-        frequencyList = bag.map(lambda x:x)#.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
-        out = await frequencyList.to_dataframe().to_csv('2021-*.csv')
-        await client.close()
-        # print(out)
-    asyncio.get_event_loop().run_until_complete(main())
-    # asyncio.run(main())
-    # asyncio.get_event_loop().run_until_complete(main())
+    client = Client(threads_per_worker=2, n_workers=2)
+    metaComment = [
+        ("gilded", int),
+        ("retrieved_on", int),
+        ("distinguished", str),
+        ("author_flair_text", str),
+        ("author", str),
+        ("edited", bool),
+        ("parent_id", str),
+        ("id", str),
+        ("subreddit", str),
+        ("author_flair_css_class", str),
+        ("created_utc", int),
+        ("score", int),
+        ("ups", int),
+        ("controversiality", int),
+        ("body", str),
+        ("link_id", str),
+        ("stickied", bool),
+        ("subreddit_id", str),
+    ]
+    name = "RC_2021-*.zst"
+    bag = db.read_text(name).map(json.loads)
+    frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
+    out = frequencyList.to_dataframe().to_csv('2021-*.csv')
+    print(out)
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
