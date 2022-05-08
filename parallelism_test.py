@@ -78,16 +78,13 @@ def increment(x):
     Simulates a computational function that was not designed to work
     asynchronously
     """
-    time.sleep(0.1)
     return x + 1
 
-@gen.coroutine
 def write(x):
     """ A non-blocking write function
 
     Simulates writing to a database asynchronously
     """
-    yield gen.sleep(0.2)
     print(x)
 
 from dask.distributed import Client
@@ -98,8 +95,8 @@ async def f():
     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
 
     async for x in async_range(10):
-        await source.emit(x)
-
+        asyncio.create_task(source.emit(x))
+    
 
 import asyncio
 if __name__ == "__main__":
