@@ -9,7 +9,7 @@ class Zreader:
         self.reader = self.dctx.stream_reader(self.fh)
         self.text = io.TextIOWrapper(self.reader, encoding="utf-8")
 
-    async def readlines(self):
+    def readlines(self):
         """Generator method that creates an iterator for each line of JSON"""
         # stream_reader = self.dctx.stream_reader(fh)
         for line in self.text:
