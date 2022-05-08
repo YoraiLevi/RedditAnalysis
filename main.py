@@ -42,7 +42,7 @@ if __name__ == '__main__':
         ("stickied", bool),
         ("subreddit_id", str),
     ]
-    name = "RC_2021-05.zst"
+    name = "RC_2021-04.zst"
     bag = db.from_delayed(delayed(load)(name)).map(process_chunk).flatten()
     frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
     out = frequencyList.to_dataframe().to_csv('2021-*.csv')
