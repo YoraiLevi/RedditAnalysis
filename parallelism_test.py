@@ -223,7 +223,7 @@ def f():
     def h():
         for x in range(10**6):
             executor.submit(partial(source.emit,x))
-            print(x)
+            # print(x)
         # loop.add_future(source.emit(x,asynchronous=True),callback=print)
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
@@ -247,5 +247,6 @@ if __name__ == "__main__":
     # loop = IOLoop()
     # loop.run_sync(f)
     f()
+    executor.shutdown(wait=True)
 
     # time.sleep(1)
