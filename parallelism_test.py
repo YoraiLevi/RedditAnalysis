@@ -256,7 +256,6 @@ if __name__ == "__main__":
             for x in range(10**6):
                 futures[0] = e.submit(partial(source.emit,x))
             print('done.')
-            time.sleep(10)
 
         wait([e.submit(load)])
     # time.sleep(1)
