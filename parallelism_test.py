@@ -94,16 +94,22 @@ def write(x):
 
 from dask.distributed import Client
 from tornado.ioloop import IOLoop
+from functools import partial
 
 async def f():
     client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
 
+    print('start')
     for x in range(10):
-        await source.emit(x)
+        # await source.emit(x)
+        IOLoop().run_in_executor(None,partial(source.emit,x))
+    print('end')
 
+    await asyncio.sleep(10)
 # import asyncio
+import asyncio
 from tornado.ioloop import IOLoop
 if __name__ == "__main__":
     IOLoop().run_sync(f)
