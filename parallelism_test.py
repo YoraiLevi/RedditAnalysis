@@ -118,7 +118,7 @@ async def main():
 
 import asyncio
 
-async def main():
+async def main(loop):
     result = 0
     def sub1():
         global result
@@ -148,9 +148,9 @@ async def main():
         loop.run_in_executor(None, sub1),
         loop.run_in_executor(None, sub2)
     )
+    while(True):
+        pass
 
-
-loop = asyncio.get_event_loop()
 
 
 import asyncio
@@ -158,4 +158,5 @@ if __name__ == "__main__":
     # loop.run_sync(f)
     # IOLoop().run_sync(main)
     # asyncio.run(main())
-    loop.run_until_complete(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main(loop))
