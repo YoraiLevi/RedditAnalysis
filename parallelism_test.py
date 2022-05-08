@@ -251,11 +251,12 @@ if __name__ == "__main__":
     source.scatter().map(increment).gather().sink(nothing)
     futures=[None]
     with ThreadPoolExecutor(max_workers=4) as e:
-        def load():
-            print('loading..')
-            for x in range(10**6):
-                futures[0] = e.submit(partial(source.emit,x))
-            print('done.')
+        e.map(source.emit,range(10**6))
+        # def load():
+            # print('loading..')
+            # for x in range(10**6):
+                # futures[0] = e.submit(partial(source.emit,x))
+            # print('done.')
 
-        wait([e.submit(load)])
+        # wait([e.submit(load)])
     # time.sleep(1)
