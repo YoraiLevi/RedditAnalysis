@@ -13,7 +13,7 @@ from tornado import gen
 # def load():
 #     return delayed(range(N))
 def inc(x):
-    time.sleep(1)
+    time.sleep(0.1)
     return x
 
 
