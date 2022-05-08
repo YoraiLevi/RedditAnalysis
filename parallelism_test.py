@@ -42,19 +42,19 @@ def nothing(x):
 from concurrent.futures import ThreadPoolExecutor
 executor = ThreadPoolExecutor(max_workers=8)
 
-def main():
-    client = Client()
-    source = Stream()
-    result = source.scatter().map(lambda x:x).gather().sink(print)
-    def read():
-        for i in range(10*6):
-            source.emit(i)
-    executor.submit(read)
-    time.sleep(10)
+# def main():
+#     client = Client()
+#     source = Stream()
+#     result = source.scatter().map(lambda x:x).gather().sink(print)
+#     def read():
+#         for i in range(10*6):
+#             source.emit(i)
+#     executor.submit(read)
+#     time.sleep(10)
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
 
 
 # async def async_range(count):
@@ -191,22 +191,41 @@ if __name__ == '__main__':
 
 
 
+def increment(x):
+    """ A blocking increment function
 
-# async def f():
-#     source = Stream(asynchronous=True)
-#     source.scatter().map(nothing).gather().sink(print)
-#     async def h():
-#         for x in range(10):
-#             # print(x)
-#             executor.submit(partial(source.emit,x))
-#     print(11)
-#     await h()
-#     # executor.submit(h)
+    Simulates a computational function that was not designed to work
+    asynchronously
+    """
+    time.sleep(0.1)
+    return x + 1
 
-# loop : IOLoop = None
-# executor : ThreadPoolExecutor = None
-# if __name__ == "__main__":
-#     # client = await Client(processes=False, asynchronous=True)
-#     executor = ThreadPoolExecutor(max_workers=8)
-#     loop = IOLoop()
-#     loop.run_sync(f)
+@gen.coroutine
+def write(x):
+    """ A non-blocking write function
+
+    Simulates writing to a database asynchronously
+    """
+    yield gen.sleep(0.2)
+    print(x)
+
+from dask.distributed import Client
+from tornado.ioloop import IOLoop
+async def f():
+    source = Stream(asynchronous=True,loop=loop)
+    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
+    async def h():
+        for x in range(10):
+            # print(x)
+            executor.submit(partial(source.emit,x))
+    print(11)
+    await h()
+    # executor.submit(h)
+
+loop : IOLoop = None
+executor : ThreadPoolExecutor = None
+if __name__ == "__main__":
+    # client = await Client(processes=False, asynchronous=True)
+    executor = ThreadPoolExecutor(max_workers=8)
+    loop = IOLoop()
+    loop.run_sync(f)
