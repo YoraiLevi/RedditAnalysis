@@ -227,8 +227,9 @@ def f():
         # loop.add_future(source.emit(x,asynchronous=True),callback=print)
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
-    executor.submit(h)
-    time.sleep(1)
+    # executor.submit(h)
+    h()
+    # time.sleep(1)
     # while(True):
         # await gen.sleep(0.1)
 
