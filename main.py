@@ -1,6 +1,6 @@
-import imp
 import ujson as json
 import dask.bag as db
+from dask import delayed
 from dask.distributed import Client, progress
 from zreader import Zreader
 
@@ -15,8 +15,11 @@ def chunk(iterable, chunk_size=10**4):
         except StopIteration:
             yield buffer[:i]
             return
+def process_chunk(iterable):
+    for i in iterable:
+        yield json.loads(i)
 def load(filename):
-    chunk(Zreader(filename).readlines())
+    return chunk(Zreader(filename).readlines())
 if __name__ == '__main__':
     client = Client(threads_per_worker=2, n_workers=2)
     metaComment = [
@@ -39,8 +42,8 @@ if __name__ == '__main__':
         ("stickied", bool),
         ("subreddit_id", str),
     ]
-    name = "RC_2021-*.zst"
-    bag = db.from_delayed(delayed(load)(name)).map(json.loads)
+    name = "RC_2021-05.zst"
+    bag = db.from_delayed(delayed(load)(name)).map(process_chunk)
     frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
     out = frequencyList.to_dataframe().to_csv('2021-*.csv')
     print(out)
