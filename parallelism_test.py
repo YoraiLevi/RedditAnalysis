@@ -125,7 +125,7 @@ async def main(loop):
         print('[*] sub1() start')
         for i in range(1, 10000000):
             result += i
-            loop.create_task(source.emit(i))
+            loop.create_task(source.emit(i,asynchronous=True))
         print('[*] sub1() end')
 
     def sub2():
@@ -157,6 +157,5 @@ if __name__ == "__main__":
     # loop.run_sync(f)
     # IOLoop().run_sync(main)
     # asyncio.run(main())
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+    loop = asyncio.get_event_loop()
     loop.run_until_complete(main(loop))
