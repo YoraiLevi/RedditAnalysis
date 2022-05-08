@@ -6,6 +6,7 @@ from zreader import Zreader
 import ujson as json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+from tornado import gen
 
 # N = 10**8
 # def load():
@@ -70,6 +71,7 @@ async def main():
     # print(future.result())
 
 
+from tornado import gen
 import time
 
 def increment(x):
@@ -78,27 +80,33 @@ def increment(x):
     Simulates a computational function that was not designed to work
     asynchronously
     """
+    time.sleep(0.1)
     return x + 1
 
+@gen.coroutine
 def write(x):
     """ A non-blocking write function
 
     Simulates writing to a database asynchronously
     """
+    yield gen.sleep(0.2)
     print(x)
 
 from dask.distributed import Client
+from tornado.ioloop import IOLoop
 
 async def f():
     client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
-    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
+    source.scatter().map(increment).gather().sink(write)
 
     async for x in async_range(10):
-        asyncio.create_task(source.emit(x))
-    
+        await source.emit(x)
 
-import asyncio
+
+# import asyncio
+from tornado.ioloop import IOLoop
 if __name__ == "__main__":
+    IOLoop().run_sync(f)
     # IOLoop().run_sync(main)
-    asyncio.run(f())
+    # asyncio.run(main())
