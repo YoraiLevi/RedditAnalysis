@@ -47,7 +47,7 @@ if __name__ == '__main__':
         name = "RC_2021-05.zst"
 
         bag = db.read_text(name).map(json.loads)
-        frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
+        frequencyList = bag.map(lambda x:x)#.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
         out = await frequencyList.to_dataframe().to_csv('2021-*.csv')
         await client.close()
         # print(out)
