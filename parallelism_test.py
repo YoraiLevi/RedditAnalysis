@@ -1,5 +1,6 @@
 # import dask.bag as db
 from gc import callbacks
+from threading import Thread
 from dask import delayed
 from dask.distributed import Client, LocalCluster
 from streamz import Stream
@@ -162,17 +163,23 @@ def nothing(x):
 
 from dask.distributed import Client
 from tornado.ioloop import IOLoop
+from concurrent.futures import ThreadPoolExecutor
 
 async def f():
     client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
-    source.scatter().map(nothing).rate_limit('500ms').gather().sink(print)
+    source.scatter().map(nothing).gather().sink(print)
     async def h():
         for x in range(10):
-            loop.run_in_executor(None,source.emit(x))
-    loop.run_in_executor(None,h)
+            print(x)
+            loop.run_in_executor(executor,source.emit(x))
+    print(11)
+    loop.run_in_executor(executor,h)
+    time.sleep(10)
 
 loop : IOLoop = None
+executor : ThreadPoolExecutor = None
 if __name__ == "__main__":
+    executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
