@@ -4,7 +4,10 @@ from dask.distributed import Client, progress
 
 if __name__ == '__main__':
     async def main():
-        client = await Client(threads_per_worker=2, n_workers=2,asynchronous=True)
+        # print('Hello ...')
+        # await asyncio.sleep(1)
+        # print('... World!')
+        client = await Client(asynchronous=True) #await Client(threads_per_worker=2, n_workers=2,asynchronous=True)
         metaComment = [
             ("gilded", int),
             ("retrieved_on", int),
@@ -26,9 +29,9 @@ if __name__ == '__main__':
             ("subreddit_id", str),
         ]
         name = "RC_2021-05.zst"
-        # bag = db.read_text(name).map(json.loads)
-        # frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
-        # out = frequencyList.to_dataframe().to_csv('2021-*.csv')
+        bag = db.read_text(name).map(json.loads)
+        frequencyList = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().frequencies(sort=True)
+        out = frequencyList.to_dataframe().to_csv('2021-*.csv')
         # print(out)
     import asyncio
     asyncio.run(main())
