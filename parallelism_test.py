@@ -1,4 +1,5 @@
 # import dask.bag as db
+from asyncio import streams
 from functools import partial
 from gc import callbacks
 from threading import Thread
@@ -213,17 +214,19 @@ from dask.distributed import Client
 from tornado.ioloop import IOLoop
 async def f():
     client = await Client(processes=False, asynchronous=True)
-    source = Stream(asynchronous=True,loop=loop)
+    # source = Stream(asynchronous=True,loop=loop)
+    source = Stream()
     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
-    async def h():
-        for x in range(10):
-            # print(x)
-            # loop.add_future(source.emit(x,asynchronous=True),callback=print)
-            await source.emit(x)
+    # async def h():
+    for x in range(10):
+        executor.submit(partial(source.emit,x))
+        # print(x)
+        # loop.add_future(source.emit(x,asynchronous=True),callback=print)
+        # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     print(11)
-    await h()
-    time.sleep(1)
+    # await h()
+    time.sleep(10)
     # executor.submit(h)
 
 loop : IOLoop = None
