@@ -72,51 +72,81 @@ async def main():
     # print(future.result())
 
 
-from tornado import gen
-import time
+# from tornado import gen
+# import time
 
-def increment(x):
-    """ A blocking increment function
+# def increment(x):
+#     """ A blocking increment function
 
-    Simulates a computational function that was not designed to work
-    asynchronously
-    """
-    time.sleep(1)
-    return x + 1
+#     Simulates a computational function that was not designed to work
+#     asynchronously
+#     """
+#     time.sleep(1)
+#     return x + 1
 
-@gen.coroutine
-def write(x):
-    """ A non-blocking write function
+# @gen.coroutine
+# def write(x):
+#     """ A non-blocking write function
 
-    Simulates writing to a database asynchronously
-    """
-    # yield gen.sleep(0.2)
-    print(x)
+#     Simulates writing to a database asynchronously
+#     """
+#     # yield gen.sleep(0.2)
+#     print(x)
 
-from dask.distributed import Client
-from tornado.ioloop import IOLoop
-from functools import partial
+# from dask.distributed import Client
+# from tornado.ioloop import IOLoop
+# from functools import partial
 
-async def f():
-    client = await Client(processes=False, asynchronous=True)
-    source = Stream(asynchronous=True)
-    source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
+# async def f():
+#     client = await Client(processes=False, asynchronous=True)
+#     source = Stream(asynchronous=True)
+#     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
 
-    print('start')
-    async def h():
-        for x in range(10**9):
-            # await source.emit(x)
-            loop.add_future(source.emit(x),callback=nothing)
-            # .run_in_executor(None,partial(source.emit,x))
-    loop.run_in_executor(None,h)
-    print('end')
+#     print('start')
+#     async def h():
+#         for x in range(10**9):
+#             # await source.emit(x)
+#             loop.add_future(source.emit(x),callback=nothing)
+#             # .run_in_executor(None,partial(source.emit,x))
+#     loop.run_in_executor(None,h)
+#     print('end')
 
-    await asyncio.sleep(10)
-# import asyncio
+#     await asyncio.sleep(10)
+# # import asyncio
+# from tornado.ioloop import IOLoop
+# loop: IOLoop = IOLoop()
+
 import asyncio
-from tornado.ioloop import IOLoop
-loop: IOLoop = IOLoop()
+
+result = 0
+
+def sub1():
+    global result
+    print('[*] sub1() start')
+    for i in range(1, 10000000):
+        result += i
+    print('[*] sub1() end')
+
+def sub2():
+    global result
+    print('[*] sub2() start')
+    for i in range(10000000, 20000000):
+        result += i
+    print('[*] sub2() end')
+
+async def main():
+    res = await asyncio.gather(
+        loop.run_in_executor(None, sub1),
+        loop.run_in_executor(None, sub2)
+    )
+
+
+loop = asyncio.get_event_loop()
+# loop.run_until_complete(main(loop))
+
+
+import asyncio
 if __name__ == "__main__":
-    loop.run_sync(f)
+    # loop.run_sync(f)
     # IOLoop().run_sync(main)
-    # asyncio.run(main())
+    asyncio.run(main())
