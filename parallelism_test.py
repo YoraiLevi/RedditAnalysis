@@ -108,14 +108,14 @@ async def f():
             # await source.emit(x)
             loop.add_future(source.emit(x),callback=nothing)
             # .run_in_executor(None,partial(source.emit,x))
-    loop.run_in_executor(h)
+    loop.run_in_executor(None,h)
     print('end')
 
     await asyncio.sleep(10)
 # import asyncio
 import asyncio
 from tornado.ioloop import IOLoop
-loop = IOLoop()
+loop: IOLoop = IOLoop()
 if __name__ == "__main__":
     loop.run_sync(f)
     # IOLoop().run_sync(main)
