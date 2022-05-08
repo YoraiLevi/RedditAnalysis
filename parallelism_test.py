@@ -219,7 +219,7 @@ def f():
     client = Client()
     # source = Stream(asynchronous=True,loop=loop)
     source = Stream()
-    source.scatter().map(increment).gather().sink(write)
+    source.scatter().map(increment).gather().sink(nothing)
     def h():
         for x in range(10**6):
             executor.submit(partial(source.emit,x))
@@ -227,8 +227,8 @@ def f():
         # loop.add_future(source.emit(x,asynchronous=True),callback=print)
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
-    # executor.submit(h)
-    h()
+    executor.submit(h)
+    # h()
     # time.sleep(1)
     # while(True):
         # await gen.sleep(0.1)
@@ -246,7 +246,7 @@ if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
     # loop = IOLoop()
     # loop.run_sync(f)
-    f()
+    executor.submit(f)
     executor.shutdown(wait=True)
 
     # time.sleep(1)
