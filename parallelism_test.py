@@ -1,4 +1,5 @@
 # import dask.bag as db
+from functools import partial
 from gc import callbacks
 from threading import Thread
 from dask import delayed
@@ -169,13 +170,12 @@ async def f():
     client = await Client(processes=False, asynchronous=True)
     source = Stream(asynchronous=True)
     source.scatter().map(nothing).gather().sink(print)
-    async def h():
+    def h():
         for x in range(10):
             print(x)
-            loop.run_in_executor(executor,source.emit(x))
+            executor.submit(partial(source.emit,x))
     print(11)
-    loop.run_in_executor(executor,h)
-    time.sleep(10)
+    executor.submit(h)
 
 loop : IOLoop = None
 executor : ThreadPoolExecutor = None
@@ -183,3 +183,4 @@ if __name__ == "__main__":
     executor = ThreadPoolExecutor(max_workers=8)
     loop = IOLoop()
     loop.run_sync(f)
+    time.sleep(10)
