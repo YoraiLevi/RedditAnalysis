@@ -103,10 +103,11 @@ async def f():
     source.scatter().map(increment).rate_limit('500ms').gather().sink(write)
 
     print('start')
-    for x in range(10**9):
-        # await source.emit(x)
-        loop.add_future(source.emit(x),callback=nothing)
-        # .run_in_executor(None,partial(source.emit,x))
+    async def h():
+        for x in range(10**9):
+            # await source.emit(x)
+            loop.add_future(source.emit(x),callback=nothing)
+            # .run_in_executor(None,partial(source.emit,x))
     print('end')
 
     await asyncio.sleep(10)
