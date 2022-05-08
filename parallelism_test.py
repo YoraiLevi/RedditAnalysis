@@ -1,4 +1,5 @@
 # import dask.bag as db
+from gc import callbacks
 from dask import delayed
 from dask.distributed import Client, LocalCluster
 from streamz import Stream
@@ -104,14 +105,16 @@ async def f():
     print('start')
     for x in range(10):
         # await source.emit(x)
-        IOLoop().run_in_executor(None,partial(source.emit,x))
+        loop.add_future(source.emit(x),callback=nothing)
+        # .run_in_executor(None,partial(source.emit,x))
     print('end')
 
     await asyncio.sleep(10)
 # import asyncio
 import asyncio
 from tornado.ioloop import IOLoop
+loop = IOLoop()
 if __name__ == "__main__":
-    IOLoop().run_sync(f)
+    loop.run_sync(f)
     # IOLoop().run_sync(main)
     # asyncio.run(main())
