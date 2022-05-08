@@ -39,6 +39,16 @@ def process_chunk(lines):
 def nothing(x):
     pass
 
+def main():
+    client = Client()
+    source = Stream()
+    result = source.scatter().map(lambda x:x).gather().sink(nothing)
+    for i in range(10*6):
+        source.emit(i)
+
+
+if __name__ == '__main__':
+    main()
 
 
 # async def async_range(count):
@@ -162,35 +172,35 @@ def nothing(x):
 #     loop = asyncio.get_event_loop()
 #     loop.run_until_complete(main(loop))
 
-from dask.distributed import Client
-from tornado.ioloop import IOLoop
-from concurrent.futures import ThreadPoolExecutor
+# from dask.distributed import Client
+# from tornado.ioloop import IOLoop
+# from concurrent.futures import ThreadPoolExecutor
 
-# async def read():
-#     reader = Zreader(filename)
-#     for x in range(10):
-#         executor.submit(partial(source.emit,x))
-#     for line in reader.readlines():
-#         source.emit(lines, asynchronous=True)
-
-
+# # async def read():
+# #     reader = Zreader(filename)
+# #     for x in range(10):
+# #         executor.submit(partial(source.emit,x))
+# #     for line in reader.readlines():
+# #         source.emit(lines, asynchronous=True)
 
 
-async def f():
-    source = Stream(asynchronous=True)
-    source.scatter().map(nothing).gather().sink(print)
-    async def h():
-        for x in range(10):
-            # print(x)
-            executor.submit(partial(source.emit,x))
-    print(11)
-    await h()
-    # executor.submit(h)
 
-loop : IOLoop = None
-executor : ThreadPoolExecutor = None
-if __name__ == "__main__":
-    # client = await Client(processes=False, asynchronous=True)
-    executor = ThreadPoolExecutor(max_workers=8)
-    loop = IOLoop()
-    loop.run_sync(f)
+
+# async def f():
+#     source = Stream(asynchronous=True)
+#     source.scatter().map(nothing).gather().sink(print)
+#     async def h():
+#         for x in range(10):
+#             # print(x)
+#             executor.submit(partial(source.emit,x))
+#     print(11)
+#     await h()
+#     # executor.submit(h)
+
+# loop : IOLoop = None
+# executor : ThreadPoolExecutor = None
+# if __name__ == "__main__":
+#     # client = await Client(processes=False, asynchronous=True)
+#     executor = ThreadPoolExecutor(max_workers=8)
+#     loop = IOLoop()
+#     loop.run_sync(f)
