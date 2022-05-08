@@ -108,7 +108,7 @@ async def f():
             # await source.emit(x)
             loop.add_future(source.emit(x),callback=nothing)
             # .run_in_executor(None,partial(source.emit,x))
-    IOLoop.add_future(h())
+    loop.run_in_executor(h)
     print('end')
 
     await asyncio.sleep(10)
