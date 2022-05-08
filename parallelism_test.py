@@ -200,7 +200,7 @@ def increment(x):
     Simulates a computational function that was not designed to work
     asynchronously
     """
-    time.sleep(0.1)
+    # time.sleep(0.1)
     return x + 1
 
 @gen.coroutine
