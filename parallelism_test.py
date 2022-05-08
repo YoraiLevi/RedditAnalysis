@@ -1,4 +1,5 @@
 # import dask.bag as db
+from ast import Try
 from asyncio import streams
 from functools import partial
 from gc import callbacks
@@ -226,7 +227,8 @@ async def f():
         # await source.emit(x)
             # loop.run_in_executor(executor=executor,func=partial(source.emit,x))
     executor.submit(h)
-    await gen.sleep(10)
+    while(True):
+        await gen.sleep(0.1)
 
     # print(11)
     # await h()
