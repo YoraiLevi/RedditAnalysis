@@ -31,7 +31,8 @@ if __name__ == '__main__':
         out = frequencyList.to_dataframe().to_csv('2021-*.csv')
         print(out)
     import asyncio
-    asyncio.get_event_loop().run_until_complete(main())
+    asyncio.run(main())
+    # asyncio.get_event_loop().run_until_complete(main())
 # df = bag.to_dataframe(meta=metaComment).body
 # bag.to_dataframe(meta=metaComment).body.str.normalize('NFKD').str.lower().split().compute() 
 # a = bag.map(lambda x:x['body']).str.lower().str.rstrip().str.lstrip().str.split().flatten().compute()
