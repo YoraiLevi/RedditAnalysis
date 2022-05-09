@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: example
     volumes:
       - type: bind
-        source: E:/Datasets/postgres
+        source: E:/Datasets/reddit/postgres
         target: /var/lib/postgresql/data
 
   adminer:
