@@ -8,6 +8,10 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: example
+    volumes:
+      - type: bind
+        source: E:/Datasets/postgres
+        target: /var/lib/postgresql/data
 
   adminer:
     image: adminer
