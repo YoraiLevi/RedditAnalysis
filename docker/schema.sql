@@ -1,23 +1,23 @@
 CREATE TABLE IF NOT EXISTS comments(
    controversiality       BIT 
   ,score                  INTEGER 
-  ,parent_id              VARCHAR(10)
+  ,parent_id              
   ,ups                    INTEGER 
   ,archived               VARCHAR(4)
-  ,link_id                VARCHAR(8)
-  ,author_flair_text      VARCHAR(30)
+  ,link_id                
+  ,author_flair_text      
   ,retrieved_on           INTEGER 
   ,downs                  INTEGER 
-  ,body                   VARCHAR(30)
+  ,body                   
   ,edited                 VARCHAR(5)
-  ,author                 VARCHAR(11)
-  ,id                     VARCHAR(7) PRIMARY KEY
-  ,subreddit              VARCHAR(8)
-  ,author_flair_css_class VARCHAR(30)
+  ,author                 
+  ,id                      PRIMARY KEY
+  ,subreddit              
+  ,author_flair_css_class 
   ,score_hidden           VARCHAR(5)
-  ,name                   VARCHAR(10)
+  ,name                   
   ,created_utc            INTEGER 
-  ,subreddit_id           NVARCHAR(8)
+  ,subreddit_id           
   ,distinguished          VARCHAR(30)
   ,gilded                 BIT 
 );
