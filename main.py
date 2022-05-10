@@ -36,7 +36,7 @@ if __name__ == '__main__':
         ("created_utc", int),
         ("score", int),
         ("ups", int),
-        ("controversiality", int),
+        ("controversiality", bool),
         ("body", str),
         ("link_id", str),
         ("stickied", bool),
