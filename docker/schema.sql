@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS comments(
    controversiality       BIT 
   ,score                  INTEGER 
-  ,parent_id              
+  ,parent_id              INTEGER --convert
   ,ups                    INTEGER 
-  ,archived               VARCHAR(4)
+  ,archived               BIT --convert
   ,link_id                
   ,author_flair_text      
   ,retrieved_on           INTEGER 
