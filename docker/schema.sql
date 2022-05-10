@@ -1,25 +1,25 @@
 CREATE TABLE IF NOT EXISTS comments(
-   controversiality       BIT 
+  controversiality        BIT --convert
   ,score                  INTEGER 
   ,parent_id              INTEGER --convert
   ,ups                    INTEGER 
   ,archived               BIT --convert
-  ,link_id                
-  ,author_flair_text      
+  ,link_id                INTEGER --convert
+  ,author_flair_text      TEXT
   ,retrieved_on           INTEGER 
   ,downs                  INTEGER 
-  ,body                   
-  ,edited                 VARCHAR(5)
-  ,author                 
-  ,id                      PRIMARY KEY
-  ,subreddit              
-  ,author_flair_css_class 
-  ,score_hidden           VARCHAR(5)
-  ,name                   
-  ,created_utc            INTEGER 
-  ,subreddit_id           
-  ,distinguished          VARCHAR(30)
-  ,gilded                 BIT 
+  ,body                   TEXT
+  ,edited                 BIT --convert
+  ,author                 TEXT
+  ,id                     INTEGER PRIMARY KEY
+  ,subreddit              TEXT
+  ,author_flair_css_class TEXT
+  ,score_hidden           BIT --convert
+  ,name                   TEXT
+  ,created_utc            TIME --convert? 
+  ,subreddit_id           INTEGER --convert
+  ,distinguished          
+  ,gilded                 BIT --convert
 );
 -- INSERT INTO comments(controversiality,score,parent_id,ups,archived,link_id,author_flair_text,retrieved_on,downs,body,edited,author,id,subreddit,author_flair_css_class,score_hidden,name,created_utc,subreddit_id,distinguished,gilded) VALUES (0,3,'t1_c02kjs5',3,'true','t3_61vdm',NULL,1427420993,0,'As a Canadian:
 
