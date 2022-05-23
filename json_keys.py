@@ -21,7 +21,7 @@ for file in files:
     try:
         for string in islice(Zreader(file).readlines(),10):
             obj = json.loads(string)
-            a =list(map(obj.items(),lambda x: 1))
+            a =(map(obj.items(),lambda x: x))
             print(a)
 
             # for key,item in obj.items():
