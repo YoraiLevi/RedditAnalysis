@@ -36,11 +36,16 @@ for file in files:
     file_keys = Counter(keys)
     files_keys[file] = file_keys
 
-# for key,value in set_of_keys.items():
-    # print(key,set(map(type,value)))
-    # print(key,value)
-total = sum(files_keys.values(),collections.Counter())
-items = total.most_common(1)[0][1]
-for key,val in total.most_common():
-    total.total()
-    print(key,":",val/items)
+def print_stats(total):
+    try:
+        items = total.most_common(1)[0][1]
+        for key,val in total.most_common():
+            total.total()
+            print(key,":",val/items)
+    except:
+        print('Failed')
+
+total_all_files = sum(files_keys.values(),collections.Counter())
+for file,total in files_keys.items():
+    print(file,":")
+    print_stats(total)
