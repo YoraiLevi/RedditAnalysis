@@ -2,7 +2,7 @@ archived {<class 'bool'>}
 author {<class 'str'>}
 author_flair_background_color {<class 'NoneType'>, <class 'str'>}
 author_flair_css_class {<class 'NoneType'>, <class 'str'>}
-author_flair_richtext {<class 'list'>}
+# author_flair_richtext {<class 'list'>}
 author_flair_text {<class 'NoneType'>, <class 'str'>}
 author_flair_text_color {<class 'NoneType'>, <class 'str'>}
 author_flair_type {<class 'str'>}
@@ -22,23 +22,23 @@ is_reddit_media_domain {<class 'bool'>}
 is_self {<class 'bool'>}
 is_video {<class 'bool'>}
 link_flair_css_class {<class 'NoneType'>, <class 'str'>}
-link_flair_richtext {<class 'list'>}
+# link_flair_richtext {<class 'list'>}
 link_flair_text {<class 'NoneType'>, <class 'str'>}
 link_flair_text_color {<class 'str'>}
 link_flair_type {<class 'str'>}
 locked {<class 'bool'>}
-media {<class 'NoneType'>, <class 'dict'>}
-media_embed {<class 'dict'>}
+# media {<class 'NoneType'>, <class 'dict'>}
+# media_embed {<class 'dict'>}
 no_follow {<class 'bool'>}
 num_comments {<class 'int'>}
 num_crossposts {<class 'int'>}
 over_18 {<class 'bool'>}
-parent_whitelist_status {<class 'NoneType'>, <class 'str'>}
+# parent_whitelist_status {<class 'NoneType'>, <class 'str'>}
 permalink {<class 'str'>}
 rte_mode {<class 'str'>}
 score {<class 'int'>}
-secure_media {<class 'NoneType'>, <class 'dict'>}
-secure_media_embed {<class 'dict'>}
+# secure_media {<class 'NoneType'>, <class 'dict'>}
+# secure_media_embed {<class 'dict'>}
 selftext {<class 'str'>}
 send_replies {<class 'bool'>}
 spoiler {<class 'bool'>}
@@ -53,9 +53,9 @@ thumbnail_height {<class 'NoneType'>, <class 'int'>}
 thumbnail_width {<class 'NoneType'>, <class 'int'>}
 title {<class 'str'>}
 url {<class 'str'>}
-whitelist_status {<class 'NoneType'>, <class 'str'>}
+# whitelist_status {<class 'NoneType'>, <class 'str'>}
 post_hint {<class 'str'>}
-preview {<class 'dict'>}
+# preview {<class 'dict'>}
 retrieved_on {<class 'int'>}
 author_cakeday {<class 'bool'>}
 approved {<class 'bool'>}
@@ -68,19 +68,19 @@ author_id {<class 'NoneType'>, <class 'str'>}
 domain_override {<class 'NoneType'>, <class 'str'>}
 embed_type {<class 'NoneType'>, <class 'str'>}
 embed_url {<class 'NoneType'>, <class 'str'>}
-events {<class 'list'>}
-eventsOnRender {<class 'list'>}
+# events {<class 'list'>}
+# eventsOnRender {<class 'list'>}
 href_url {<class 'str'>}
 is_blank {<class 'bool'>}
 mobile_ad_url {<class 'str'>}
 original_link {<class 'NoneType'>}
-outbound_link {<class 'dict'>}
+# outbound_link {<class 'dict'>}
 priority_id {<class 'NoneType'>}
 promoted {<class 'bool'>}
 promoted_by {<class 'NoneType'>, <class 'int'>}
 promoted_display_name {<class 'NoneType'>}
 promoted_url {<class 'NoneType'>}
-third_party_trackers {<class 'list'>, <class 'NoneType'>}
+# third_party_trackers {<class 'list'>, <class 'NoneType'>}
 third_party_tracking {<class 'NoneType'>}
 third_party_tracking_2 {<class 'NoneType'>}
 link_flair_background_color {<class 'str'>}
@@ -98,8 +98,8 @@ approved_by {<class 'NoneType'>}
 selftext_html {<class 'NoneType'>, <class 'str'>}
 created {<class 'float'>, <class 'int'>}
 report_reasons {<class 'NoneType'>}
-user_reports {<class 'list'>}
-mod_reports {<class 'list'>}
+# user_reports {<class 'list'>}
+# mod_reports {<class 'list'>}
 from {<class 'NoneType'>}
 from_id {<class 'NoneType'>}
 from_kind {<class 'NoneType'>}
@@ -111,11 +111,11 @@ banned_at_utc {<class 'NoneType'>}
 can_mod_post {<class 'bool'>}
 view_count {<class 'NoneType'>}
 crosspost_parent {<class 'str'>}
-crosspost_parent_list {<class 'list'>}
+# crosspost_parent_list {<class 'list'>}
 pinned {<class 'bool'>}
 author_flair_template_id {<class 'NoneType'>, <class 'str'>}
 category {<class 'NoneType'>, <class 'str'>}
-content_categories {<class 'list'>, <class 'NoneType'>}
+# content_categories {<class 'list'>, <class 'NoneType'>}
 media_only {<class 'bool'>}
 post_categories {<class 'NoneType'>}
 pwls {<class 'NoneType'>, <class 'int'>}
@@ -123,32 +123,32 @@ removal_reason {<class 'NoneType'>, <class 'str'>}
 subreddit_subscribers {<class 'int'>}
 visited {<class 'bool'>}
 wls {<class 'NoneType'>, <class 'int'>}
-previous_visits {<class 'list'>}
-media_metadata {<class 'NoneType'>, <class 'dict'>}
+# previous_visits {<class 'list'>}
+# media_metadata {<class 'NoneType'>, <class 'dict'>}
 author_created_utc {<class 'NoneType'>, <class 'int'>}
 author_fullname {<class 'NoneType'>, <class 'str'>}
 is_meta {<class 'bool'>}
 show_media {<class 'bool'>}
 author_patreon_flair {<class 'bool'>}
-gildings {<class 'dict'>}
+# gildings {<class 'dict'>}
 is_robot_indexable {<class 'bool'>}
 call_to_action {<class 'str'>}
-collections {<class 'list'>}
+# collections {<class 'list'>}
 event_end {<class 'float'>}
 event_is_live {<class 'bool'>}
 event_start {<class 'float'>}
-all_awardings {<class 'list'>}
+# all_awardings {<class 'list'>}
 total_awards_received {<class 'int'>}
 allow_live_comments {<class 'bool'>}
 discussion_type {<class 'NoneType'>, <class 'str'>}
-steward_reports {<class 'list'>}
+# steward_reports {<class 'list'>}
 author_premium {<class 'bool'>}
-awarders {<class 'list'>}
+# awarders {<class 'list'>}
 removed_by {<class 'NoneType'>}
 removed_by_category {<class 'NoneType'>, <class 'str'>}
-treatment_tags {<class 'list'>}
-poll_data {<class 'dict'>, <class 'NoneType'>}
-rpan_video {<class 'dict'>}
+# treatment_tags {<class 'list'>}
+# poll_data {<class 'dict'>, <class 'NoneType'>}
+# rpan_video {<class 'dict'>}
 is_created_from_ads_ui {<class 'bool'>}
 retrieved_utc {<class 'int'>}
 top_awarded_type {<class 'NoneType'>, <class 'str'>}
@@ -157,5 +157,5 @@ url_overridden_by_dest {<class 'str'>}
 impression_id {<class 'NoneType'>}
 impression_id_str {<class 'NoneType'>}
 sk_ad_network_data {<class 'NoneType'>}
-gallery_data {<class 'dict'>, <class 'NoneType'>}
+# gallery_data {<class 'dict'>, <class 'NoneType'>}
 is_gallery {<class 'bool'>}
