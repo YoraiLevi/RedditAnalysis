@@ -1,9 +1,16 @@
 import imp
 from itertools import islice
-
+import argparse
+import glob
 from zreader import Zreader
 import ujson as json
 
-def take(n, iterable):
-    "Return first n items of the iterable as a list"
-    return list(islice(iterable, n))
+parser = argparse.ArgumentParser()
+parser.add_argument('dir')
+args = parser.parse_args()
+
+directory = args['dir']
+
+files = glob.glob('**/*.zst')
+for file in files:
+    pass
