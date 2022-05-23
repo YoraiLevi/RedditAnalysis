@@ -20,7 +20,7 @@ files_keys = dict()
 for file in files:
     keys = []
     try:
-        for string in islice(Zreader(file).readlines(),10):
+        for string in islice(Zreader(file).readlines(),10000):
             obj = json.loads(string)
             for key,item in obj.items():
                 keys.append((key,type(item)))
@@ -41,7 +41,7 @@ def print_stats(total):
         items = total.most_common(1)[0][1]
         for key,val in total.most_common():
             total.total()
-            print(key,":",val)
+            print(key,":",val/items)
     except:
         print('Failed')
 
