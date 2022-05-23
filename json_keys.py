@@ -1,6 +1,7 @@
 #  python .\json_keys.py E:\Datasets\reddit\comments > comment_field_types.txt
 #  python .\json_keys.py E:\Datasets\reddit\submissions\ > submission_field_types.txt
 from collections import defaultdict, Counter
+import collections
 from itertools import islice
 import argparse
 import os
@@ -38,4 +39,5 @@ for file in files:
 # for key,value in set_of_keys.items():
     # print(key,set(map(type,value)))
     # print(key,value)
-print(files_keys)
+total = sum(files_keys.values(),collections.Counter())
+print(total.most_common)
