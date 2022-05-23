@@ -31,10 +31,10 @@ for file in files:
                 # set_of_keys[key].add(type(item))
                 # if(isinstance(item,(list))):
                     # print(key,string)
+        file_keys = Counter(keys)
+        files_keys[file] = file_keys
     except:
-        pass
-    file_keys = Counter(keys)
-    files_keys[file] = file_keys
+        print('Failed:',file)
 
 def print_stats(total):
     try:

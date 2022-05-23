@@ -1,3 +1,29 @@
+Failed: E:\Datasets\reddit\comments\RC_2008-03.zst
+Failed: E:\Datasets\reddit\comments\RC_2008-05.zst
+Failed: E:\Datasets\reddit\comments\RC_2011-08.zst
+Failed: E:\Datasets\reddit\comments\RC_2012-05.zst
+Failed: E:\Datasets\reddit\comments\RC_2012-07.zst
+Failed: E:\Datasets\reddit\comments\RC_2012-11.zst
+Failed: E:\Datasets\reddit\comments\RC_2013-02.zst
+Failed: E:\Datasets\reddit\comments\RC_2013-05.zst
+Failed: E:\Datasets\reddit\comments\RC_2013-06.zst
+Failed: E:\Datasets\reddit\comments\RC_2014-06.zst
+Failed: E:\Datasets\reddit\comments\RC_2014-11.zst
+Failed: E:\Datasets\reddit\comments\RC_2015-01.zst
+Failed: E:\Datasets\reddit\comments\RC_2015-03.zst
+Failed: E:\Datasets\reddit\comments\RC_2016-04.zst
+Failed: E:\Datasets\reddit\comments\RC_2016-12.zst
+Failed: E:\Datasets\reddit\comments\RC_2017-02.zst
+Failed: E:\Datasets\reddit\comments\RC_2017-03.zst
+Failed: E:\Datasets\reddit\comments\RC_2017-05.zst
+Failed: E:\Datasets\reddit\comments\RC_2017-10.zst
+Failed: E:\Datasets\reddit\comments\RC_2018-06.zst
+Failed: E:\Datasets\reddit\comments\RC_2018-11.zst
+Failed: E:\Datasets\reddit\comments\RC_2019-03.zst
+Failed: E:\Datasets\reddit\comments\RC_2019-05.zst
+Failed: E:\Datasets\reddit\comments\RC_2019-06.zst
+Failed: E:\Datasets\reddit\comments\RC_2019-08.zst
+Failed: E:\Datasets\reddit\comments\RC_2020-06.zst
 E:\Datasets\reddit\comments\RC_2005-12.zst :
 ('controversiality', <class 'int'>) : 10
 ('body', <class 'str'>) : 10
@@ -523,8 +549,6 @@ E:\Datasets\reddit\comments\RC_2008-02.zst :
 ('parent_id', <class 'str'>) : 10
 ('downs', <class 'int'>) : 10
 ('id', <class 'str'>) : 10
-E:\Datasets\reddit\comments\RC_2008-03.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2008-04.zst :
 ('body', <class 'str'>) : 10
 ('parent_id', <class 'str'>) : 10
@@ -547,8 +571,6 @@ E:\Datasets\reddit\comments\RC_2008-04.zst :
 ('distinguished', <class 'NoneType'>) : 10
 ('author_flair_text', <class 'NoneType'>) : 10
 ('link_id', <class 'str'>) : 10
-E:\Datasets\reddit\comments\RC_2008-05.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2008-06.zst :
 ('controversiality', <class 'int'>) : 10
 ('retrieved_on', <class 'int'>) : 10
@@ -594,7 +616,27 @@ E:\Datasets\reddit\comments\RC_2008-07.zst :
 ('parent_id', <class 'str'>) : 10
 ('edited', <class 'bool'>) : 10
 E:\Datasets\reddit\comments\RC_2008-08.zst :
-Failed
+('score', <class 'int'>) : 10
+('subreddit_id', <class 'str'>) : 10
+('author_flair_text', <class 'NoneType'>) : 10
+('retrieved_on', <class 'int'>) : 10
+('name', <class 'str'>) : 10
+('author_flair_css_class', <class 'NoneType'>) : 10
+('score_hidden', <class 'bool'>) : 10
+('ups', <class 'int'>) : 10
+('archived', <class 'bool'>) : 10
+('link_id', <class 'str'>) : 10
+('author', <class 'str'>) : 10
+('controversiality', <class 'int'>) : 10
+('id', <class 'str'>) : 10
+('edited', <class 'bool'>) : 10
+('body', <class 'str'>) : 10
+('distinguished', <class 'NoneType'>) : 10
+('created_utc', <class 'str'>) : 10
+('subreddit', <class 'str'>) : 10
+('parent_id', <class 'str'>) : 10
+('gilded', <class 'int'>) : 10
+('downs', <class 'int'>) : 10
 E:\Datasets\reddit\comments\RC_2008-09.zst :
 ('edited', <class 'bool'>) : 10
 ('controversiality', <class 'int'>) : 10
@@ -1381,8 +1423,6 @@ E:\Datasets\reddit\comments\RC_2011-07.zst :
 ('author_flair_text', <class 'NoneType'>) : 8
 ('author_flair_css_class', <class 'str'>) : 2
 ('author_flair_text', <class 'str'>) : 2
-E:\Datasets\reddit\comments\RC_2011-08.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2011-09.zst :
 ('subreddit', <class 'str'>) : 10
 ('subreddit_id', <class 'str'>) : 10
@@ -1573,8 +1613,6 @@ E:\Datasets\reddit\comments\RC_2012-04.zst :
 ('author_flair_text', <class 'NoneType'>) : 9
 ('author_flair_css_class', <class 'str'>) : 1
 ('author_flair_text', <class 'str'>) : 1
-E:\Datasets\reddit\comments\RC_2012-05.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2012-06.zst :
 ('created_utc', <class 'str'>) : 10
 ('author', <class 'str'>) : 10
@@ -1597,8 +1635,6 @@ E:\Datasets\reddit\comments\RC_2012-06.zst :
 ('downs', <class 'int'>) : 10
 ('body', <class 'str'>) : 10
 ('distinguished', <class 'NoneType'>) : 10
-E:\Datasets\reddit\comments\RC_2012-07.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2012-08.zst :
 ('name', <class 'str'>) : 10
 ('edited', <class 'bool'>) : 10
@@ -1671,8 +1707,6 @@ E:\Datasets\reddit\comments\RC_2012-10.zst :
 ('author_flair_css_class', <class 'NoneType'>) : 8
 ('author_flair_text', <class 'str'>) : 2
 ('author_flair_css_class', <class 'str'>) : 2
-E:\Datasets\reddit\comments\RC_2012-11.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2012-12.zst :
 ('edited', <class 'bool'>) : 10
 ('score', <class 'int'>) : 10
@@ -1717,8 +1751,6 @@ E:\Datasets\reddit\comments\RC_2013-01.zst :
 ('id', <class 'str'>) : 10
 ('name', <class 'str'>) : 10
 ('distinguished', <class 'NoneType'>) : 10
-E:\Datasets\reddit\comments\RC_2013-02.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2013-03.zst :
 ('downs', <class 'int'>) : 10
 ('subreddit', <class 'str'>) : 10
@@ -1767,10 +1799,6 @@ E:\Datasets\reddit\comments\RC_2013-04.zst :
 ('author_flair_text', <class 'NoneType'>) : 9
 ('author_flair_text', <class 'str'>) : 1
 ('author_flair_css_class', <class 'str'>) : 1
-E:\Datasets\reddit\comments\RC_2013-05.zst :
-Failed
-E:\Datasets\reddit\comments\RC_2013-06.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2013-07.zst :
 ('author', <class 'str'>) : 10
 ('controversiality', <class 'int'>) : 10
@@ -2042,8 +2070,6 @@ E:\Datasets\reddit\comments\RC_2014-05.zst :
 ('author_flair_css_class', <class 'str'>) : 4
 ('author_flair_text', <class 'str'>) : 4
 ('edited', <class 'int'>) : 1
-E:\Datasets\reddit\comments\RC_2014-06.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2014-07.zst :
 ('downs', <class 'int'>) : 10
 ('distinguished', <class 'NoneType'>) : 10
@@ -2140,8 +2166,6 @@ E:\Datasets\reddit\comments\RC_2014-10.zst :
 ('author_flair_text', <class 'NoneType'>) : 8
 ('author_flair_text', <class 'str'>) : 2
 ('author_flair_css_class', <class 'str'>) : 2
-E:\Datasets\reddit\comments\RC_2014-11.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2014-12.zst :
 ('created_utc', <class 'str'>) : 10
 ('subreddit_id', <class 'str'>) : 10
@@ -2166,8 +2190,6 @@ E:\Datasets\reddit\comments\RC_2014-12.zst :
 ('author_flair_text', <class 'NoneType'>) : 7
 ('author_flair_css_class', <class 'str'>) : 3
 ('author_flair_text', <class 'str'>) : 3
-E:\Datasets\reddit\comments\RC_2015-01.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2015-02.zst :
 ('score', <class 'int'>) : 10
 ('subreddit', <class 'str'>) : 10
@@ -2192,8 +2214,6 @@ E:\Datasets\reddit\comments\RC_2015-02.zst :
 ('author_flair_text', <class 'NoneType'>) : 7
 ('author_flair_text', <class 'str'>) : 3
 ('author_flair_css_class', <class 'str'>) : 3
-E:\Datasets\reddit\comments\RC_2015-03.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2015-04.zst :
 ('retrieved_on', <class 'int'>) : 10
 ('downs', <class 'int'>) : 10
@@ -2464,8 +2484,6 @@ E:\Datasets\reddit\comments\RC_2016-03.zst :
 ('author_flair_text', <class 'str'>) : 3
 ('author_flair_css_class', <class 'str'>) : 2
 ('edited', <class 'int'>) : 1
-E:\Datasets\reddit\comments\RC_2016-04.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2016-05.zst :
 ('author', <class 'str'>) : 10
 ('id', <class 'str'>) : 10
@@ -2613,8 +2631,6 @@ E:\Datasets\reddit\comments\RC_2016-11.zst :
 ('author_flair_css_class', <class 'NoneType'>) : 5
 ('author_flair_text', <class 'NoneType'>) : 4
 ('edited', <class 'int'>) : 2
-E:\Datasets\reddit\comments\RC_2016-12.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2017-01.zst :
 ('edited', <class 'bool'>) : 10
 ('id', <class 'str'>) : 10
@@ -2634,10 +2650,6 @@ E:\Datasets\reddit\comments\RC_2017-01.zst :
 ('subreddit', <class 'str'>) : 10
 ('author_flair_css_class', <class 'NoneType'>) : 9
 ('author_flair_css_class', <class 'str'>) : 1
-E:\Datasets\reddit\comments\RC_2017-02.zst :
-Failed
-E:\Datasets\reddit\comments\RC_2017-03.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2017-04.zst :
 ('subreddit', <class 'str'>) : 10
 ('edited', <class 'bool'>) : 10
@@ -2659,8 +2671,6 @@ E:\Datasets\reddit\comments\RC_2017-04.zst :
 ('author_flair_text', <class 'NoneType'>) : 7
 ('author_flair_text', <class 'str'>) : 3
 ('author_flair_css_class', <class 'str'>) : 3
-E:\Datasets\reddit\comments\RC_2017-05.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2017-06.zst :
 ('author', <class 'str'>) : 10
 ('body', <class 'str'>) : 10
@@ -2753,8 +2763,6 @@ E:\Datasets\reddit\comments\RC_2017-09.zst :
 ('author_flair_text', <class 'NoneType'>) : 5
 ('author_flair_css_class', <class 'str'>) : 5
 ('author_flair_text', <class 'str'>) : 5
-E:\Datasets\reddit\comments\RC_2017-10.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2017-11.zst :
 ('author', <class 'str'>) : 10
 ('body', <class 'str'>) : 10
@@ -2942,8 +2950,6 @@ E:\Datasets\reddit\comments\RC_2018-05.zst :
 ('author_flair_text', <class 'NoneType'>) : 6
 ('author_flair_text', <class 'str'>) : 4
 ('author_flair_css_class', <class 'str'>) : 3
-E:\Datasets\reddit\comments\RC_2018-06.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2018-07.zst :
 ('archived', <class 'bool'>) : 10
 ('author', <class 'str'>) : 10
@@ -3119,8 +3125,6 @@ E:\Datasets\reddit\comments\RC_2018-10.zst :
 ('author_flair_css_class', <class 'str'>) : 1
 ('author_flair_template_id', <class 'str'>) : 1
 ('author_flair_text', <class 'str'>) : 1
-E:\Datasets\reddit\comments\RC_2018-11.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2018-12.zst :
 ('archived', <class 'bool'>) : 10
 ('author', <class 'str'>) : 10
@@ -3258,8 +3262,6 @@ E:\Datasets\reddit\comments\RC_2019-02.zst :
 ('author_fullname', <class 'NoneType'>) : 1
 ('collapsed_reason', <class 'str'>) : 1
 ('edited', <class 'int'>) : 1
-E:\Datasets\reddit\comments\RC_2019-03.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2019-04.zst :
 ('all_awardings', <class 'list'>) : 10
 ('author', <class 'str'>) : 10
@@ -3309,10 +3311,6 @@ E:\Datasets\reddit\comments\RC_2019-04.zst :
 ('author_flair_text', <class 'str'>) : 4
 ('author_created_utc', <class 'NoneType'>) : 1
 ('author_fullname', <class 'NoneType'>) : 1
-E:\Datasets\reddit\comments\RC_2019-05.zst :
-Failed
-E:\Datasets\reddit\comments\RC_2019-06.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2019-07.zst :
 ('all_awardings', <class 'list'>) : 10
 ('associated_award', <class 'NoneType'>) : 10
@@ -3365,8 +3363,6 @@ E:\Datasets\reddit\comments\RC_2019-07.zst :
 ('author_flair_css_class', <class 'str'>) : 1
 ('author_flair_template_id', <class 'str'>) : 1
 ('author_flair_text', <class 'str'>) : 1
-E:\Datasets\reddit\comments\RC_2019-08.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2019-09.zst :
 ('all_awardings', <class 'list'>) : 10
 ('associated_award', <class 'NoneType'>) : 10
@@ -3856,8 +3852,6 @@ E:\Datasets\reddit\comments\RC_2020-05.zst :
 ('author_flair_background_color', <class 'str'>) : 1
 ('author_flair_text', <class 'str'>) : 1
 ('author_flair_text_color', <class 'str'>) : 1
-E:\Datasets\reddit\comments\RC_2020-06.zst :
-Failed
 E:\Datasets\reddit\comments\RC_2020-07.zst :
 ('all_awardings', <class 'list'>) : 10
 ('associated_award', <class 'NoneType'>) : 10
@@ -4522,27 +4516,27 @@ E:\Datasets\reddit\comments\RC_2021-06.zst :
 ('author_created_utc', <class 'NoneType'>) : 1
 ('distinguished', <class 'str'>) : 1
 all :
-('controversiality', <class 'int'>) : 1600
-('body', <class 'str'>) : 1600
-('subreddit_id', <class 'str'>) : 1600
-('link_id', <class 'str'>) : 1600
-('subreddit', <class 'str'>) : 1600
-('score', <class 'int'>) : 1600
-('author', <class 'str'>) : 1600
-('id', <class 'str'>) : 1600
-('parent_id', <class 'str'>) : 1600
-('gilded', <class 'int'>) : 1600
-('distinguished', <class 'NoneType'>) : 1590
-('edited', <class 'bool'>) : 1584
-('retrieved_on', <class 'int'>) : 1550
-('author_flair_css_class', <class 'NoneType'>) : 1366
-('author_flair_text', <class 'NoneType'>) : 1338
-('ups', <class 'int'>) : 1150
-('archived', <class 'bool'>) : 910
-('score_hidden', <class 'bool'>) : 870
-('name', <class 'str'>) : 840
-('created_utc', <class 'str'>) : 830
-('downs', <class 'int'>) : 790
+('controversiality', <class 'int'>) : 1610
+('body', <class 'str'>) : 1610
+('subreddit_id', <class 'str'>) : 1610
+('link_id', <class 'str'>) : 1610
+('subreddit', <class 'str'>) : 1610
+('score', <class 'int'>) : 1610
+('author', <class 'str'>) : 1610
+('id', <class 'str'>) : 1610
+('parent_id', <class 'str'>) : 1610
+('gilded', <class 'int'>) : 1610
+('distinguished', <class 'NoneType'>) : 1600
+('edited', <class 'bool'>) : 1594
+('retrieved_on', <class 'int'>) : 1560
+('author_flair_css_class', <class 'NoneType'>) : 1376
+('author_flair_text', <class 'NoneType'>) : 1348
+('ups', <class 'int'>) : 1160
+('archived', <class 'bool'>) : 920
+('score_hidden', <class 'bool'>) : 880
+('name', <class 'str'>) : 850
+('created_utc', <class 'str'>) : 840
+('downs', <class 'int'>) : 800
 ('stickied', <class 'bool'>) : 770
 ('created_utc', <class 'int'>) : 770
 ('can_gild', <class 'bool'>) : 420
