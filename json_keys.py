@@ -46,6 +46,7 @@ def print_stats(total):
         print('Failed')
 
 total_all_files = sum(files_keys.values(),collections.Counter())
+file_keys['all'] = total_all_files
 for file,total in files_keys.items():
     print(file,":")
     print_stats(total)
