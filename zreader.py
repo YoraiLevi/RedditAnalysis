@@ -1,6 +1,7 @@
 import zstandard as zstd
 import io
 
+
 class Zreader:
     def __init__(self, file):
         """Init method"""
