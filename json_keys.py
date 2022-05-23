@@ -9,8 +9,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('dir')
 args = parser.parse_args()
 
-glob_string = os.path.join(args.dir,'*.zst').replace('\\','/')
+glob_string = os.path.join(args.dir,'*.zst')
 files = glob.glob(glob_string)
-print(files)
 for file in files:
-    print(file)
+    try:
+        for string in islice(Zreader(file).readlines(),10):
+            print(string)
+    except:
+        pass
+    # print(file)
