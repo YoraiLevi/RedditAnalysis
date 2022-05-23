@@ -40,8 +40,8 @@ def print_stats(total):
     try:
         items = total.most_common(1)[0][1]
         for key,val in total.most_common():
-            total.total()
-            print(key,":",val/items)
+            if(val == items):
+                print(key,":",val/items)
     except:
         print('Failed')
 
