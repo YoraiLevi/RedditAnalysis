@@ -15,16 +15,16 @@ files = glob.glob(glob_string)
 set_of_keys = defaultdict(set)
 for file in files:
     try:
-        for string in islice(Zreader(file).readlines(),10):
+        for string in islice(Zreader(file).readlines(),100):
             obj = json.loads(string)
             for key,item in obj.items():
-                if key == 'author_flair_richtext':
-                    
-                    print(file,string,item)
-                if(isinstance(item,str) and len(item)>5):
-                    item = "this is likely a string"
-                set_of_keys[key].add(item)
+                # if key == 'author_flair_richtext':
+                    # print(file,string,item)
+                # if(isinstance(item,str) and len(item)>5):
+                    # item = "this is likely a string"
+                set_of_keys[key].add(type(item))
     except:
         pass
 for key,value in set_of_keys.items():
-    print(key,set(map(type,value)))
+    # print(key,set(map(type,value)))
+    print(key,value)
