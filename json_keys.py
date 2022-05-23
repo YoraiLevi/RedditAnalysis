@@ -1,4 +1,5 @@
-# python .\json_keys.py 'E:\Datasets\reddit\comments'
+#  python .\json_keys.py E:\Datasets\reddit\comments > comment_field_types.txt
+#  python .\json_keys.py E:\Datasets\reddit\submissions\ > submission_field_types.txt
 from collections import defaultdict
 from itertools import islice
 import argparse
@@ -14,8 +15,8 @@ args = parser.parse_args()
 
 glob_string = os.path.join(args.dir,'*.zst')
 files = glob.glob(glob_string)
-set_of_keys = defaultdict(set)
 for file in files:
+    set_of_keys = defaultdict(set)
     try:
         for string in islice(Zreader(file).readlines(),10000):
             obj = json.loads(string)
