@@ -40,5 +40,7 @@ for file in files:
     # print(key,set(map(type,value)))
     # print(key,value)
 total = sum(files_keys.values(),collections.Counter())
+print(total.total())
 for key,val in total.most_common():
+    total.total()
     print(key,":",val)
