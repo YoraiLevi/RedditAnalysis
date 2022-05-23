@@ -18,6 +18,9 @@ for file in files:
         for string in islice(Zreader(file).readlines(),10):
             obj = json.loads(string)
             for key,item in obj.items():
+                if key == 'author_flair_richtext':
+                    
+                    print(file,string,item)
                 if(isinstance(item,str) and len(item)>5):
                     item = "this is likely a string"
                 set_of_keys[key].add(item)
