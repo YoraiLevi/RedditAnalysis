@@ -4467,4 +4467,130 @@ E:\Datasets\reddit\comments\RC_2021-05.zst :
 ('author_flair_text', <class 'str'>) : 0.1
 ('edited', <class 'float'>) : 0.1
 E:\Datasets\reddit\comments\RC_2021-06.zst :
-Failed
+('all_awardings', <class 'list'>) : 1.0
+('archived', <class 'bool'>) : 1.0
+('associated_award', <class 'NoneType'>) : 1.0
+('author', <class 'str'>) : 1.0
+('author_flair_css_class', <class 'NoneType'>) : 1.0
+('author_is_blocked', <class 'bool'>) : 1.0
+('body', <class 'str'>) : 1.0
+('can_gild', <class 'bool'>) : 1.0
+('collapsed', <class 'bool'>) : 1.0
+('collapsed_because_crowd_control', <class 'NoneType'>) : 1.0
+('collapsed_reason', <class 'NoneType'>) : 1.0
+('collapsed_reason_code', <class 'NoneType'>) : 1.0
+('comment_type', <class 'NoneType'>) : 1.0
+('controversiality', <class 'int'>) : 1.0
+('created_utc', <class 'int'>) : 1.0
+('edited', <class 'bool'>) : 1.0
+('gilded', <class 'int'>) : 1.0
+('gildings', <class 'dict'>) : 1.0
+('id', <class 'str'>) : 1.0
+('is_submitter', <class 'bool'>) : 1.0
+('link_id', <class 'str'>) : 1.0
+('locked', <class 'bool'>) : 1.0
+('name', <class 'str'>) : 1.0
+('no_follow', <class 'bool'>) : 1.0
+('parent_id', <class 'str'>) : 1.0
+('permalink', <class 'str'>) : 1.0
+('retrieved_utc', <class 'int'>) : 1.0
+('score', <class 'int'>) : 1.0
+('score_hidden', <class 'bool'>) : 1.0
+('send_replies', <class 'bool'>) : 1.0
+('stickied', <class 'bool'>) : 1.0
+('subreddit', <class 'str'>) : 1.0
+('subreddit_id', <class 'str'>) : 1.0
+('subreddit_type', <class 'str'>) : 1.0
+('top_awarded_type', <class 'NoneType'>) : 1.0
+('total_awards_received', <class 'int'>) : 1.0
+('treatment_tags', <class 'list'>) : 1.0
+('author_created_utc', <class 'int'>) : 0.9
+('author_flair_richtext', <class 'list'>) : 0.9
+('author_flair_type', <class 'str'>) : 0.9
+('author_fullname', <class 'str'>) : 0.9
+('author_patreon_flair', <class 'bool'>) : 0.9
+('author_premium', <class 'bool'>) : 0.9
+('distinguished', <class 'NoneType'>) : 0.9
+('author_flair_background_color', <class 'NoneType'>) : 0.7
+('author_flair_template_id', <class 'NoneType'>) : 0.7
+('author_flair_text', <class 'NoneType'>) : 0.7
+('author_flair_text_color', <class 'NoneType'>) : 0.6
+('author_flair_text_color', <class 'str'>) : 0.4
+('author_flair_background_color', <class 'str'>) : 0.3
+('author_flair_template_id', <class 'str'>) : 0.3
+('author_flair_text', <class 'str'>) : 0.3
+('author_created_utc', <class 'NoneType'>) : 0.1
+('distinguished', <class 'str'>) : 0.1
+all :
+# ('controversiality', <class 'int'>) : 1.0
+# ('body', <class 'str'>) : 1.0
+# ('subreddit_id', <class 'str'>) : 1.0
+# ('link_id', <class 'str'>) : 1.0
+# ('subreddit', <class 'str'>) : 1.0
+# ('score', <class 'int'>) : 1.0
+# ('author', <class 'str'>) : 1.0
+# ('id', <class 'str'>) : 1.0
+# ('parent_id', <class 'str'>) : 1.0
+# ('gilded', <class 'int'>) : 1.0
+('distinguished', <class 'NoneType'>) : 0.99375
+('edited', <class 'bool'>) : 0.99
+('retrieved_on', <class 'int'>) : 0.96875
+('author_flair_css_class', <class 'NoneType'>) : 0.85375
+('author_flair_text', <class 'NoneType'>) : 0.83625
+('ups', <class 'int'>) : 0.71875
+('archived', <class 'bool'>) : 0.56875
+('score_hidden', <class 'bool'>) : 0.54375
+('name', <class 'str'>) : 0.525
+('created_utc', <class 'str'>) : 0.51875
+('downs', <class 'int'>) : 0.49375
+('stickied', <class 'bool'>) : 0.48125
+('created_utc', <class 'int'>) : 0.48125
+('can_gild', <class 'bool'>) : 0.2625
+('removal_reason', <class 'NoneType'>) : 0.24375
+('is_submitter', <class 'bool'>) : 0.24375
+('permalink', <class 'str'>) : 0.23125
+('subreddit_type', <class 'str'>) : 0.23125
+('no_follow', <class 'bool'>) : 0.20625
+('send_replies', <class 'bool'>) : 0.20625
+('collapsed', <class 'bool'>) : 0.2
+('collapsed_reason', <class 'NoneType'>) : 0.195625
+('can_mod_post', <class 'bool'>) : 0.175
+('gildings', <class 'dict'>) : 0.175
+('author_flair_template_id', <class 'NoneType'>) : 0.1675
+('author_flair_text', <class 'str'>) : 0.16375
+('author_flair_richtext', <class 'list'>) : 0.161875
+('author_flair_type', <class 'str'>) : 0.161875
+('author_fullname', <class 'str'>) : 0.161875
+('subreddit_name_prefixed', <class 'str'>) : 0.15625
+('author_patreon_flair', <class 'bool'>) : 0.148125
+('author_flair_css_class', <class 'str'>) : 0.14625
+('all_awardings', <class 'list'>) : 0.14375
+('locked', <class 'bool'>) : 0.14375
+('total_awards_received', <class 'int'>) : 0.14375
+('associated_award', <class 'NoneType'>) : 0.1375
+('collapsed_because_crowd_control', <class 'NoneType'>) : 0.13125
+('author_created_utc', <class 'int'>) : 0.128125
+('author_flair_background_color', <class 'NoneType'>) : 0.125
+('quarantined', <class 'bool'>) : 0.11875
+('author_flair_text_color', <class 'NoneType'>) : 0.114375
+('author_premium', <class 'bool'>) : 0.114375
+('awarders', <class 'list'>) : 0.10625
+('treatment_tags', <class 'list'>) : 0.10625
+('top_awarded_type', <class 'NoneType'>) : 0.0875
+('comment_type', <class 'NoneType'>) : 0.075
+('author_flair_text_color', <class 'str'>) : 0.073125
+('author_flair_background_color', <class 'str'>) : 0.0625
+('author_created_utc', <class 'NoneType'>) : 0.05625
+('author_flair_template_id', <class 'str'>) : 0.0325
+('retrieved_utc', <class 'int'>) : 0.03125
+('collapsed_reason_code', <class 'NoneType'>) : 0.0275
+('steward_reports', <class 'list'>) : 0.01875
+('author_fullname', <class 'NoneType'>) : 0.016875
+('author_is_blocked', <class 'bool'>) : 0.0125
+('edited', <class 'int'>) : 0.00875
+('distinguished', <class 'str'>) : 0.00625
+('approved_at_utc', <class 'NoneType'>) : 0.00625
+('collapsed_reason', <class 'str'>) : 0.004375
+('collapsed_reason_code', <class 'str'>) : 0.00375
+('edited', <class 'float'>) : 0.00125
+('author_cakeday', <class 'bool'>) : 0.00125
