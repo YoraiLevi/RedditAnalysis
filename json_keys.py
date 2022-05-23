@@ -21,7 +21,8 @@ for file in files:
     try:
         for string in islice(Zreader(file).readlines(),10):
             obj = json.loads(string)
-            keys.append(list(map(obj.items(),lambda key,val: (key,type(val)))))
+            a =list(map(obj.items(),lambda x: 1))
+            print(a)
 
             # for key,item in obj.items():
                 # if key == 'author_flair_richtext':
@@ -33,11 +34,10 @@ for file in files:
                     # print(key,string)
     except:
         pass
-    print(keys)
     file_keys = Counter(keys)
     files_keys[file] = file_keys
 
 # for key,value in set_of_keys.items():
     # print(key,set(map(type,value)))
     # print(key,value)
-print(files_keys)
+# print(files_keys)
