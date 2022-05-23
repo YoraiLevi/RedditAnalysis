@@ -32,11 +32,10 @@ for file in files:
                     # print(key,string)
     except:
         pass
-    print(keys)
     file_keys = Counter(keys)
     files_keys[file] = file_keys
 
 # for key,value in set_of_keys.items():
     # print(key,set(map(type,value)))
     # print(key,value)
-# print(files_keys)
+print(files_keys)
