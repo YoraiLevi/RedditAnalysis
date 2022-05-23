@@ -1,0 +1,61 @@
+controversiality {<class 'int'>}
+body {<class 'str'>}
+subreddit_id {<class 'str'>}
+link_id {<class 'str'>}
+stickied {<class 'bool'>}
+subreddit {<class 'str'>}
+score {<class 'int'>}
+ups {<class 'int'>}
+author_flair_css_class {<class 'NoneType'>, <class 'str'>}
+created_utc {<class 'str'>, <class 'int'>}
+author_flair_text {<class 'NoneType'>, <class 'str'>}
+author {<class 'str'>}
+id {<class 'str'>}
+edited {<class 'int'>, <class 'bool'>, <class 'float'>}
+parent_id {<class 'str'>}
+gilded {<class 'int'>}
+distinguished {<class 'NoneType'>, <class 'str'>}
+retrieved_on {<class 'int'>}
+name {<class 'str'>}
+downs {<class 'int'>}
+score_hidden {<class 'bool'>}
+archived {<class 'bool'>}
+removal_reason {<class 'NoneType'>}
+can_gild {<class 'bool'>}
+author_cakeday {<class 'bool'>}
+approved_at_utc {<class 'NoneType'>}
+can_mod_post {<class 'bool'>}
+collapsed {<class 'bool'>}
+collapsed_reason {<class 'NoneType'>, <class 'str'>}
+is_submitter {<class 'bool'>}
+permalink {<class 'str'>}
+subreddit_type {<class 'str'>}
+no_follow {<class 'bool'>}
+send_replies {<class 'bool'>}
+author_flair_template_id {<class 'NoneType'>, <class 'str'>}
+author_flair_background_color {<class 'NoneType'>, <class 'str'>}
+author_flair_text_color {<class 'NoneType'>, <class 'str'>}
+subreddit_name_prefixed {<class 'str'>}
+author_created_utc {<class 'NoneType'>, <class 'int'>}
+# author_flair_richtext {<class 'list'>}
+author_flair_type {<class 'str'>}
+author_fullname {<class 'NoneType'>, <class 'str'>}
+# gildings {<class 'dict'>}
+author_patreon_flair {<class 'bool'>}
+quarantined {<class 'bool'>}
+# all_awardings {<class 'list'>}
+locked {<class 'bool'>}
+total_awards_received {<class 'int'>}
+# associated_award {<class 'NoneType'>, <class 'dict'>}
+# awarders {<class 'list'>}
+# steward_reports {<class 'list'>}
+author_premium {<class 'bool'>}
+collapsed_because_crowd_control {<class 'NoneType'>}
+# media_metadata {<class 'dict'>}
+# treatment_tags {<class 'list'>}
+top_awarded_type {<class 'NoneType'>}
+comment_type {<class 'NoneType'>, <class 'str'>}
+editable {<class 'bool'>}
+collapsed_reason_code {<class 'NoneType'>, <class 'str'>}
+retrieved_utc {<class 'int'>}
+author_is_blocked {<class 'bool'>}
