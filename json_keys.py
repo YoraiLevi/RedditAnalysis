@@ -1,3 +1,4 @@
+# python .\json_keys.py 'E:\Datasets\reddit\comments'
 from collections import defaultdict
 from itertools import islice
 import argparse
@@ -16,7 +17,7 @@ files = glob.glob(glob_string)
 set_of_keys = defaultdict(set)
 for file in files:
     try:
-        for string in islice(Zreader(file).readlines(),10):
+        for string in islice(Zreader(file).readlines(),10000):
             obj = json.loads(string)
             for key,item in obj.items():
                 # if key == 'author_flair_richtext':
@@ -24,8 +25,8 @@ for file in files:
                 # if(isinstance(item,str) and len(item)>5):
                     # item = "this is likely a string"
                 set_of_keys[key].add(type(item))
-                if(isinstance(item,(list,dict))):
-                    print(key,string)
+                # if(isinstance(item,(list))):
+                    # print(key,string)
 
     except:
         pass
