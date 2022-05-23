@@ -18,10 +18,10 @@ for file in files:
         for string in islice(Zreader(file).readlines(),10):
             obj = json.loads(string)
             for key,item in obj.items():
-                if(isinstance(item,str) and len(item)>15):
+                if(isinstance(item,str) and len(item)>5):
                     item = "this is likely a string"
                 set_of_keys[key].add(item)
     except:
         pass
 for key,value in set_of_keys.items():
-    print(key,value)
+    print(key,set(map(type,value)))
