@@ -62,5 +62,5 @@ print_stats(total_all_files)
 all_items = total_all_files.most_common(1)[0][1]
 print('most important :')
 important = [(i,total_all_files[i]/all_items) for i in showupallset]
-for i in sort(important,1):
+for i in sorted(important,key=lambda x: x[1],reverse=True):
     print(i)

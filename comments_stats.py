@@ -16,7 +16,6 @@ Failed: E:\Datasets\reddit\comments\RC_2016-12.zst
 Failed: E:\Datasets\reddit\comments\RC_2017-02.zst
 Failed: E:\Datasets\reddit\comments\RC_2017-03.zst
 Failed: E:\Datasets\reddit\comments\RC_2017-05.zst
-Failed: E:\Datasets\reddit\comments\RC_2017-10.zst
 Failed: E:\Datasets\reddit\comments\RC_2018-06.zst
 Failed: E:\Datasets\reddit\comments\RC_2018-11.zst
 Failed: E:\Datasets\reddit\comments\RC_2019-03.zst
@@ -2763,6 +2762,29 @@ E:\Datasets\reddit\comments\RC_2017-09.zst :
 ('author_flair_text', <class 'NoneType'>) : 0.5
 ('author_flair_css_class', <class 'str'>) : 0.5
 ('author_flair_text', <class 'str'>) : 0.5
+E:\Datasets\reddit\comments\RC_2017-10.zst :
+('author', <class 'str'>) : 1.0
+('body', <class 'str'>) : 1.0
+('can_gild', <class 'bool'>) : 1.0
+('controversiality', <class 'int'>) : 1.0
+('created_utc', <class 'int'>) : 1.0
+('distinguished', <class 'NoneType'>) : 1.0
+('edited', <class 'bool'>) : 1.0
+('gilded', <class 'int'>) : 1.0
+('id', <class 'str'>) : 1.0
+('is_submitter', <class 'bool'>) : 1.0
+('link_id', <class 'str'>) : 1.0
+('parent_id', <class 'str'>) : 1.0
+('permalink', <class 'str'>) : 1.0
+('retrieved_on', <class 'int'>) : 1.0
+('score', <class 'int'>) : 1.0
+('stickied', <class 'bool'>) : 1.0
+('subreddit', <class 'str'>) : 1.0
+('subreddit_id', <class 'str'>) : 1.0
+('author_flair_css_class', <class 'str'>) : 0.7
+('author_flair_text', <class 'str'>) : 0.7
+('author_flair_css_class', <class 'NoneType'>) : 0.3
+('author_flair_text', <class 'NoneType'>) : 0.3
 E:\Datasets\reddit\comments\RC_2017-11.zst :
 ('author', <class 'str'>) : 1.0
 ('body', <class 'str'>) : 1.0
@@ -4526,66 +4548,123 @@ all :
 ('id', <class 'str'>) : 1.0
 ('parent_id', <class 'str'>) : 1.0
 ('gilded', <class 'int'>) : 1.0
-('distinguished', <class 'NoneType'>) : 0.9937888198757764
-('edited', <class 'bool'>) : 0.9900621118012423
-('retrieved_on', <class 'int'>) : 0.968944099378882
-('author_flair_css_class', <class 'NoneType'>) : 0.8546583850931677
-('author_flair_text', <class 'NoneType'>) : 0.8372670807453416
-('ups', <class 'int'>) : 0.7204968944099379
-('archived', <class 'bool'>) : 0.5714285714285714
-('score_hidden', <class 'bool'>) : 0.546583850931677
-('name', <class 'str'>) : 0.5279503105590062
-('created_utc', <class 'str'>) : 0.5217391304347826
-('downs', <class 'int'>) : 0.4968944099378882
-('stickied', <class 'bool'>) : 0.4782608695652174
-('created_utc', <class 'int'>) : 0.4782608695652174
-('can_gild', <class 'bool'>) : 0.2608695652173913
-('removal_reason', <class 'NoneType'>) : 0.2422360248447205
-('is_submitter', <class 'bool'>) : 0.2422360248447205
-('permalink', <class 'str'>) : 0.22981366459627328
-('subreddit_type', <class 'str'>) : 0.22981366459627328
-('no_follow', <class 'bool'>) : 0.20496894409937888
-('send_replies', <class 'bool'>) : 0.20496894409937888
-('collapsed', <class 'bool'>) : 0.19875776397515527
-('collapsed_reason', <class 'NoneType'>) : 0.19440993788819877
-('can_mod_post', <class 'bool'>) : 0.17391304347826086
-('gildings', <class 'dict'>) : 0.17391304347826086
-('author_flair_template_id', <class 'NoneType'>) : 0.16645962732919253
-('author_flair_text', <class 'str'>) : 0.16273291925465838
-('author_flair_richtext', <class 'list'>) : 0.1608695652173913
-('author_flair_type', <class 'str'>) : 0.1608695652173913
-('author_fullname', <class 'str'>) : 0.1608695652173913
-('subreddit_name_prefixed', <class 'str'>) : 0.15527950310559005
-('author_patreon_flair', <class 'bool'>) : 0.14720496894409937
-('author_flair_css_class', <class 'str'>) : 0.1453416149068323
-('all_awardings', <class 'list'>) : 0.14285714285714285
-('locked', <class 'bool'>) : 0.14285714285714285
-('total_awards_received', <class 'int'>) : 0.14285714285714285
-('associated_award', <class 'NoneType'>) : 0.13664596273291926
-('collapsed_because_crowd_control', <class 'NoneType'>) : 0.13043478260869565
-('author_created_utc', <class 'int'>) : 0.12732919254658384
-('author_flair_background_color', <class 'NoneType'>) : 0.12422360248447205
-('quarantined', <class 'bool'>) : 0.11801242236024845
-('author_flair_text_color', <class 'NoneType'>) : 0.11366459627329192
-('author_premium', <class 'bool'>) : 0.11366459627329192
-('awarders', <class 'list'>) : 0.10559006211180125
-('treatment_tags', <class 'list'>) : 0.10559006211180125
-('top_awarded_type', <class 'NoneType'>) : 0.08695652173913043
-('comment_type', <class 'NoneType'>) : 0.07453416149068323
-('author_flair_text_color', <class 'str'>) : 0.07267080745341616
-('author_flair_background_color', <class 'str'>) : 0.062111801242236024
-('author_created_utc', <class 'NoneType'>) : 0.055900621118012424
-('author_flair_template_id', <class 'str'>) : 0.03229813664596273
-('retrieved_utc', <class 'int'>) : 0.031055900621118012
-('collapsed_reason_code', <class 'NoneType'>) : 0.02732919254658385
-('steward_reports', <class 'list'>) : 0.018633540372670808
-('author_fullname', <class 'NoneType'>) : 0.016770186335403725
-('author_is_blocked', <class 'bool'>) : 0.012422360248447204
-('edited', <class 'int'>) : 0.008695652173913044
-('distinguished', <class 'str'>) : 0.006211180124223602
-('approved_at_utc', <class 'NoneType'>) : 0.006211180124223602
-('collapsed_reason', <class 'str'>) : 0.004347826086956522
-('collapsed_reason_code', <class 'str'>) : 0.0037267080745341614
-('edited', <class 'float'>) : 0.0012422360248447205
-('author_cakeday', <class 'bool'>) : 0.0012422360248447205
+('distinguished', <class 'NoneType'>) : 0.9938271604938271
+('edited', <class 'bool'>) : 0.9901234567901235
+('retrieved_on', <class 'int'>) : 0.9691358024691358
+('author_flair_css_class', <class 'NoneType'>) : 0.8512345679012345
+('author_flair_text', <class 'NoneType'>) : 0.8339506172839506
+('ups', <class 'int'>) : 0.7160493827160493
+('archived', <class 'bool'>) : 0.5679012345679012
+('score_hidden', <class 'bool'>) : 0.5432098765432098
+('name', <class 'str'>) : 0.5246913580246914
+('created_utc', <class 'str'>) : 0.5185185185185185
+('downs', <class 'int'>) : 0.49382716049382713
+('stickied', <class 'bool'>) : 0.48148148148148145
+('created_utc', <class 'int'>) : 0.48148148148148145
+('can_gild', <class 'bool'>) : 0.2654320987654321
+('is_submitter', <class 'bool'>) : 0.24691358024691357
+('removal_reason', <class 'NoneType'>) : 0.24074074074074073
+('permalink', <class 'str'>) : 0.2345679012345679
+('subreddit_type', <class 'str'>) : 0.22839506172839505
+('no_follow', <class 'bool'>) : 0.2037037037037037
+('send_replies', <class 'bool'>) : 0.2037037037037037
+('collapsed', <class 'bool'>) : 0.19753086419753085
+('collapsed_reason', <class 'NoneType'>) : 0.19320987654320987
+('can_mod_post', <class 'bool'>) : 0.1728395061728395
+('gildings', <class 'dict'>) : 0.1728395061728395
+('author_flair_text', <class 'str'>) : 0.16604938271604938
+('author_flair_template_id', <class 'NoneType'>) : 0.1654320987654321
+('author_flair_richtext', <class 'list'>) : 0.15987654320987654
+('author_flair_type', <class 'str'>) : 0.15987654320987654
+('author_fullname', <class 'str'>) : 0.15987654320987654
+('subreddit_name_prefixed', <class 'str'>) : 0.15432098765432098
+('author_flair_css_class', <class 'str'>) : 0.14876543209876544
+('author_patreon_flair', <class 'bool'>) : 0.14629629629629629
+('all_awardings', <class 'list'>) : 0.1419753086419753
+('locked', <class 'bool'>) : 0.1419753086419753
+('total_awards_received', <class 'int'>) : 0.1419753086419753
+('associated_award', <class 'NoneType'>) : 0.13580246913580246
+('collapsed_because_crowd_control', <class 'NoneType'>) : 0.12962962962962962
+('author_created_utc', <class 'int'>) : 0.12654320987654322
+('author_flair_background_color', <class 'NoneType'>) : 0.12345679012345678
+('quarantined', <class 'bool'>) : 0.11728395061728394
+('author_flair_text_color', <class 'NoneType'>) : 0.11296296296296296
+('author_premium', <class 'bool'>) : 0.11296296296296296
+('awarders', <class 'list'>) : 0.10493827160493827
+('treatment_tags', <class 'list'>) : 0.10493827160493827
+('top_awarded_type', <class 'NoneType'>) : 0.08641975308641975
+('comment_type', <class 'NoneType'>) : 0.07407407407407407
+('author_flair_text_color', <class 'str'>) : 0.07222222222222222
+('author_flair_background_color', <class 'str'>) : 0.06172839506172839
+('author_created_utc', <class 'NoneType'>) : 0.05555555555555555
+('author_flair_template_id', <class 'str'>) : 0.03209876543209877
+('retrieved_utc', <class 'int'>) : 0.030864197530864196
+('collapsed_reason_code', <class 'NoneType'>) : 0.027160493827160494
+('steward_reports', <class 'list'>) : 0.018518518518518517
+('author_fullname', <class 'NoneType'>) : 0.016666666666666666
+('author_is_blocked', <class 'bool'>) : 0.012345679012345678
+('edited', <class 'int'>) : 0.008641975308641974
+('distinguished', <class 'str'>) : 0.006172839506172839
+('approved_at_utc', <class 'NoneType'>) : 0.006172839506172839
+('collapsed_reason', <class 'str'>) : 0.004320987654320987
+('collapsed_reason_code', <class 'str'>) : 0.003703703703703704
+('edited', <class 'float'>) : 0.0012345679012345679
+('author_cakeday', <class 'bool'>) : 0.0012345679012345679
 most important :
+(('body', <class 'str'>), 1.0)
+(('parent_id', <class 'str'>), 1.0)
+(('subreddit', <class 'str'>), 1.0)
+(('score', <class 'int'>), 1.0)
+(('link_id', <class 'str'>), 1.0)
+(('gilded', <class 'int'>), 1.0)
+(('controversiality', <class 'int'>), 1.0)
+(('author', <class 'str'>), 1.0)
+(('id', <class 'str'>), 1.0)
+(('subreddit_id', <class 'str'>), 1.0)
+(('distinguished', <class 'NoneType'>), 0.9938271604938271)
+(('edited', <class 'bool'>), 0.9901234567901235)
+(('retrieved_on', <class 'int'>), 0.9691358024691358)
+(('author_flair_css_class', <class 'NoneType'>), 0.8512345679012345)
+(('author_flair_text', <class 'NoneType'>), 0.8339506172839506)
+(('ups', <class 'int'>), 0.7160493827160493)
+(('archived', <class 'bool'>), 0.5679012345679012)
+(('score_hidden', <class 'bool'>), 0.5432098765432098)
+(('name', <class 'str'>), 0.5246913580246914)
+(('created_utc', <class 'str'>), 0.5185185185185185)
+(('downs', <class 'int'>), 0.49382716049382713)
+(('created_utc', <class 'int'>), 0.48148148148148145)
+(('stickied', <class 'bool'>), 0.48148148148148145)
+(('can_gild', <class 'bool'>), 0.2654320987654321)
+(('is_submitter', <class 'bool'>), 0.24691358024691357)
+(('removal_reason', <class 'NoneType'>), 0.24074074074074073)
+(('permalink', <class 'str'>), 0.2345679012345679)
+(('subreddit_type', <class 'str'>), 0.22839506172839505)
+(('send_replies', <class 'bool'>), 0.2037037037037037)
+(('no_follow', <class 'bool'>), 0.2037037037037037)
+(('collapsed', <class 'bool'>), 0.19753086419753085)
+(('collapsed_reason', <class 'NoneType'>), 0.19320987654320987)
+(('gildings', <class 'dict'>), 0.1728395061728395)
+(('can_mod_post', <class 'bool'>), 0.1728395061728395)
+(('author_flair_template_id', <class 'NoneType'>), 0.1654320987654321)
+(('author_flair_type', <class 'str'>), 0.15987654320987654)
+(('author_flair_richtext', <class 'list'>), 0.15987654320987654)
+(('author_fullname', <class 'str'>), 0.15987654320987654)
+(('subreddit_name_prefixed', <class 'str'>), 0.15432098765432098)
+(('author_patreon_flair', <class 'bool'>), 0.14629629629629629)
+(('locked', <class 'bool'>), 0.1419753086419753)
+(('all_awardings', <class 'list'>), 0.1419753086419753)
+(('total_awards_received', <class 'int'>), 0.1419753086419753)
+(('associated_award', <class 'NoneType'>), 0.13580246913580246)
+(('collapsed_because_crowd_control', <class 'NoneType'>), 0.12962962962962962)
+(('author_created_utc', <class 'int'>), 0.12654320987654322)
+(('quarantined', <class 'bool'>), 0.11728395061728394)
+(('author_premium', <class 'bool'>), 0.11296296296296296)
+(('awarders', <class 'list'>), 0.10493827160493827)
+(('treatment_tags', <class 'list'>), 0.10493827160493827)
+(('top_awarded_type', <class 'NoneType'>), 0.08641975308641975)
+(('comment_type', <class 'NoneType'>), 0.07407407407407407)
+(('retrieved_utc', <class 'int'>), 0.030864197530864196)
+(('collapsed_reason_code', <class 'NoneType'>), 0.027160493827160494)
+(('steward_reports', <class 'list'>), 0.018518518518518517)
+(('author_is_blocked', <class 'bool'>), 0.012345679012345678)
+(('approved_at_utc', <class 'NoneType'>), 0.006172839506172839)
