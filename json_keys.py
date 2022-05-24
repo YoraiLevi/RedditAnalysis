@@ -20,7 +20,7 @@ files_keys = dict()
 for file in files:
     keys = []
     try:
-        for string in islice(Zreader(file).readlines(),10000):
+        for string in islice(Zreader(file).readlines(),10):
             obj = json.loads(string)
             for key,item in obj.items():
                 keys.append((key,type(item)))
@@ -40,15 +40,21 @@ def print_stats(total):
     try:
         items = total.most_common(1)[0][1]
         for key,val in total.most_common():
-            if(val == items):
-                print(key,":",val/items)
+            print(key,":",val/items)
     except:
         print('Failed')
 
-for file,total in files_keys.items():
-    print(file,":")
-    print_stats(total)
 
-total_all_files = sum(files_keys.values(),collections.Counter())
-print('all :')
-print_stats(total_all_files)
+for file,total in files_keys.items():
+    items = total.most_common(1)[0][1]
+    most_common = total.most_common()
+    showupall = filter(lambda item: item[1] == items, most_common)
+    for item in showupall:
+        print(item)
+
+    # print(file,":")
+    # print_stats(total)
+
+# total_all_files = sum(files_keys.values(),collections.Counter())
+# print('all :')
+# print_stats(total_all_files)
