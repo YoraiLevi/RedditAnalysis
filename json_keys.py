@@ -7,7 +7,7 @@ import argparse
 import os
 import glob
 
-from numpy import sort
+import pandas as pd
 
 from zreader import Zreader
 import ujson as json
@@ -22,59 +22,54 @@ files_keys = dict()
 for file in files:
     keys = []
     try:
-        for string in islice(Zreader(file).readlines(),10000):
+        for string in islice(Zreader(file).readlines(),10):
             obj = json.loads(string)
             for key,item in obj.items():
                 keys.append((key,type(item)))
-                # if key == 'author_flair_richtext':
-                    # print(file,string,item)
-                # if(isinstance(item,str) and len(item)>5):
-                    # item = "this is likely a string"
-                # set_of_keys[key].add(type(item))
-                # if(isinstance(item,(list))):
-                    # print(key,string)
         file_keys = Counter(keys)
         files_keys[file] = file_keys
     except:
         print('Failed:',file)
 
-def first_file(t):
-    return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
-def last_file(t):
-    return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
-def occurences_file(t):
-    return len(list(filter(lambda filectr: t in filectr[1],files_keys.items())))
+df = pd.DataFrame(files_keys)
 
-files_paths = sorted(files_keys.keys())
-def print_stats(total):
-    items = total.most_common(1)[0][1]
-    for t,count in total.most_common():
-        first_file_path = first_file(t)
-        last_file_path = last_file(t)
-        occurences_in_files = occurences_file(t)
-        effetive_time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
-        print(effetive_time,occurences_in_files,first_file_path,last_file_path,t,":",count/items)
+# def first_file(t):
+#     return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+# def last_file(t):
+#     return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+# def occurences_file(t):
+#     return len(list(filter(lambda filectr: t in filectr[1],files_keys.items())))
 
-showupallset = set()
+# files_paths = sorted(files_keys.keys())
+# def print_stats(total):
+#     items = total.most_common(1)[0][1]
+#     for t,count in total.most_common():
+#         first_file_path = first_file(t)
+#         last_file_path = last_file(t)
+#         occurences_in_files = occurences_file(t)
+#         effetive_time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
+#         print(effetive_time,occurences_in_files,first_file_path,last_file_path,t,":",count/items)
 
-for file,total in files_keys.items():
-    items = total.most_common(1)[0][1]
-    most_common = total.most_common()
-    showupall = filter(lambda item: item[1] == items, most_common)
-    for item,count in showupall:
-        showupallset.add(item)
-    print(file,":")
-    print_stats(total)
+# showupallset = set()
 
-total_all_files = sum(files_keys.values(),collections.Counter())
-print('all :')
-print_stats(total_all_files)
-# all_items = total_all_files.most_common(1)[0][1]
-# print('most important :')
-# important = [(i,total_all_files[i]/all_items) for i in showupallset]
+# for file,total in files_keys.items():
+#     items = total.most_common(1)[0][1]
+#     most_common = total.most_common()
+#     showupall = filter(lambda item: item[1] == items, most_common)
+#     for item,count in showupall:
+#         showupallset.add(item)
+#     print(file,":")
+#     print_stats(total)
 
-# for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
-#     first_file_path = first_file(t)
-#     last_file_path = last_file(t)
-#     time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
-#     print(time,last_file_path,first_file_path,t,count)
+# total_all_files = sum(files_keys.values(),collections.Counter())
+# print('all :')
+# print_stats(total_all_files)
+# # all_items = total_all_files.most_common(1)[0][1]
+# # print('most important :')
+# # important = [(i,total_all_files[i]/all_items) for i in showupallset]
+
+# # for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
+# #     first_file_path = first_file(t)
+# #     last_file_path = last_file(t)
+# #     time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
+# #     print(time,last_file_path,first_file_path,t,count)
