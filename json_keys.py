@@ -34,8 +34,13 @@ for file in files:
 
 df = pd.DataFrame(files_keys)
 df.fillna(0)
-df['Total'] = df.sum(axis=1)
-
+Total = df.sum(axis=1)
+Occurences = df.gt(0).sum(axis=1)
+FirstUsage = df.columns.get_indexer(df.gt(0).idxmax(axis=1).values)
+LastUsage = df.columns.get_indexer(df.iloc[:, ::-1].gt(0).idxmax(axis=1).values)
+df['Total'] = Total
+df['Occurences'] = Occurences
+df['In Effect'] = LastUsage - FirstUsage
 # def first_file(t):
 #     return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
 # def last_file(t):
