@@ -38,6 +38,14 @@ for file in files:
     except:
         print('Failed:',file)
 
+def first_file(t):
+    return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+def last_file(t):
+    return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+def occurences_file(t):
+    return len(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+
+
 def print_stats(total):
     try:
         items = total.most_common(1)[0][1]
@@ -47,6 +55,7 @@ def print_stats(total):
         print('Failed')
 
 showupallset = set()
+
 for file,total in files_keys.items():
     items = total.most_common(1)[0][1]
     most_common = total.most_common()
@@ -62,14 +71,10 @@ print_stats(total_all_files)
 all_items = total_all_files.most_common(1)[0][1]
 print('most important :')
 important = [(i,total_all_files[i]/all_items) for i in showupallset]
-def first_file(t):
-    return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
-def last_file(t):
-    return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+
 files_paths = sorted(files_keys.keys())
 for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
     first_file_path = first_file(t)
     last_file_path = last_file(t)
     time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
-    
     print(time,last_file_path,first_file_path,t,count)
