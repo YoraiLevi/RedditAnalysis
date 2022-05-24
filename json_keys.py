@@ -49,5 +49,21 @@ df['Deprecated?'] = LastUsage < LastUsage.max()
 
 df.to_csv('json_keys.csv')
 
+df = pd.DataFrame(type_spreads)
+df = df.fillna(0)
+Total = df.sum(axis=1)
+Occurences = df.gt(0).sum(axis=1)
+FirstUsage = df.columns.get_indexer(df.gt(0).idxmax(axis=1).values)
+LastUsage = df.columns.get_indexer(df.iloc[:, ::-1].gt(0).idxmax(axis=1).values)
+df['Total'] = Total
+df['Occurences'] = Occurences
+df['In Effect'] = LastUsage - FirstUsage + 1
+df['Since'] = FirstUsage
+df['Last'] = LastUsage
+df['Deprecated?'] = LastUsage < LastUsage.max()
+
+df.to_csv('json_types.csv')
+
+
 for i in list(((key,[t for key1,t in list(group)]) for key,group in groupby(sorted(sum(type_spreads.values(),Counter()),key=operator.itemgetter(0)),key=operator.itemgetter(0)))):
     print(i)
