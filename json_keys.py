@@ -53,7 +53,7 @@ def print_stats(total):
         last_file_path = last_file(t)
         occurences_in_files = occurences_file(t)
         effetive_time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
-        print(effetive_time,occurences_in_files,last_file,first_file,t,":",count/items)
+        print(effetive_time,occurences_in_files,first_file_path,last_file_path,t,":",count/items)
 
 showupallset = set()
 
