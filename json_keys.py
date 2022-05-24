@@ -7,6 +7,8 @@ import argparse
 import os
 import glob
 
+from numpy import sort
+
 from zreader import Zreader
 import ujson as json
 
@@ -58,6 +60,7 @@ total_all_files = sum(files_keys.values(),collections.Counter())
 print('all :')
 print_stats(total_all_files)
 all_items = total_all_files.most_common(1)[0][1]
-
-for i in showupallset:
-    print(i,total_all_files[i]/all_items)
+print('most important :')
+important = [(i,total_all_files[i]/all_items) for i in showupallset]
+for i in sort(important,1):
+    print(i)
