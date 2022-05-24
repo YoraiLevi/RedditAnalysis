@@ -43,9 +43,9 @@ def first_file(t):
 def last_file(t):
     return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
 def occurences_file(t):
-    return len(list(filter(lambda filectr: t in filectr[1],files_keys.items())))[0]
+    return len(list(filter(lambda filectr: t in filectr[1],files_keys.items())))
 
-
+files_paths = sorted(files_keys.keys())
 def print_stats(total):
     items = total.most_common(1)[0][1]
     for t,count in total.most_common():
@@ -73,7 +73,6 @@ print_stats(total_all_files)
 # print('most important :')
 # important = [(i,total_all_files[i]/all_items) for i in showupallset]
 
-# files_paths = sorted(files_keys.keys())
 # for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
 #     first_file_path = first_file(t)
 #     last_file_path = last_file(t)
