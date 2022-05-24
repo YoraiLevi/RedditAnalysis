@@ -48,4 +48,5 @@ df['Since'] = FirstUsage
 df['Last'] = LastUsage
 df['Deprecated?'] = LastUsage < LastUsage.max()
 
-itertools.groupby((t for (t,count) in sum(type_spreads.values(),Collections.Counter)),lambda x: x[0])
+import operator
+itertools.groupby((t for (t,count) in sum(type_spreads.values(),collections.Counter)),lambda x: x[0])
