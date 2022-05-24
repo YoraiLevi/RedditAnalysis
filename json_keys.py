@@ -65,5 +65,4 @@ important = [(i,total_all_files[i]/all_items) for i in showupallset]
 def first_file(t):
     return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0][0]
 for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
-    
     print(t,count,first_file(t))
