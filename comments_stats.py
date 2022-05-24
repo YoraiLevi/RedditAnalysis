@@ -7,7 +7,6 @@ Failed: E:\Datasets\reddit\comments\RC_2013-02.zst
 Failed: E:\Datasets\reddit\comments\RC_2013-05.zst
 Failed: E:\Datasets\reddit\comments\RC_2013-06.zst
 Failed: E:\Datasets\reddit\comments\RC_2014-06.zst
-Failed: E:\Datasets\reddit\comments\RC_2014-11.zst
 Failed: E:\Datasets\reddit\comments\RC_2015-01.zst
 Failed: E:\Datasets\reddit\comments\RC_2015-03.zst
 Failed: E:\Datasets\reddit\comments\RC_2016-12.zst
@@ -2187,6 +2186,30 @@ E:\Datasets\reddit\comments\RC_2014-10.zst :
 ('author_flair_text', <class 'NoneType'>) : 0.8
 ('author_flair_text', <class 'str'>) : 0.2
 ('author_flair_css_class', <class 'str'>) : 0.2
+E:\Datasets\reddit\comments\RC_2014-11.zst :
+('score', <class 'int'>) : 1.0
+('author', <class 'str'>) : 1.0
+('edited', <class 'bool'>) : 1.0
+('gilded', <class 'int'>) : 1.0
+('body', <class 'str'>) : 1.0
+('created_utc', <class 'str'>) : 1.0
+('parent_id', <class 'str'>) : 1.0
+('downs', <class 'int'>) : 1.0
+('subreddit_id', <class 'str'>) : 1.0
+('id', <class 'str'>) : 1.0
+('distinguished', <class 'NoneType'>) : 1.0
+('subreddit', <class 'str'>) : 1.0
+('retrieved_on', <class 'int'>) : 1.0
+('archived', <class 'bool'>) : 1.0
+('score_hidden', <class 'bool'>) : 1.0
+('link_id', <class 'str'>) : 1.0
+('ups', <class 'int'>) : 1.0
+('controversiality', <class 'int'>) : 1.0
+('name', <class 'str'>) : 1.0
+('author_flair_text', <class 'NoneType'>) : 0.6
+('author_flair_css_class', <class 'NoneType'>) : 0.6
+('author_flair_text', <class 'str'>) : 0.4
+('author_flair_css_class', <class 'str'>) : 0.4
 E:\Datasets\reddit\comments\RC_2014-12.zst :
 ('created_utc', <class 'str'>) : 1.0
 ('subreddit_id', <class 'str'>) : 1.0
@@ -4592,123 +4615,123 @@ all :
 ('id', <class 'str'>) : 1.0
 ('parent_id', <class 'str'>) : 1.0
 ('gilded', <class 'int'>) : 1.0
-('distinguished', <class 'NoneType'>) : 0.9939024390243902
-('edited', <class 'bool'>) : 0.9896341463414634
-('retrieved_on', <class 'int'>) : 0.9695121951219512
-('author_flair_css_class', <class 'NoneType'>) : 0.850609756097561
-('author_flair_text', <class 'NoneType'>) : 0.8335365853658536
-('ups', <class 'int'>) : 0.7195121951219512
-('archived', <class 'bool'>) : 0.5670731707317073
-('score_hidden', <class 'bool'>) : 0.5426829268292683
-('name', <class 'str'>) : 0.524390243902439
-('created_utc', <class 'str'>) : 0.5182926829268293
-('downs', <class 'int'>) : 0.49390243902439024
-('stickied', <class 'bool'>) : 0.4817073170731707
-('created_utc', <class 'int'>) : 0.4817073170731707
-('can_gild', <class 'bool'>) : 0.2621951219512195
-('is_submitter', <class 'bool'>) : 0.24390243902439024
-('removal_reason', <class 'NoneType'>) : 0.23780487804878048
-('permalink', <class 'str'>) : 0.23170731707317074
-('subreddit_type', <class 'str'>) : 0.22560975609756098
-('no_follow', <class 'bool'>) : 0.20121951219512196
-('send_replies', <class 'bool'>) : 0.20121951219512196
-('collapsed', <class 'bool'>) : 0.1951219512195122
-('collapsed_reason', <class 'NoneType'>) : 0.19085365853658537
-('can_mod_post', <class 'bool'>) : 0.17073170731707318
-('gildings', <class 'dict'>) : 0.17073170731707318
-('author_flair_text', <class 'str'>) : 0.16646341463414635
-('author_flair_template_id', <class 'NoneType'>) : 0.16341463414634147
-('author_flair_richtext', <class 'list'>) : 0.15792682926829268
-('author_flair_type', <class 'str'>) : 0.15792682926829268
-('author_fullname', <class 'str'>) : 0.15792682926829268
-('subreddit_name_prefixed', <class 'str'>) : 0.1524390243902439
-('author_flair_css_class', <class 'str'>) : 0.14939024390243902
-('author_patreon_flair', <class 'bool'>) : 0.1445121951219512
-('all_awardings', <class 'list'>) : 0.1402439024390244
-('locked', <class 'bool'>) : 0.1402439024390244
-('total_awards_received', <class 'int'>) : 0.1402439024390244
-('associated_award', <class 'NoneType'>) : 0.13414634146341464
-('collapsed_because_crowd_control', <class 'NoneType'>) : 0.12804878048780488
-('author_created_utc', <class 'int'>) : 0.125
-('author_flair_background_color', <class 'NoneType'>) : 0.12195121951219512
-('quarantined', <class 'bool'>) : 0.11585365853658537
-('author_flair_text_color', <class 'NoneType'>) : 0.11158536585365854
-('author_premium', <class 'bool'>) : 0.11158536585365854
-('awarders', <class 'list'>) : 0.10365853658536585
-('treatment_tags', <class 'list'>) : 0.10365853658536585
-('top_awarded_type', <class 'NoneType'>) : 0.08536585365853659
-('comment_type', <class 'NoneType'>) : 0.07317073170731707
-('author_flair_text_color', <class 'str'>) : 0.07134146341463414
-('author_flair_background_color', <class 'str'>) : 0.06097560975609756
-('author_created_utc', <class 'NoneType'>) : 0.054878048780487805
-('author_flair_template_id', <class 'str'>) : 0.03170731707317073
-('retrieved_utc', <class 'int'>) : 0.03048780487804878
-('collapsed_reason_code', <class 'NoneType'>) : 0.026829268292682926
-('steward_reports', <class 'list'>) : 0.018292682926829267
-('author_fullname', <class 'NoneType'>) : 0.016463414634146342
-('author_is_blocked', <class 'bool'>) : 0.012195121951219513
-('edited', <class 'int'>) : 0.009146341463414634
-('distinguished', <class 'str'>) : 0.006097560975609756
-('approved_at_utc', <class 'NoneType'>) : 0.006097560975609756
-('collapsed_reason', <class 'str'>) : 0.00426829268292683
-('collapsed_reason_code', <class 'str'>) : 0.003658536585365854
-('edited', <class 'float'>) : 0.0012195121951219512
-('author_cakeday', <class 'bool'>) : 0.0012195121951219512
+('distinguished', <class 'NoneType'>) : 0.9939393939393939
+('edited', <class 'bool'>) : 0.9896969696969697
+('retrieved_on', <class 'int'>) : 0.9696969696969697
+('author_flair_css_class', <class 'NoneType'>) : 0.8490909090909091
+('author_flair_text', <class 'NoneType'>) : 0.8321212121212122
+('ups', <class 'int'>) : 0.7212121212121212
+('archived', <class 'bool'>) : 0.5696969696969697
+('score_hidden', <class 'bool'>) : 0.5454545454545454
+('name', <class 'str'>) : 0.5272727272727272
+('created_utc', <class 'str'>) : 0.5212121212121212
+('downs', <class 'int'>) : 0.49696969696969695
+('stickied', <class 'bool'>) : 0.47878787878787876
+('created_utc', <class 'int'>) : 0.47878787878787876
+('can_gild', <class 'bool'>) : 0.2606060606060606
+('is_submitter', <class 'bool'>) : 0.24242424242424243
+('removal_reason', <class 'NoneType'>) : 0.23636363636363636
+('permalink', <class 'str'>) : 0.23030303030303031
+('subreddit_type', <class 'str'>) : 0.22424242424242424
+('no_follow', <class 'bool'>) : 0.2
+('send_replies', <class 'bool'>) : 0.2
+('collapsed', <class 'bool'>) : 0.19393939393939394
+('collapsed_reason', <class 'NoneType'>) : 0.1896969696969697
+('can_mod_post', <class 'bool'>) : 0.1696969696969697
+('gildings', <class 'dict'>) : 0.1696969696969697
+('author_flair_text', <class 'str'>) : 0.16787878787878788
+('author_flair_template_id', <class 'NoneType'>) : 0.16242424242424242
+('author_flair_richtext', <class 'list'>) : 0.15696969696969698
+('author_flair_type', <class 'str'>) : 0.15696969696969698
+('author_fullname', <class 'str'>) : 0.15696969696969698
+('subreddit_name_prefixed', <class 'str'>) : 0.15151515151515152
+('author_flair_css_class', <class 'str'>) : 0.1509090909090909
+('author_patreon_flair', <class 'bool'>) : 0.14363636363636365
+('all_awardings', <class 'list'>) : 0.1393939393939394
+('locked', <class 'bool'>) : 0.1393939393939394
+('total_awards_received', <class 'int'>) : 0.1393939393939394
+('associated_award', <class 'NoneType'>) : 0.13333333333333333
+('collapsed_because_crowd_control', <class 'NoneType'>) : 0.12727272727272726
+('author_created_utc', <class 'int'>) : 0.12424242424242424
+('author_flair_background_color', <class 'NoneType'>) : 0.12121212121212122
+('quarantined', <class 'bool'>) : 0.11515151515151516
+('author_flair_text_color', <class 'NoneType'>) : 0.11090909090909092
+('author_premium', <class 'bool'>) : 0.11090909090909092
+('awarders', <class 'list'>) : 0.10303030303030303
+('treatment_tags', <class 'list'>) : 0.10303030303030303
+('top_awarded_type', <class 'NoneType'>) : 0.08484848484848485
+('comment_type', <class 'NoneType'>) : 0.07272727272727272
+('author_flair_text_color', <class 'str'>) : 0.07090909090909091
+('author_flair_background_color', <class 'str'>) : 0.06060606060606061
+('author_created_utc', <class 'NoneType'>) : 0.05454545454545454
+('author_flair_template_id', <class 'str'>) : 0.03151515151515152
+('retrieved_utc', <class 'int'>) : 0.030303030303030304
+('collapsed_reason_code', <class 'NoneType'>) : 0.02666666666666667
+('steward_reports', <class 'list'>) : 0.01818181818181818
+('author_fullname', <class 'NoneType'>) : 0.016363636363636365
+('author_is_blocked', <class 'bool'>) : 0.012121212121212121
+('edited', <class 'int'>) : 0.00909090909090909
+('distinguished', <class 'str'>) : 0.006060606060606061
+('approved_at_utc', <class 'NoneType'>) : 0.006060606060606061
+('collapsed_reason', <class 'str'>) : 0.004242424242424243
+('collapsed_reason_code', <class 'str'>) : 0.0036363636363636364
+('edited', <class 'float'>) : 0.0012121212121212121
+('author_cakeday', <class 'bool'>) : 0.0012121212121212121
 most important :
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('author', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('gilded', <class 'int'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('subreddit_id', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('score', <class 'int'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('link_id', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('body', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('parent_id', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('controversiality', <class 'int'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('subreddit', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('id', <class 'str'>) 1.0
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('distinguished', <class 'NoneType'>) 0.9939024390243902
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('edited', <class 'bool'>) 0.9896341463414634
-E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('retrieved_on', <class 'int'>) 0.9695121951219512
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('author_flair_css_class', <class 'NoneType'>) 0.850609756097561
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('author_flair_text', <class 'NoneType'>) 0.8335365853658536
-E:\Datasets\reddit\comments\RC_2016-09.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('ups', <class 'int'>) 0.7195121951219512
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('archived', <class 'bool'>) 0.5670731707317073
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('score_hidden', <class 'bool'>) 0.5426829268292683
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('name', <class 'str'>) 0.524390243902439
-E:\Datasets\reddit\comments\RC_2015-11.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('created_utc', <class 'str'>) 0.5182926829268293
-E:\Datasets\reddit\comments\RC_2015-07.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('downs', <class 'int'>) 0.49390243902439024
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('created_utc', <class 'int'>) 0.4817073170731707
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('stickied', <class 'bool'>) 0.4817073170731707
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-04.zst ('can_gild', <class 'bool'>) 0.2621951219512195
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-08.zst ('is_submitter', <class 'bool'>) 0.24390243902439024
-E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2013-03.zst ('removal_reason', <class 'NoneType'>) 0.23780487804878048
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-10.zst ('permalink', <class 'str'>) 0.23170731707317074
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-11.zst ('subreddit_type', <class 'str'>) 0.22560975609756098
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-03.zst ('send_replies', <class 'bool'>) 0.20121951219512196
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-03.zst ('no_follow', <class 'bool'>) 0.20121951219512196
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-08.zst ('collapsed', <class 'bool'>) 0.1951219512195122
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-08.zst ('collapsed_reason', <class 'NoneType'>) 0.19085365853658537
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-09.zst ('gildings', <class 'dict'>) 0.17073170731707318
-E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2017-07.zst ('can_mod_post', <class 'bool'>) 0.17073170731707318
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-04.zst ('author_flair_template_id', <class 'NoneType'>) 0.16341463414634147
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_flair_richtext', <class 'list'>) 0.15792682926829268
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_fullname', <class 'str'>) 0.15792682926829268
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_flair_type', <class 'str'>) 0.15792682926829268
-E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('subreddit_name_prefixed', <class 'str'>) 0.1524390243902439
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-10.zst ('author_patreon_flair', <class 'bool'>) 0.1445121951219512
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-04.zst ('locked', <class 'bool'>) 0.1402439024390244
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-04.zst ('total_awards_received', <class 'int'>) 0.1402439024390244
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-04.zst ('all_awardings', <class 'list'>) 0.1402439024390244
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-07.zst ('associated_award', <class 'NoneType'>) 0.13414634146341464
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-09.zst ('collapsed_because_crowd_control', <class 'NoneType'>) 0.12804878048780488
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_created_utc', <class 'int'>) 0.125
-E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2019-02.zst ('quarantined', <class 'bool'>) 0.11585365853658537
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-09.zst ('author_premium', <class 'bool'>) 0.11158536585365854
-E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2019-07.zst ('awarders', <class 'list'>) 0.10365853658536585
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2020-01.zst ('treatment_tags', <class 'list'>) 0.10365853658536585
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2020-04.zst ('top_awarded_type', <class 'NoneType'>) 0.08536585365853659
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2020-07.zst ('comment_type', <class 'NoneType'>) 0.07317073170731707
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2021-02.zst ('retrieved_utc', <class 'int'>) 0.03048780487804878
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2021-02.zst ('collapsed_reason_code', <class 'NoneType'>) 0.026829268292682926
-E:\Datasets\reddit\comments\RC_2019-10.zst E:\Datasets\reddit\comments\RC_2019-07.zst ('steward_reports', <class 'list'>) 0.018292682926829267
-E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2021-05.zst ('author_is_blocked', <class 'bool'>) 0.012195121951219513
-E:\Datasets\reddit\comments\RC_2017-07.zst E:\Datasets\reddit\comments\RC_2017-07.zst ('approved_at_utc', <class 'NoneType'>) 0.006097560975609756
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('controversiality', <class 'int'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('parent_id', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('id', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('gilded', <class 'int'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('body', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('score', <class 'int'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('subreddit_id', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('link_id', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('subreddit', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('author', <class 'str'>) 1.0
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('distinguished', <class 'NoneType'>) 0.9939393939393939
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('edited', <class 'bool'>) 0.9896969696969697
+159 E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('retrieved_on', <class 'int'>) 0.9696969696969697
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('author_flair_css_class', <class 'NoneType'>) 0.8490909090909091
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('author_flair_text', <class 'NoneType'>) 0.8321212121212122
+118 E:\Datasets\reddit\comments\RC_2016-09.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('ups', <class 'int'>) 0.7212121212121212
+141 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('archived', <class 'bool'>) 0.5696969696969697
+141 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('score_hidden', <class 'bool'>) 0.5454545454545454
+141 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('name', <class 'str'>) 0.5272727272727272
+85 E:\Datasets\reddit\comments\RC_2015-11.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('created_utc', <class 'str'>) 0.5212121212121212
+81 E:\Datasets\reddit\comments\RC_2015-07.zst E:\Datasets\reddit\comments\RC_2007-11.zst ('downs', <class 'int'>) 0.49696969696969695
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('created_utc', <class 'int'>) 0.47878787878787876
+164 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2005-12.zst ('stickied', <class 'bool'>) 0.47878787878787876
+42 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-04.zst ('can_gild', <class 'bool'>) 0.2606060606060606
+39 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-08.zst ('is_submitter', <class 'bool'>) 0.24242424242424243
+78 E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2013-03.zst ('removal_reason', <class 'NoneType'>) 0.23636363636363636
+37 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-10.zst ('permalink', <class 'str'>) 0.23030303030303031
+36 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-11.zst ('subreddit_type', <class 'str'>) 0.22424242424242424
+32 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-03.zst ('send_replies', <class 'bool'>) 0.2
+32 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-03.zst ('no_follow', <class 'bool'>) 0.2
+39 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-08.zst ('collapsed', <class 'bool'>) 0.19393939393939394
+39 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2017-08.zst ('collapsed_reason', <class 'NoneType'>) 0.1896969696969697
+27 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-09.zst ('gildings', <class 'dict'>) 0.1696969696969697
+35 E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2017-07.zst ('can_mod_post', <class 'bool'>) 0.1696969696969697
+31 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-04.zst ('author_flair_template_id', <class 'NoneType'>) 0.16242424242424242
+29 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_fullname', <class 'str'>) 0.15696969696969698
+29 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_flair_type', <class 'str'>) 0.15696969696969698
+29 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_flair_richtext', <class 'list'>) 0.15696969696969698
+24 E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('subreddit_name_prefixed', <class 'str'>) 0.15151515151515152
+26 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-10.zst ('author_patreon_flair', <class 'bool'>) 0.14363636363636365
+22 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-04.zst ('total_awards_received', <class 'int'>) 0.1393939393939394
+22 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-04.zst ('all_awardings', <class 'list'>) 0.1393939393939394
+22 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-04.zst ('locked', <class 'bool'>) 0.1393939393939394
+21 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-07.zst ('associated_award', <class 'NoneType'>) 0.13333333333333333
+20 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-09.zst ('collapsed_because_crowd_control', <class 'NoneType'>) 0.12727272727272726
+29 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2018-07.zst ('author_created_utc', <class 'int'>) 0.12424242424242424
+18 E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2019-02.zst ('quarantined', <class 'bool'>) 0.11515151515151516
+20 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2019-09.zst ('author_premium', <class 'bool'>) 0.11090909090909092
+16 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2020-01.zst ('treatment_tags', <class 'list'>) 0.10303030303030303
+16 E:\Datasets\reddit\comments\RC_2021-01.zst E:\Datasets\reddit\comments\RC_2019-07.zst ('awarders', <class 'list'>) 0.10303030303030303
+13 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2020-04.zst ('top_awarded_type', <class 'NoneType'>) 0.08484848484848485
+11 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2020-07.zst ('comment_type', <class 'NoneType'>) 0.07272727272727272
+4 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2021-02.zst ('retrieved_utc', <class 'int'>) 0.030303030303030304
+4 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2021-02.zst ('collapsed_reason_code', <class 'NoneType'>) 0.02666666666666667
+2 E:\Datasets\reddit\comments\RC_2019-10.zst E:\Datasets\reddit\comments\RC_2019-07.zst ('steward_reports', <class 'list'>) 0.01818181818181818
+1 E:\Datasets\reddit\comments\RC_2021-06.zst E:\Datasets\reddit\comments\RC_2021-05.zst ('author_is_blocked', <class 'bool'>) 0.012121212121212121
+0 E:\Datasets\reddit\comments\RC_2017-07.zst E:\Datasets\reddit\comments\RC_2017-07.zst ('approved_at_utc', <class 'NoneType'>) 0.006060606060606061

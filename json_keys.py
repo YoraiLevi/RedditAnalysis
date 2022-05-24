@@ -66,5 +66,10 @@ def first_file(t):
     return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
 def last_file(t):
     return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+files_paths = sorted(files_keys.keys())
 for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
-    print(last_file(t),first_file(t),t,count)
+    first_file_path = first_file(t)
+    last_file_path = last_file(t)
+    time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
+    
+    print(time,last_file_path,first_file_path,t,count)
