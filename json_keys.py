@@ -63,6 +63,8 @@ all_items = total_all_files.most_common(1)[0][1]
 print('most important :')
 important = [(i,total_all_files[i]/all_items) for i in showupallset]
 def first_file(t):
-    return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0][0]
+    return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+def last_file(t):
+    return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
 for (t,count) in sorted(important,key=lambda x: x[1],reverse=True):
-    print(t,count,first_file(t))
+    print(last_file(t),first_file(t),t,count)
