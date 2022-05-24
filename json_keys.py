@@ -33,6 +33,8 @@ for file in files:
         print('Failed:',file)
 
 df = pd.DataFrame(files_keys)
+df.fillna(0)
+df['Total'] = df.sum(axis=1)
 
 # def first_file(t):
 #     return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
