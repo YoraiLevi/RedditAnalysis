@@ -26,6 +26,7 @@ for file in files:
             obj = json.loads(string)
             for key,item in obj.items():
                 keys.append((key,type(item)))
+                keys.append(key)
         file_keys = Counter(keys)
         files_keys[file] = file_keys
     except:
