@@ -57,5 +57,7 @@ for file,total in files_keys.items():
 total_all_files = sum(files_keys.values(),collections.Counter())
 print('all :')
 print_stats(total_all_files)
+all_items = total_all_files.most_common(1)[0][1]
+
 for i in showupallset:
-    print(i)
+    print(i,total_all_files[i]/all_items)
