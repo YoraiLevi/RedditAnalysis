@@ -43,20 +43,17 @@ def first_file(t):
 def last_file(t):
     return max(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
 def occurences_file(t):
-    return len(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
+    return len(list(filter(lambda filectr: t in filectr[1],files_keys.items())))[0]
 
 
 def print_stats(total):
-    try:
-        items = total.most_common(1)[0][1]
-        for t,count in total.most_common():
-            first_file_path = first_file(t)
-            last_file_path = last_file(t)
-            occurences_in_files = occurences_file(t)
-            effetive_time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
-            print(effetive_time,occurences_in_files,last_file,first_file,t,":",count/items)
-    except:
-        print('Failed')
+    items = total.most_common(1)[0][1]
+    for t,count in total.most_common():
+        first_file_path = first_file(t)
+        last_file_path = last_file(t)
+        occurences_in_files = occurences_file(t)
+        effetive_time = files_paths.index(last_file_path)-files_paths.index(first_file_path)
+        print(effetive_time,occurences_in_files,last_file,first_file,t,":",count/items)
 
 showupallset = set()
 
