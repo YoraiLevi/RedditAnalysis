@@ -1,12 +1,11 @@
 #  python .\json_keys.py E:\Datasets\reddit\comments > comment_field_types.txt
 #  python .\json_keys.py E:\Datasets\reddit\submissions\ > submission_field_types.txt
 from collections import defaultdict, Counter
-from itertools import islice
+from itertools import islice, groupby
 import argparse
-import itertools
 import os
 import glob
-from typing import Collection
+import operator
 
 import pandas as pd
 
@@ -48,5 +47,7 @@ df['Since'] = FirstUsage
 df['Last'] = LastUsage
 df['Deprecated?'] = LastUsage < LastUsage.max()
 
-import operator
-itertools.groupby((t for (t,count) in sum(type_spreads.values(),collections.Counter)),lambda x: x[0])
+df.to_csv('json_keys.csv')
+
+for i in list(((key,[t for key1,t in list(group)]) for key,group in groupby(sorted(sum(type_spreads.values(),Counter()),key=operator.itemgetter(0)),key=operator.itemgetter(0)))):
+    print(i)
