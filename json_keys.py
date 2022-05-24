@@ -24,7 +24,7 @@ for file in files:
     keys = []
     types = []
     try:
-        for string in islice(Zreader(file).readlines(),10):
+        for string in islice(Zreader(file).readlines(),10000):
             obj = json.loads(string)
             for key,item in obj.items():
                 types.append((key,type(item)))
@@ -44,7 +44,8 @@ df['Total'] = Total
 df['Occurences'] = Occurences
 df['In Effect'] = LastUsage - FirstUsage + 1
 df['Since'] = FirstUsage
-df['Deprecated?'] = LastUsage<max(LastUsage)
+df['Last'] = LastUsage
+df['Deprecated?'] = LastUsage < LastUsage.max()
 # def first_file(t):
 #     return min(filter(lambda filectr: t in filectr[1],files_keys.items()))[0]
 # def last_file(t):
