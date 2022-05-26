@@ -1,5 +1,6 @@
 import sys
 
 if __name__ == '__main__':
-    for line in sys.stdin.readlines():
-        print(1,line)
+    with open("json.ndjson") as f:
+        for line in sys.stdin.readlines():
+            f.write(line)
