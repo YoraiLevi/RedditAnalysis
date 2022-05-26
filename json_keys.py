@@ -37,11 +37,11 @@ for file in files:
 df = pd.DataFrame(keys_spread)
 df = df.fillna(0)
 Total = df.sum(axis=1)
-Occurences = df.gt(0).sum(axis=1)
+Occurrences = df.gt(0).sum(axis=1)
 FirstUsage = df.columns.get_indexer(df.gt(0).idxmax(axis=1).values)
 LastUsage = df.columns.get_indexer(df.iloc[:, ::-1].gt(0).idxmax(axis=1).values)
 df['Total'] = Total
-df['Occurences'] = Occurences
+df['Occurrences'] = Occurrences
 df['In Effect'] = LastUsage - FirstUsage + 1
 df['Since'] = FirstUsage
 df['Last'] = LastUsage
@@ -52,11 +52,11 @@ df.to_csv('json_keys.csv')
 df = pd.DataFrame(type_spreads)
 df = df.fillna(0)
 Total = df.sum(axis=1)
-Occurences = df.gt(0).sum(axis=1)
+Occurrences = df.gt(0).sum(axis=1)
 FirstUsage = df.columns.get_indexer(df.gt(0).idxmax(axis=1).values)
 LastUsage = df.columns.get_indexer(df.iloc[:, ::-1].gt(0).idxmax(axis=1).values)
 df['Total'] = Total
-df['Occurences'] = Occurences
+df['Occurrences'] = Occurrences
 df['In Effect'] = LastUsage - FirstUsage + 1
 df['Since'] = FirstUsage
 df['Last'] = LastUsage
