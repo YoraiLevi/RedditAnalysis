@@ -25,11 +25,12 @@ fields = [  # comment
     "subreddit_type",
     "total_awards_received",
 ]
-def print_digest(d):
+def pg_text_format(d):
     item = [d[field] for field in fields]
     item = [repr(i) if isinstance(i,str) else i for i in item]
     item = [i if i is not None else '\\N' for i in item]
     item = [str(i) for i in item]
+    item = item+[d["json"]]
     return '\t'.join(item)
 
 base_data = {key:None for key in fields}
@@ -49,4 +50,4 @@ def process_line(line):
     return dict(data)
 with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12.ndjson") as f:
     for line in f.readlines():
-        print(print_digest(process_line(line)))
+        print(pg_text_format(process_line(line)))
