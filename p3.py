@@ -59,6 +59,6 @@ from itertools import islice
 import codecs
 with codecs.open(args.file,'r',encoding='utf-8') as f:
     for line in islice(f.readlines(),7,8):
-        print(type(line))
+        print(line)
         # print(ujson.decode(line))
         # (pg_text_format(process_line(line)))
