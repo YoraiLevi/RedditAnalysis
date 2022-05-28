@@ -56,7 +56,8 @@ def process_line(line):
     # print(data["body"])
     return dict(data)
 from itertools import islice
-with open(args.file,'r',encoding='utf-8') as f:
-    for line in islice(f.readlines(),0,110):
-        print(line)
+import codecs
+with codecs.open(args.file,'r',encoding='utf-8') as f:
+    for line in islice(f.readlines(),7,8):
+        print(ujson.decode(line))
         # (pg_text_format(process_line(line)))
