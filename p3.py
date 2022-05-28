@@ -1,4 +1,30 @@
 import ujson
+fields = {  # comment
+    "author",
+    "author_flair_text",
+    "author_fullname",
+    "author_premium",
+    "body",
+    "comment_type",
+    "controversiality",
+    "distinguished",
+    "gilded",
+    "id",  # id
+    "link_id",
+    "name",
+    "parent_id",
+    "permalink",
+    "created_utc",
+    "approved_at_utc",
+    "author_created_utc",
+    "retrieved_utc",
+    "score",
+    "stickied",
+    "subreddit",
+    "subreddit_id",
+    "subreddit_type",
+    "total_awards_received",
+}
 
 base_data = {key:None for key in fields}
 def process_line(line):
@@ -15,6 +41,6 @@ def process_line(line):
     data["json"] = ujson.encode(left_over)
     # print(data["json"])
     return dict(data)
-with open("C:\Users\devic\OneDrive\Documents\Datasets\reddit\comments\RC_2005-12.ndjson") as f:
+with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12.ndjson") as f:
     for line in f.readlines():
         print(ujson.encode(process_line(line)))
