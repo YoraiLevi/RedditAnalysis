@@ -71,3 +71,7 @@ def init_models(db, reset_tables=False):
         'comment': Comment,
         'submission': Submission
     }
+
+if __name__ == "__main__":
+    db = init_database()
+    init_models(db,True)
