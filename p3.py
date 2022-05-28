@@ -49,7 +49,7 @@ def process_line(line):
     data["json"] = ujson.encode(left_over)
     # print(data["json"])
     return dict(data)
-with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12.ndjson") as f:
+with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12.ndjson",encoding="utf8") as f:
     with open('1.ndjson','w+') as f1:
         for line in f.readlines():
             f1.write(pg_text_format(process_line(line)))
