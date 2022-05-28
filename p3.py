@@ -53,8 +53,9 @@ def process_line(line):
     left_over = {key: obj[key] for key in obj if key not in fields}
 
     data["json"] = ujson.encode(left_over)
-    print(data["body"])
+    # print(data["body"])
     return dict(data)
-with open(args.file,encoding='ascii') as f:
+with open(args.file) as f:
     for line in f.readlines():
-        (pg_text_format(process_line(line)))
+        print(line)
+        # (pg_text_format(process_line(line)))
