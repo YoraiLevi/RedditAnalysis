@@ -52,5 +52,6 @@ def process_line(line):
 with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12.ndjson",encoding="utf8") as f:
     with open('1.ndjson','w+') as f1:
         for line in f.readlines():
+            print(line)
             f1.write(pg_text_format(process_line(line)))
             f1.write('\n')
