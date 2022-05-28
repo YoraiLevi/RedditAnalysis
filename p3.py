@@ -28,7 +28,7 @@ fields = [  # comment
 def print_digest(d):
     item = [d[field] for field in fields]
     item = [repr(i) if isinstance(i,str) else i for i in item]
-    item = [i if i is not None else 'NULL' for i in item]
+    item = [i if i is not None else '' for i in item]
     item = [str(i) for i in item]
     return '\t'.join(item)
 
