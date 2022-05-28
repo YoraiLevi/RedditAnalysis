@@ -42,7 +42,7 @@ def pg_text_format(d):
 
 base_data = {key:None for key in fields}
 def process_line(line):
-    obj = ujson.decpde(line)
+    obj = ujson.decode(line)
     data = base_data.copy()
     # data = defaultdict(None)
     data["retrieved_utc"] = obj.get("retrieved_on")
@@ -53,7 +53,8 @@ def process_line(line):
     left_over = {key: obj[key] for key in obj if key not in fields}
 
     data["json"] = ujson.encode(left_over)
+    print(data["body"])
     return dict(data)
 with open(args.file) as f:
     for line in f.readlines():
-        print(pg_text_format(process_line(line)))
+        (pg_text_format(process_line(line)))
