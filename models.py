@@ -56,11 +56,11 @@ def init_models(db, reset_tables=False):
 
         json = JSONField(null=True)
 
-    class Submission(BaseModel):
-        pass
+    # class Submission(BaseModel):
+        # pass
 
-    class Subreddit(BaseModel):
-        pass
+    # class Subreddit(BaseModel):
+        # pass
 
     if db.is_closed():
         db.connect()
