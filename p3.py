@@ -55,7 +55,8 @@ def process_line(line):
     data["json"] = ujson.encode(left_over)
     # print(data["body"])
     return dict(data)
+from itertools import islice
 with open(args.file,'r',encoding='utf-8') as f:
-    for line in f.readlines():
+    for line in islice(f.readlines(),0,110):
         print(line)
         # (pg_text_format(process_line(line)))
