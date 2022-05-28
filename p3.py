@@ -1,6 +1,6 @@
 import ujson
-import sys
-sys.stdout.reconfigure(encoding='utf-8')
+# import sys
+# sys.stdout.reconfigure(encoding='utf-8')
 fields = [  # comment
     "author",
     "author_flair_text",
