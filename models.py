@@ -69,7 +69,7 @@ def init_models(db, reset_tables=False):
     db.create_tables([Comment])
     return {
         'comment': Comment,
-        'submission': Submission
+        # 'submission': Submission
     }
 
 if __name__ == "__main__":
