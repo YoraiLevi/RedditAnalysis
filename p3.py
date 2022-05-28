@@ -62,9 +62,9 @@ db = models.init_database()
 models = models.init_models(db)
 with codecs.open(args.file,'r',encoding='utf-8') as f:
     for line in islice(f.readlines(),7,8):
-        print(
-            models["comment"].insert(process_line(line)).execute()
-        )
+        # print(
+            # models["comment"].insert(process_line(line)).execute()
+        # )
         # print(ujson.decode(line)["body"].encode("iso-8859-1"))
         # print(ujson.decode(line))
-        # (pg_text_format(process_line(line)))
+        print(pg_text_format(process_line(line)))
