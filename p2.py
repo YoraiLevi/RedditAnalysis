@@ -58,7 +58,7 @@ if __name__ == "__main__":
     models = init_models(db)
     with db:
         db.create_tables([models["comment"], models["comment"]])
-    items = islice(map(process_line,Zreader(args.zstd_file).readlines()),6*10**3)
+    items = islice(map(process_line,Zreader(args.zstd_file).readlines()),10000*10**3)
     # with db:
     with db.atomic():
         for batch in chunked(items, 10*3):

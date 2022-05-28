@@ -10,13 +10,13 @@ from playhouse.pool import (
 
 
 def init_database():
-    db = PostgresqlDatabase(
+    db = PooledPostgresqlDatabase(
         "postgres",
         user="postgres",
         host="localhost",
         port=5432,
         password="postgres",
-        # stale_timeout=30,
+        stale_timeout=30,
     )
     return db
 
