@@ -57,8 +57,12 @@ def process_line(line):
     return dict(data)
 from itertools import islice
 import codecs
+import models
+db = models.init_database()
+models = models.init_models()
 with codecs.open(args.file,'r',encoding='utf-8') as f:
     for line in islice(f.readlines(),7,8):
-        print(line)
+        print(models["comment"].insert(line).sql)
+        # print(ujson.decode(line)["body"].encode("iso-8859-1"))
         # print(ujson.decode(line))
         # (pg_text_format(process_line(line)))
