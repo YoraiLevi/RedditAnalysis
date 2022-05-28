@@ -41,7 +41,7 @@ def pg_text_format(d):
 
 base_data = {key:None for key in fields}
 def process_line(line):
-    obj = ujson.decode(line)
+    obj = ujson.loads(line)
     data = base_data.copy()
     # data = defaultdict(None)
     data["retrieved_utc"] = obj.get("retrieved_on")
