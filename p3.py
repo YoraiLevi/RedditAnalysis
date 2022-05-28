@@ -59,7 +59,7 @@ from itertools import islice
 import codecs
 import models
 db = models.init_database()
-models = models.init_models()
+models = models.init_models(db)
 with codecs.open(args.file,'r',encoding='utf-8') as f:
     for line in islice(f.readlines(),7,8):
         print(models["comment"].insert(line).sql)
