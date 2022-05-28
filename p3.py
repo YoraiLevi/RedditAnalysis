@@ -55,6 +55,6 @@ def process_line(line):
     data["json"] = ujson.encode(left_over)
     print(data["body"])
     return dict(data)
-with open(args.file,encoding='utf8') as f:
+with open(args.file,encoding='ascii') as f:
     for line in f.readlines():
         (pg_text_format(process_line(line)))
