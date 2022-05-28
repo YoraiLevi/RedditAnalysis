@@ -1,5 +1,5 @@
 import ujson
-fields = {  # comment
+fields = [  # comment
     "author",
     "author_flair_text",
     "author_fullname",
@@ -24,7 +24,13 @@ fields = {  # comment
     "subreddit_id",
     "subreddit_type",
     "total_awards_received",
-}
+]
+def print_digest(d):
+    item = [d[field] for field in fields]
+    item = [repr(i) if isinstance(i,str) else i for i in item]
+    item = [i if i is not None else '' for i in item]
+    item = [str(i) for i in item]
+    return '\t'.join(item)
 
 base_data = {key:None for key in fields}
 def process_line(line):
@@ -43,4 +49,4 @@ def process_line(line):
     return dict(data)
 with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12.ndjson") as f:
     for line in f.readlines():
-        print(ujson.encode(process_line(line)))
+        print(print_digest(process_line(line)))
