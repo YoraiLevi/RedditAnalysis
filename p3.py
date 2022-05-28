@@ -53,3 +53,4 @@ with open("C:/Users/devic/OneDrive/Documents/Datasets/reddit/comments/RC_2005-12
     with open('1.ndjson','w+') as f1:
         for line in f.readlines():
             f1.write(pg_text_format(process_line(line)))
+            f1.write('\n')
