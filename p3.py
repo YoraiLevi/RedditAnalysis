@@ -1,5 +1,9 @@
 import ujson
 
+parser = argparse.ArgumentParser()
+parser.add_argument('file')
+args = parser.parse_args()
+
 fields = [  # comment
     "author",
     "author_flair_text",
@@ -48,6 +52,6 @@ def process_line(line):
 
     data["json"] = ujson.encode(left_over)
     return dict(data)
-with open() as f:
+with open(args.file) as f:
     for line in f.readlines():
         print(pg_text_format(process_line(line)))
