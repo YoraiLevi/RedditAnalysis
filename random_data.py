@@ -64,17 +64,16 @@ def process_line(line):
 
 from peewee import chunked
 def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
-    pass
-    # try:
-    #     if(atomic):
-    #         with db.atomic():
-    #             for chunk in chunked(processed_chunk,chunk_size_db):
-    #                 models["comment"].insert_many(chunk).execute()
-    #     else:
-    #         for chunk in chunked(processed_chunk,chunk_size_db):
-    #             models["comment"].insert_many(chunk).execute()
-    # except Exception as e:
-    #     output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
+    try:
+        if(atomic):
+            with db.atomic():
+                for chunk in chunked(processed_chunk,chunk_size_db):
+                    models["comment"].insert_many(chunk).execute()
+        else:
+            for chunk in chunked(processed_chunk,chunk_size_db):
+                models["comment"].insert_many(chunk).execute()
+    except Exception as e:
+        output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
 
 
 def print_errors(input):
