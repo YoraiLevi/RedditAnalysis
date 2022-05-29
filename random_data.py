@@ -134,8 +134,7 @@ if __name__ == "__main__":
     db = init_database()
     models = init_models(db,True)
     manager = Manager()
-    task_queue1 = manager.Queue()
-    task_queue2 = manager.Queue()
+    task_queue = manager.Queue()
     done_queue = manager.Queue()
     with db:
         db.create_tables([models["comment"], models["comment"]])
@@ -143,21 +142,15 @@ if __name__ == "__main__":
     ts = []
     try:
         for i in range(args.processes):
-            p = Process(target=worker, args=(task_queue1, done_queue,args.threads,args.atomic,args.chunk_size_db))
+            p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
             ps.append(p)
-        for i in range(args.processes):
-            p = Process(target=worker, args=(task_queue2, done_queue,args.threads,args.atomic,args.chunk_size_db))
-            ps.append(p)
-
         t = Thread(target=print_errors, args=[done_queue])
         ts.append(t)
         with open(args.file) as f:
             for line in islice(f.readlines(),0,1):
                 obj = process_line(line)
         for i in range(args.data_generators):
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue1, obj))
-            ps.append(p)
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue2, obj))
+            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
             ps.append(p)
         for t in ts:
             t.start()
@@ -167,9 +160,7 @@ if __name__ == "__main__":
         print(traceback.format_exc())
     finally:
         for i in range(args.processes):
-            task_queue1.put("STOP")
-            task_queue2.put("STOP")
-
+            task_queue.put("STOP")
         running = False
         for p in ps:
             p.join()
