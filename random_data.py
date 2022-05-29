@@ -9,11 +9,12 @@ from multiprocessing import Pool, Queue, Process
 from threading import Thread
 import traceback
 import os
+import random
 
 import ujson
 from collections import defaultdict
 from models import init_database, init_models
-from zreader import Zreader
+
 
 fields = {  # comment
     "author",
@@ -45,20 +46,20 @@ db = None
 models = None
 
 
-def process_line(line):
-    obj = ujson.decode(line)
+# def process_line(line):
+#     obj = ujson.decode(line)
 
-    data = defaultdict(None)
-    data["retrieved_utc"] = obj.get("retrieved_on")
-    data.update({key: obj[key] for key in obj if key in fields})
-    if isinstance(data["created_utc"], str):
-        data["created_utc"] = int(data["created_utc"])
+#     data = defaultdict(None)
+#     data["retrieved_utc"] = obj.get("retrieved_on")
+#     data.update({key: obj[key] for key in obj if key in fields})
+#     if isinstance(data["created_utc"], str):
+#         data["created_utc"] = int(data["created_utc"])
 
-    left_over = {key: obj[key] for key in obj if key not in fields}
+#     left_over = {key: obj[key] for key in obj if key not in fields}
 
-    data["json"] = ujson.encode(left_over)
+#     data["json"] = ujson.encode(left_over)
 
-    return dict(data)
+#     return dict(data)
 
 from peewee import chunked
 def to_db(processed_chunk, output):
@@ -82,7 +83,7 @@ def worker(input, output):
     with ThreadPoolExecutor(max_workers=1) as executor:
         for line in iter(input.get, "STOP"):
             try:
-                processed_chunk = process_line(line)
+                # processed_chunk = process_line(line)
                 # to_db(processed_chunk, output)
                 # executor.submit(to_db, processed_chunk, output)
             except Exception as e:
@@ -91,7 +92,6 @@ def worker(input, output):
 
 
 NUMBER_OF_PROCESSES = 4
-
 
 def chunk(iterable, chunk_size=10**5):
     iterator = iter(iterable)
@@ -123,7 +123,16 @@ if __name__ == "__main__":
     t = Thread(target=print_errors, args=[done_queue])
     t.start()
     try:
-        for chunk in Zreader(args.zstd_file).readlines():
+        with open(args.file) as f:
+            for line in islice(f.readlines(),0,1):
+                obj = process_line(line)
+        types = {k: type(v) for k, v in obj.items()}
+        N = 1000
+        chunk_size = 10**3
+        # generate data
+        for _ in range(N):
+            new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
+            chunk = [new_obj() for _ in range(chunk_size)]
             task_queue.put(chunk)
     except Exception as e:
         print(traceback.format_exc())
