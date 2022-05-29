@@ -78,14 +78,14 @@ def print_errors(input):
         print(item)
 
 
-def worker(input, output):
+def worker(input, output,atomic=True):
     global db, models
     db = init_database()
     models = init_models(db)
     with ThreadPoolExecutor(max_workers=1) as executor:
         for chunk in iter(input.get, "STOP"):
             try:
-                to_db(chunk,output)
+                to_db(chunk,output,atomic)
                 # processed_chunk = process_line(line)
                 # to_db(processed_chunk, output)
                 # executor.submit(to_db, processed_chunk, output)
@@ -129,7 +129,7 @@ if __name__ == "__main__":
         db.create_tables([models["comment"], models["comment"]])
 
     for i in range(NUMBER_OF_PROCESSES):
-        Process(target=worker, args=(task_queue, done_queue)).start()
+        Process(target=worker, args=(task_queue, done_queue,args.atomic)).start()
     t = Thread(target=print_errors, args=[done_queue])
     t.start()
     try:
