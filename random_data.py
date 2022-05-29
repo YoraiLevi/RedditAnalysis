@@ -81,13 +81,14 @@ def worker(input, output):
     db = init_database()
     models = init_models(db)
     with ThreadPoolExecutor(max_workers=1) as executor:
-        for line in iter(input.get, "STOP"):
+        for chunk in iter(input.get, "STOP"):
             try:
+                to_db(chunk,output)
                 # processed_chunk = process_line(line)
                 # to_db(processed_chunk, output)
                 # executor.submit(to_db, processed_chunk, output)
             except Exception as e:
-                output.put((traceback.format_exc(), processed_chunk))
+                output.put((traceback.format_exc(), chunk))
     output.put("STOP")
 
 
