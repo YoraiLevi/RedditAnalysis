@@ -113,7 +113,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     db = init_database()
-    models = init_models(db)
+    models = init_models(db,True)
     task_queue = Queue()
     done_queue = Queue()
     with db:
