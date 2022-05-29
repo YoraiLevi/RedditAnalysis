@@ -129,7 +129,7 @@ if __name__ == "__main__":
                 obj = process_line(line)
         types = {k: type(v) for k, v in obj.items()}
         N = 1000
-        chunk_size = 10**3
+        chunk_size = 10**2
         # generate data
         for _ in range(N):
             new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
