@@ -133,8 +133,9 @@ if __name__ == "__main__":
 
     db = init_database()
     models = init_models(db,True)
-    task_queue = Queue()
-    done_queue = Queue()
+    manager = Manager()
+    task_queue = manager.Queue()
+    done_queue = manager.Queue()
     with db:
         db.create_tables([models["comment"], models["comment"]])
 
