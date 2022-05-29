@@ -1,11 +1,12 @@
 # rm log; for FILE in $(wslpath E:/Datasets/reddit/comments/*); do echo $FILE; zstd -cdq --long=31 $FILE | python3 piped_json.py >> log; done
+# https://www.cloudcity.io/blog/2019/02/27/things-i-wish-they-told-me-about-multiprocessing-in-python/
 from concurrent.futures import ThreadPoolExecutor, thread
 from glob import glob
 from itertools import islice
 import time
 import sys
 import argparse
-from multiprocessing import Pool, Queue, Process
+from multiprocessing import Pool, Queue, Process, Manager
 from threading import Thread
 import traceback
 import os
