@@ -64,7 +64,6 @@ def process_line(line):
 
 from peewee import chunked
 def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
-    print(2)
     try:
         if(atomic):
             with db.atomic():
@@ -88,6 +87,7 @@ def worker(input, output,n_threads,atomic=True,chunk_size_db=100):
     models = init_models(db)
     with ThreadPoolExecutor(max_workers=n_threads) as executor:
         for chunk in iter(input.get, "STOP"):
+            print(1)
             try:
                 to_db(chunk,output,atomic,chunk_size_db)
             except Exception as e:
