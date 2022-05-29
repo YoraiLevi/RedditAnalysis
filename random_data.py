@@ -110,6 +110,7 @@ def chunk(iterable, chunk_size=10**5):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('file')
+    parser.add_argument('chunk_size',type=int)
     args = parser.parse_args()
 
     db = init_database()
@@ -129,7 +130,7 @@ if __name__ == "__main__":
                 obj = process_line(line)
         types = {k: type(v) for k, v in obj.items()}
         total_data = 10**6
-        chunk_size = 10**3
+        chunk_size = args.chunk_size
         N = int(total_data/chunk_size)
         # generate data
         for _ in range(N):
