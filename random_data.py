@@ -108,6 +108,15 @@ def chunk(iterable, chunk_size=10**5):
             return
 
 
+def generate_data(total_data,chunk_size, task_queue, obj):
+    types = {k: type(v) for k, v in obj.items()}
+    partitions = int(total_data/chunk_size)
+        # generate data
+    for _ in range(partitions):
+        new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
+        chunk = [new_obj(types) for _ in range(chunk_size)]
+        task_queue.put(chunk)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('file')
@@ -118,7 +127,7 @@ if __name__ == "__main__":
     parser.add_argument('--atomic',type=bool,default=True)
     parser.add_argument('--threads',type=int,default=4)
     parser.add_argument('--processes',type=int,default=4)
-
+    parser.add_argument('--data_generators',type=int,default=4)
     args = parser.parse_args()
 
     db = init_database()
@@ -136,15 +145,8 @@ if __name__ == "__main__":
         with open(args.file) as f:
             for line in islice(f.readlines(),0,1):
                 obj = process_line(line)
-        types = {k: type(v) for k, v in obj.items()}
-        total_data = 10**6
-        chunk_size = args.chunk_size_enqueue
-        N = int(total_data/chunk_size)
-        # generate data
-        for _ in range(N):
-            new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
-            chunk = [new_obj(types) for _ in range(chunk_size)]
-            task_queue.put(chunk)
+        for i in range(args.data_generators):
+            Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj)).start()
     except Exception as e:
         print(traceback.format_exc())
     finally:
