@@ -80,17 +80,14 @@ def print_errors(input):
         print(item)
 
 
-def worker(input, output,atomic=True):
+def worker(input, output,n_threads,atomic=True,chunk_size_db=100):
     global db, models
     db = init_database()
     models = init_models(db)
-    with ThreadPoolExecutor(max_workers=1) as executor:
+    with ThreadPoolExecutor(max_workers=n_threads) as executor:
         for chunk in iter(input.get, "STOP"):
             try:
-                to_db(chunk,output,atomic)
-                # processed_chunk = process_line(line)
-                # to_db(processed_chunk, output)
-                # executor.submit(to_db, processed_chunk, output)
+                to_db(chunk,output,atomic,chunk_size_db)
             except Exception as e:
                 output.put((traceback.format_exc(), chunk))
     output.put("STOP")
@@ -131,7 +128,7 @@ if __name__ == "__main__":
         db.create_tables([models["comment"], models["comment"]])
 
     for i in range(args.processes):
-        Process(target=worker, args=(task_queue, done_queue,args.atomic,args.chunk_size_db)).start()
+        Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db)).start()
     t = Thread(target=print_errors, args=[done_queue])
     t.start()
     try:
