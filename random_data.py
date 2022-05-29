@@ -147,7 +147,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(traceback.format_exc())
     finally:
-        for i in range(NUMBER_OF_PROCESSES):
+        for i in range(args.processes):
             task_queue.put("STOP")
         running = False
         t.join()
