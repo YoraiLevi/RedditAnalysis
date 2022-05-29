@@ -152,10 +152,17 @@ if __name__ == "__main__":
         for i in range(args.data_generators):
             p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
             ps.append(p)
+        for t in ts:
+            t.start()
+        for p in ps:
+            p.start()
     except Exception as e:
         print(traceback.format_exc())
     finally:
         for i in range(args.processes):
             task_queue.put("STOP")
         running = False
-        t.join()
+        for p in ps:
+            p.join()
+        for t in ts:
+            t.join()
