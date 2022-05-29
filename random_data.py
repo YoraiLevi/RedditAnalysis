@@ -112,11 +112,10 @@ def generate_data(total_data,chunk_size, task_queue, obj):
     types = {k: type(v) for k, v in obj.items()}
     partitions = int(total_data/chunk_size)
     # generate data
-    print(total_data,chunk_size, task_queue, obj)
     for _ in range(partitions):
         new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
         chunk = [new_obj(types) for _ in range(chunk_size)]
-        task_queue.put(chunk)
+        # task_queue.put(chunk)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
