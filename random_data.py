@@ -129,13 +129,16 @@ if __name__ == "__main__":
     parser.add_argument('--threads',type=int,default=4)
     parser.add_argument('--processes',type=int,default=4)
     parser.add_argument('--data_generators',type=int,default=4)
+    parser.add_argument('--pipes',type=int,default=4)
     args = parser.parse_args()
 
     db = init_database()
     models = init_models(db,True)
     manager = Manager()
-    task_queue1 = manager.Queue()
-    task_queue2 = manager.Queue()
+    pipes = manager.list()
+    for i in range(args.pipes):
+        task_queue = manager.Queue()
+        pipes.append(task_queue)
     done_queue = manager.Queue()
     with db:
         db.create_tables([models["comment"], models["comment"]])
@@ -143,21 +146,17 @@ if __name__ == "__main__":
     ts = []
     try:
         for i in range(args.processes):
-            p = Process(target=worker, args=(task_queue1, done_queue,args.threads,args.atomic,args.chunk_size_db))
+            task_queue = pipes[i%args.pipes]
+            p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
             ps.append(p)
-        for i in range(args.processes):
-            p = Process(target=worker, args=(task_queue2, done_queue,args.threads,args.atomic,args.chunk_size_db))
-            ps.append(p)
-
         t = Thread(target=print_errors, args=[done_queue])
         ts.append(t)
         with open(args.file) as f:
             for line in islice(f.readlines(),0,1):
                 obj = process_line(line)
         for i in range(args.data_generators):
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators/2),args.chunk_size_enqueue, task_queue1, obj))
-            ps.append(p)
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators/2),args.chunk_size_enqueue, task_queue2, obj))
+            task_queue = pipes[i%args.pipes]
+            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
             ps.append(p)
         for t in ts:
             t.start()
@@ -167,9 +166,8 @@ if __name__ == "__main__":
         print(traceback.format_exc())
     finally:
         for i in range(args.processes):
-            task_queue1.put("STOP")
-            task_queue2.put("STOP")
-
+            task_queue = pipes[i%args.pipes]
+            task_queue.put("STOP")
         running = False
         for p in ps:
             p.join()
