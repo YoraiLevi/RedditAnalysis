@@ -64,17 +64,16 @@ def process_line(line):
 
 from peewee import chunked
 def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
-    pass
-    # try:
-    #     if(atomic):
-    #         with db.atomic():
-    #             for chunk in chunked(processed_chunk,chunk_size_db):
-    #                 models["comment"].insert_many(chunk).execute()
-    #     else:
-    #         for chunk in chunked(processed_chunk,chunk_size_db):
-    #             models["comment"].insert_many(chunk).execute()
-    # except Exception as e:
-    #     output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
+    try:
+        if(atomic):
+            with db.atomic():
+                for chunk in chunked(processed_chunk,chunk_size_db):
+                    models["comment"].insert_many(chunk).execute()
+        else:
+            for chunk in chunked(processed_chunk,chunk_size_db):
+                models["comment"].insert_many(chunk).execute()
+    except Exception as e:
+        output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
 
 
 def print_errors(input):
@@ -127,9 +126,9 @@ if __name__ == "__main__":
 
     parser.add_argument('--atomic',type=bool,default=True)
     parser.add_argument('--threads',type=int,default=4)
-    parser.add_argument('--processes',type=int,default=4)
+    parser.add_argument('--processes',type=int,default=8)
     parser.add_argument('--data_generators',type=int,default=4)
-    parser.add_argument('--pipes',type=int,default=4)
+    parser.add_argument('--pipes',type=int,default=1)
     args = parser.parse_args()
 
     db = init_database()
