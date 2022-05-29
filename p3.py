@@ -1,5 +1,4 @@
 import ujson
-import json
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -32,6 +31,8 @@ fields = [  # comment
     "subreddit_type",
     "total_awards_received",
 ]
+def submit_to_db(obj):
+    print(pg_text_format(obj))
 def pg_text_format(d):
     item = [d[field] for field in fields]
     item = [repr(i) if isinstance(i,str) else i for i in item]
@@ -63,6 +64,10 @@ models = models.init_models(db)
 with codecs.open(args.file,'r',encoding='utf-8') as f:
     for line in islice(f.readlines(),0,1):
         obj = process_line(line)
-    obj = {k: type(v) for k, v in obj.items()}
-    
-        # print(pg_text_format(process_line(line)))
+types = {k: type(v) for k, v in obj.items()}
+N = 1000
+import random
+for _ in range(N):
+    obj = {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
+    submit_to_db(obj)
+
