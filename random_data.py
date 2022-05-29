@@ -62,13 +62,15 @@ def process_line(line):
     return dict(data)
 
 from peewee import chunked
-def to_db(processed_chunk, output,atomic=True):
+def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
     try:
         if(atomic):
             with db.atomic():
-                models["comment"].insert_many(processed_chunk).execute()
+                for chunk in chunked(processed_chunk,chunk_size_db):
+                    models["comment"].insert_many(chunk).execute()
         else:
-            models["comment"].insert_many(processed_chunk).execute()
+            for chunk in chunked(processed_chunk,chunk_size_db):
+                models["comment"].insert_many(chunk).execute()
     except Exception as e:
         output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
 
@@ -94,7 +96,6 @@ def worker(input, output,atomic=True):
     output.put("STOP")
 
 
-NUMBER_OF_PROCESSES = 4
 
 def chunk(iterable, chunk_size=10**5):
     iterator = iter(iterable)
@@ -113,7 +114,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('file')
     parser.add_argument('n_rows',type=int)
-    parser.add_argument('chunk_size',type=int)
+    parser.add_argument('chunk_size_db',type=int)
+    parser.add_argument('chunk_size_enqueue',type=int)
 
     parser.add_argument('--atomic',type=bool,default=True)
     parser.add_argument('--threads',type=int,default=4)
@@ -128,8 +130,8 @@ if __name__ == "__main__":
     with db:
         db.create_tables([models["comment"], models["comment"]])
 
-    for i in range(NUMBER_OF_PROCESSES):
-        Process(target=worker, args=(task_queue, done_queue,args.atomic)).start()
+    for i in range(args.processes):
+        Process(target=worker, args=(task_queue, done_queue,args.atomic,args.chunk_size_db)).start()
     t = Thread(target=print_errors, args=[done_queue])
     t.start()
     try:
@@ -138,7 +140,7 @@ if __name__ == "__main__":
                 obj = process_line(line)
         types = {k: type(v) for k, v in obj.items()}
         total_data = 10**6
-        chunk_size = args.chunk_size
+        chunk_size = args.chunk_size_enqueue
         N = int(total_data/chunk_size)
         # generate data
         for _ in range(N):
