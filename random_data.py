@@ -64,6 +64,7 @@ def process_line(line):
 
 from peewee import chunked
 def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
+    print(2)
     try:
         if(atomic):
             with db.atomic():
