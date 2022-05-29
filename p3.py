@@ -1,3 +1,6 @@
+from itertools import islice
+import random
+import models
 import ujson
 import argparse
 
@@ -56,18 +59,15 @@ def process_line(line):
     data["json"] = ujson.encode(left_over)
     # print(data["body"])
     return dict(data)
-from itertools import islice
-import codecs
-import models
-db = models.init_database()
-models = models.init_models(db)
-with codecs.open(args.file,'r',encoding='utf-8') as f:
-    for line in islice(f.readlines(),0,1):
-        obj = process_line(line)
-types = {k: type(v) for k, v in obj.items()}
-N = 1000
-import random
-for _ in range(N):
-    obj = {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
-    submit_to_db(obj)
 
+if __name__ == "__main__":
+    db = models.init_database()
+    models = models.init_models(db)
+    with open(args.file) as f:
+        for line in islice(f.readlines(),0,1):
+            obj = process_line(line)
+    types = {k: type(v) for k, v in obj.items()}
+    N = 1000
+    for _ in range(N):
+        obj = {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
+        submit_to_db(obj)
