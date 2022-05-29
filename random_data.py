@@ -128,8 +128,9 @@ if __name__ == "__main__":
             for line in islice(f.readlines(),0,1):
                 obj = process_line(line)
         types = {k: type(v) for k, v in obj.items()}
-        N = 1000
-        chunk_size = 10**2
+        total_data = 10**6
+        chunk_size = 10**3
+        N = int(total_data/chunk_size)
         # generate data
         for _ in range(N):
             new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
