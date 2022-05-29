@@ -110,9 +110,9 @@ def chunk(iterable, chunk_size=10**5):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('file')
-    parser.add_argument('n_rows',type=int)
-    parser.add_argument('chunk_size_db',type=int)
-    parser.add_argument('chunk_size_enqueue',type=int)
+    parser.add_argument('--n_rows',type=int,default=10**6)
+    parser.add_argument('--chunk_size_db',type=int,default=10**2)
+    parser.add_argument('--chunk_size_enqueue',type=int,default=10**0)
 
     parser.add_argument('--atomic',type=bool,default=True)
     parser.add_argument('--threads',type=int,default=4)
