@@ -46,20 +46,20 @@ db = None
 models = None
 
 
-# def process_line(line):
-#     obj = ujson.decode(line)
+def process_line(line):
+    obj = ujson.decode(line)
 
-#     data = defaultdict(None)
-#     data["retrieved_utc"] = obj.get("retrieved_on")
-#     data.update({key: obj[key] for key in obj if key in fields})
-#     if isinstance(data["created_utc"], str):
-#         data["created_utc"] = int(data["created_utc"])
+    data = defaultdict(None)
+    data["retrieved_utc"] = obj.get("retrieved_on")
+    data.update({key: obj[key] for key in obj if key in fields})
+    if isinstance(data["created_utc"], str):
+        data["created_utc"] = int(data["created_utc"])
 
-#     left_over = {key: obj[key] for key in obj if key not in fields}
+    left_over = {key: obj[key] for key in obj if key not in fields}
 
-#     data["json"] = ujson.encode(left_over)
+    data["json"] = ujson.encode(left_over)
 
-#     return dict(data)
+    return dict(data)
 
 from peewee import chunked
 def to_db(processed_chunk, output):
@@ -109,7 +109,7 @@ def chunk(iterable, chunk_size=10**5):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('zstd_file')
+    parser.add_argument('file')
     args = parser.parse_args()
 
     db = init_database()
@@ -133,7 +133,7 @@ if __name__ == "__main__":
         # generate data
         for _ in range(N):
             new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
-            chunk = [new_obj() for _ in range(chunk_size)]
+            chunk = [new_obj(types) for _ in range(chunk_size)]
             task_queue.put(chunk)
     except Exception as e:
         print(traceback.format_exc())
