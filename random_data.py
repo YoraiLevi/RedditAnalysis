@@ -62,11 +62,13 @@ def process_line(line):
     return dict(data)
 
 from peewee import chunked
-def to_db(processed_chunk, output):
+def to_db(processed_chunk, output,atomic=True):
     try:
-        with db.atomic():
-            for batch in chunked(processed_chunk, 100):
-                models["comment"].insert_many(batch).execute()
+        if(atomic):
+            with db.atomic():
+                models["comment"].insert_many(processed_chunk).execute()
+        else:
+            models["comment"].insert_many(processed_chunk).execute()
     except Exception as e:
         output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
 
