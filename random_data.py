@@ -138,17 +138,20 @@ if __name__ == "__main__":
     done_queue = manager.Queue()
     with db:
         db.create_tables([models["comment"], models["comment"]])
-
-    for i in range(args.processes):
-        Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db)).start()
-    t = Thread(target=print_errors, args=[done_queue])
-    t.start()
+    ps = []
+    ts = []
     try:
+        for i in range(args.processes):
+            p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
+            ps.append(p)
+        t = Thread(target=print_errors, args=[done_queue])
+        ts.append(t)
         with open(args.file) as f:
             for line in islice(f.readlines(),0,1):
                 obj = process_line(line)
         for i in range(args.data_generators):
-            Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj)).start()
+            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
+            ps.append(p)
     except Exception as e:
         print(traceback.format_exc())
     finally:
