@@ -140,18 +140,18 @@ if __name__ == "__main__":
 
     db = init_database()
     models = init_models(db,True)
-    data = []
+    # data = []
     
-    with open(args.file) as f:
-        for line in islice(f.readlines(),0,1):
-            obj = process_line(line)
-    types = {k: type(v) for k, v in obj.items()}
+    # with open(args.file) as f:
+    #     for line in islice(f.readlines(),0,1):
+    #         obj = process_line(line)
+    # types = {k: type(v) for k, v in obj.items()}
     
-    chunk = lambda chunk_size : [new_obj(types) for _ in range(chunk_size)]
-    n_chunks = int(n_rows/chunk_size)
-    chunks = [chunk(chunk_size) for _ in range(n_chunks)]
-    for chunk in chunks:
-        to_db(chunk,atomic,chunk_size_db)
+    # chunk = lambda chunk_size : [new_obj(types) for _ in range(chunk_size)]
+    # n_chunks = int(n_rows/chunk_size)
+    # chunks = [chunk(chunk_size) for _ in range(n_chunks)]
+    # for chunk in chunks:
+    #     to_db(chunk,atomic,chunk_size_db)
 
 
     # manager = Manager()
