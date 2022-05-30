@@ -1,4 +1,4 @@
-from ast import Try
+#!python
 import peewee as pw
 from peewee import *
 from playhouse.postgres_ext import *
