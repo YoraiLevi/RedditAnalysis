@@ -111,13 +111,13 @@ def chunk(iterable, chunk_size=10**5):
             return
 
 
-def generate_data(total_data,chunk_size, task_queue, obj):
+def generate_data(total_data,chunk_size, task_queue, obj,manager):
     types = {k: type(v) for k, v in obj.items()}
     partitions = int(total_data/chunk_size)
     # generate data
     for _ in range(partitions):
         new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
-        chunk = [new_obj(types) for _ in range(chunk_size)]
+        chunk = manager.list([new_obj(types) for _ in range(chunk_size)])
         task_queue.put(chunk)
 
 if __name__ == "__main__":
@@ -160,7 +160,7 @@ if __name__ == "__main__":
                 obj = process_line(line)
         for i in range(args.data_generators):
             task_queue = pipes[i%args.pipes]
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
+            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj,manager))
             ps_in.append(p)
         for t in ts:
             t.start()
