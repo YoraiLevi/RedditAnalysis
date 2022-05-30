@@ -116,9 +116,12 @@ def generate_data(total_data,chunk_size, task_queue, obj,manager):
     partitions = int(total_data/chunk_size)
     # generate data
     for _ in range(partitions):
-        new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
+        obj = new_obj(types)
         chunk = manager.list([new_obj(types) for _ in range(chunk_size)])
         task_queue.put(chunk)
+
+def new_obj(types):
+    return {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -136,48 +139,45 @@ if __name__ == "__main__":
 
     db = init_database()
     models = init_models(db,True)
-    manager = Manager()
-    # pipes = manager.list()
-    # for i in range(args.pipes):
-        # task_queue = manager.Queue()
-        # pipes.append(task_queue)
-    done_queue = manager.Queue()
-    with db:
-        db.create_tables([models["comment"], models["comment"]])
-    ps_out = []
-    ps_in = []
+    
+    # manager = Manager()
+    # done_queue = manager.Queue()
+    # with db:
+    #     db.create_tables([models["comment"], models["comment"]])
+    # ps_out = []
+    # ps_in = []
 
-    ts = []
-    try:
-        for i in range(args.processes):
-            task_queue = pipes[i%args.pipes]
-            p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
-            ps_out.append(p)
-        t = Thread(target=print_errors, args=[done_queue])
-        ts.append(t)
-        with open(args.file) as f:
-            for line in islice(f.readlines(),0,1):
-                obj = process_line(line)
-        for i in range(args.data_generators):
-            task_queue = pipes[i%args.pipes]
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
-            ps_in.append(p)
-        for t in ts:
-            t.start()
-        for p in ps_out:
-            p.start()
-        for p in ps_in:
-            p.start()
-    except Exception as e:
-        print(traceback.format_exc())
-    finally:
-        for p in ps_in:
-            p.join()
-        for i in range(args.processes):
-            task_queue = pipes[i%args.pipes]
-            task_queue.put("STOP")
-        running = False
-        for p in ps_out:
-            p.join()
-        for t in ts:
-            t.join()
+    # ts = []
+    # try:
+    #     for i in range(args.processes):
+    #         task_queue = pipes[i%args.pipes]
+    #         p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
+    #         ps_out.append(p)
+    #     t = Thread(target=print_errors, args=[done_queue])
+    #     ts.append(t)
+    #     with open(args.file) as f:
+    #         for line in islice(f.readlines(),0,1):
+    #             obj = process_line(line)
+    #     for i in range(args.data_generators):
+    #         task_queue = pipes[i%args.pipes]
+    #         p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
+    #         ps_in.append(p)
+    #     for t in ts:
+    #         t.start()
+    #     for p in ps_out:
+    #         p.start()
+    #     for p in ps_in:
+    #         p.start()
+    # except Exception as e:
+    #     print(traceback.format_exc())
+    # finally:
+    #     for p in ps_in:
+    #         p.join()
+    #     for i in range(args.processes):
+    #         task_queue = pipes[i%args.pipes]
+    #         task_queue.put("STOP")
+    #     running = False
+    #     for p in ps_out:
+    #         p.join()
+    #     for t in ts:
+    #         t.join()
