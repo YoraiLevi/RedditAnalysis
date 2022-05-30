@@ -135,7 +135,8 @@ if __name__ == "__main__":
     chunk_size = args.chunk_size_enqueue
     chunk_size_db = args.chunk_size_db
     atomic = args.atomic
-    
+    n_rows = args.n_rows
+
     db = init_database()
     models = init_models(db,True)
     data = []
@@ -144,8 +145,10 @@ if __name__ == "__main__":
         for line in islice(f.readlines(),0,1):
             obj = process_line(line)
     types = {k: type(v) for k, v in obj.items()}
+    
     chunk = lambda chunk_size : (new_obj(types) for _ in range(chunk_size))
-    chunks = [chunk(chunk_size) for _ in range(args.n_rows)]
+    n_chunks = int(n_rows/chunk_size)
+    chunks = [chunk(chunk_size) for _ in range(n_chunks)]
     for chunk in chunks:
         to_db(chunk,atomic,chunk_size_db)
 
