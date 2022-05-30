@@ -67,13 +67,13 @@ from peewee import chunked
 def to_db(processed_chunk,atomic=True,chunk_size_db = 100):
         if(atomic):
             with db.atomic():
-                # for chunk in chunked(processed_chunk,chunk_size_db):
-                    # models["comment"].insert_many(chunk).execute()
-                models["comment"].insert_many(processed_chunk).execute()
+                for chunk in chunked(processed_chunk,chunk_size_db):
+                    models["comment"].insert_many(chunk).execute()
+                # models["comment"].insert_many(processed_chunk).execute()
         else:
-            # for chunk in chunked(processed_chunk,chunk_size_db):
-                # models["comment"].insert_many(chunk).execute()
-            models["comment"].insert_many(processed_chunk).execute()
+            for chunk in chunked(processed_chunk,chunk_size_db):
+                models["comment"].insert_many(chunk).execute()
+            # models["comment"].insert_many(processed_chunk).execute()
 
 def print_errors(input):
     for item in iter(input.get, "STOP"):
