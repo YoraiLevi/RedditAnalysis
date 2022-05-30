@@ -137,10 +137,10 @@ if __name__ == "__main__":
     db = init_database()
     models = init_models(db,True)
     manager = Manager()
-    pipes = manager.list()
-    for i in range(args.pipes):
-        task_queue = manager.Queue()
-        pipes.append(task_queue)
+    # pipes = manager.list()
+    # for i in range(args.pipes):
+        # task_queue = manager.Queue()
+        # pipes.append(task_queue)
     done_queue = manager.Queue()
     with db:
         db.create_tables([models["comment"], models["comment"]])
@@ -160,7 +160,7 @@ if __name__ == "__main__":
                 obj = process_line(line)
         for i in range(args.data_generators):
             task_queue = pipes[i%args.pipes]
-            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj,manager))
+            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
             ps_in.append(p)
         for t in ts:
             t.start()
