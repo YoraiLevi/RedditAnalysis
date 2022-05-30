@@ -63,21 +63,16 @@ def process_line(line):
     return dict(data)
 
 from peewee import chunked
-def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
-    try:
+def to_db(processed_chunk,atomic=True,chunk_size_db = 100):
         if(atomic):
             with db.atomic():
-                for chunk in chunked(processed_chunk,chunk_size_db):
-                    models["comment"].insert_many(chunk).execute()
-                # models["comment"].insert_many(processed_chunk).execute()
+                # for chunk in chunked(processed_chunk,chunk_size_db):
+                    # models["comment"].insert_many(chunk).execute()
+                models["comment"].insert_many(processed_chunk).execute()
         else:
-            for chunk in chunked(processed_chunk,chunk_size_db):
-                models["comment"].insert_many(chunk).execute()
-            # models["comment"].insert_many(processed_chunk).execute()
-            
-    except Exception as e:
-        output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
-
+            # for chunk in chunked(processed_chunk,chunk_size_db):
+                # models["comment"].insert_many(chunk).execute()
+            models["comment"].insert_many(processed_chunk).execute()
 
 def print_errors(input):
     for item in iter(input.get, "STOP"):
@@ -138,6 +133,9 @@ if __name__ == "__main__":
 
 
     chunk_size = args.chunk_size_enqueue
+    chunk_size_db = args.chunk_size_db
+    atomic = args.atomic
+    
     db = init_database()
     models = init_models(db,True)
     data = []
@@ -145,9 +143,11 @@ if __name__ == "__main__":
     with open(args.file) as f:
         for line in islice(f.readlines(),0,1):
             obj = process_line(line)
-
     types = {k: type(v) for k, v in obj.items()}
-    chunk = map(new_obj(types) for _ in range(chunk_size))
+    chunk = lambda chunk_size : map(new_obj(types) for _ in range(chunk_size))
+    chunks = [chunk(chunk_size) for _ in range(args.n_rows)]
+    for chunk in chunks:
+        to_db(chunk,atomic,chunk_size_db)
 
 
     # manager = Manager()
