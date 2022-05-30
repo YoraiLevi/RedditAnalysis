@@ -116,7 +116,7 @@ def generate_data(total_data,chunk_size, task_queue, obj,manager):
     partitions = int(total_data/chunk_size)
     # generate data
     for _ in range(partitions):
-        chunk = manager.list([new_obj(types) for _ in range(chunk_size)])
+        chunk = [new_obj(types) for _ in range(chunk_size)]
         task_queue.put(chunk)
 
 def new_obj(types):
@@ -136,9 +136,20 @@ if __name__ == "__main__":
     parser.add_argument('--pipes',type=int,default=1)
     args = parser.parse_args()
 
+
+    chunk_size = args.chunk_size_enqueue
     db = init_database()
     models = init_models(db,True)
+    data = []
     
+    with open(args.file) as f:
+        for line in islice(f.readlines(),0,1):
+            obj = process_line(line)
+
+    types = {k: type(v) for k, v in obj.items()}
+    chunk = map(new_obj(types) for _ in range(chunk_size))
+
+
     # manager = Manager()
     # done_queue = manager.Queue()
     # with db:
