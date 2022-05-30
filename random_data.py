@@ -65,7 +65,8 @@ def process_line(line):
     return dict(data)
 
 from peewee import chunked
-def to_db(processed_chunk,atomic=True,chunk_size_db = 100):
+def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
+    try:
         if(atomic):
             with db.atomic():
                 # for chunk in chunked(processed_chunk,chunk_size_db):
@@ -75,6 +76,10 @@ def to_db(processed_chunk,atomic=True,chunk_size_db = 100):
             # for chunk in chunked(processed_chunk,chunk_size_db):
                 # models["comment"].insert_many(chunk).execute()
             models["comment"].insert_many(processed_chunk).execute()
+            
+    except Exception as e:
+        output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
+
 
 def print_errors(input):
     for item in iter(input.get, "STOP"):
@@ -108,16 +113,14 @@ def chunk(iterable, chunk_size=10**5):
             return
 
 
-def generate_data(total_data,chunk_size, task_queue, obj,manager):
+def generate_data(total_data,chunk_size, task_queue, obj):
     types = {k: type(v) for k, v in obj.items()}
     partitions = int(total_data/chunk_size)
     # generate data
     for _ in range(partitions):
+        new_obj = lambda types: {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
         chunk = [new_obj(types) for _ in range(chunk_size)]
         task_queue.put(chunk)
-
-def new_obj(types):
-    return {k: v(random.uniform(-10,10)) if v is not type(None) else None for k, v in types.items()}
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -133,66 +136,50 @@ if __name__ == "__main__":
     parser.add_argument('--pipes',type=int,default=1)
     args = parser.parse_args()
 
-
-    chunk_size = args.chunk_size_enqueue
-    chunk_size_db = args.chunk_size_db
-    atomic = args.atomic
-    n_rows = args.n_rows
-
     db = init_database()
     models = init_models(db,True)
-    # data = []
-    
-    # with open(args.file) as f:
-    #     for line in islice(f.readlines(),0,1):
-    #         obj = process_line(line)
-    # types = {k: type(v) for k, v in obj.items()}
-    
-    # chunk = lambda chunk_size : [new_obj(types) for _ in range(chunk_size)]
-    # n_chunks = int(n_rows/chunk_size)
-    # chunks = [chunk(chunk_size) for _ in range(n_chunks)]
-    # for chunk in chunks:
-    #     to_db(chunk,atomic,chunk_size_db)
+    manager = Manager()
+    pipes = manager.list()
+    for i in range(args.pipes):
+        task_queue = manager.Queue()
+        pipes.append(task_queue)
+    done_queue = manager.Queue()
+    with db:
+        db.create_tables([models["comment"], models["comment"]])
+    ps_out = []
+    ps_in = []
 
-
-    # manager = Manager()
-    # done_queue = manager.Queue()
-    # with db:
-    #     db.create_tables([models["comment"], models["comment"]])
-    # ps_out = []
-    # ps_in = []
-
-    # ts = []
-    # try:
-    #     for i in range(args.processes):
-    #         task_queue = pipes[i%args.pipes]
-    #         p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
-    #         ps_out.append(p)
-    #     t = Thread(target=print_errors, args=[done_queue])
-    #     ts.append(t)
-    #     with open(args.file) as f:
-    #         for line in islice(f.readlines(),0,1):
-    #             obj = process_line(line)
-    #     for i in range(args.data_generators):
-    #         task_queue = pipes[i%args.pipes]
-    #         p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
-    #         ps_in.append(p)
-    #     for t in ts:
-    #         t.start()
-    #     for p in ps_out:
-    #         p.start()
-    #     for p in ps_in:
-    #         p.start()
-    # except Exception as e:
-    #     print(traceback.format_exc())
-    # finally:
-    #     for p in ps_in:
-    #         p.join()
-    #     for i in range(args.processes):
-    #         task_queue = pipes[i%args.pipes]
-    #         task_queue.put("STOP")
-    #     running = False
-    #     for p in ps_out:
-    #         p.join()
-    #     for t in ts:
-    #         t.join()
+    ts = []
+    try:
+        for i in range(args.processes):
+            task_queue = pipes[i%args.pipes]
+            p = Process(target=worker, args=(task_queue, done_queue,args.threads,args.atomic,args.chunk_size_db))
+            ps_out.append(p)
+        t = Thread(target=print_errors, args=[done_queue])
+        ts.append(t)
+        with open(args.file) as f:
+            for line in islice(f.readlines(),0,1):
+                obj = process_line(line)
+        for i in range(args.data_generators):
+            task_queue = pipes[i%args.pipes]
+            p = Process(target=generate_data, args=(int(args.n_rows/args.data_generators),args.chunk_size_enqueue, task_queue, obj))
+            ps_in.append(p)
+        for t in ts:
+            t.start()
+        for p in ps_out:
+            p.start()
+        for p in ps_in:
+            p.start()
+    except Exception as e:
+        print(traceback.format_exc())
+    finally:
+        for p in ps_in:
+            p.join()
+        for i in range(args.processes):
+            task_queue = pipes[i%args.pipes]
+            task_queue.put("STOP")
+        running = False
+        for p in ps_out:
+            p.join()
+        for t in ts:
+            t.join()
