@@ -146,7 +146,7 @@ if __name__ == "__main__":
             obj = process_line(line)
     types = {k: type(v) for k, v in obj.items()}
     
-    chunk = lambda chunk_size : (new_obj(types) for _ in range(chunk_size))
+    chunk = lambda chunk_size : [new_obj(types) for _ in range(chunk_size)]
     n_chunks = int(n_rows/chunk_size)
     chunks = [chunk(chunk_size) for _ in range(n_chunks)]
     for chunk in chunks:
