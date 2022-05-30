@@ -144,7 +144,7 @@ if __name__ == "__main__":
         for line in islice(f.readlines(),0,1):
             obj = process_line(line)
     types = {k: type(v) for k, v in obj.items()}
-    chunk = lambda chunk_size : map(new_obj(types) for _ in range(chunk_size))
+    chunk = lambda chunk_size : (new_obj(types) for _ in range(chunk_size))
     chunks = [chunk(chunk_size) for _ in range(args.n_rows)]
     for chunk in chunks:
         to_db(chunk,atomic,chunk_size_db)
