@@ -67,13 +67,13 @@ def to_db(processed_chunk, output,atomic=True,chunk_size_db = 100):
     try:
         if(atomic):
             with db.atomic():
-                # for chunk in chunked(processed_chunk,chunk_size_db):
-                    # models["comment"].insert_many(chunk).execute()
-                models["comment"].insert_many(processed_chunk).execute()
+                for chunk in chunked(processed_chunk,chunk_size_db):
+                    models["comment"].insert_many(chunk).execute()
+                # models["comment"].insert_many(processed_chunk).execute()
         else:
-            # for chunk in chunked(processed_chunk,chunk_size_db):
-                # models["comment"].insert_many(chunk).execute()
-            models["comment"].insert_many(processed_chunk).execute()
+            for chunk in chunked(processed_chunk,chunk_size_db):
+                models["comment"].insert_many(chunk).execute()
+            # models["comment"].insert_many(processed_chunk).execute()
             
     except Exception as e:
         output.put(("Exception:", traceback.format_exc(), "Data:", processed_chunk))
