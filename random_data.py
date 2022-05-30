@@ -1,5 +1,6 @@
 # rm log; for FILE in $(wslpath E:/Datasets/reddit/comments/*); do echo $FILE; zstd -cdq --long=31 $FILE | python3 piped_json.py >> log; done
 # https://www.cloudcity.io/blog/2019/02/27/things-i-wish-they-told-me-about-multiprocessing-in-python/
+# https://towardsdatascience.com/how-to-assess-your-code-performance-in-python-346a17880c9f - profiling
 from concurrent.futures import ThreadPoolExecutor, thread
 from glob import glob
 from itertools import islice
