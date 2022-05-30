@@ -116,7 +116,6 @@ def generate_data(total_data,chunk_size, task_queue, obj,manager):
     partitions = int(total_data/chunk_size)
     # generate data
     for _ in range(partitions):
-        obj = new_obj(types)
         chunk = manager.list([new_obj(types) for _ in range(chunk_size)])
         task_queue.put(chunk)
 
