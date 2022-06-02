@@ -1,3 +1,4 @@
+-- https://stackoverflow.com/a/50479342/12603110 base36
 CREATE TABLE IF NOT EXISTS public.comment
 (
     author text COLLATE pg_catalog."default" NOT NULL,
